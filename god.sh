@@ -19,22 +19,12 @@
 #  prevent you from getting caught in the
 #  illusion of 'getting things done' by
 #  removing away many common things you
-#  repeatedly do throughout your life.
+#  repeatedly do throughout your life:
+#  
+#  2. Run files/projects with one simple command     : god run [query]
+#  1. Scaffolding for multiple languages/frameworks  : god create [query]
 #  
 #  ======================================
-
-# |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~| #
-# |~~~~~~\|/~~~~~~\|/~~~~~~\|/~~~~~~\|/~~~~~~\|/~~~~~~\|/~~~~~~\|/~~~~~~~| #
-# |                                                                      | #
-# |                                                                      | #
-# |                     Author  : Ayush Sharma                           | #
-# |                     Github  : a-y-u-s-h                              | #
-# |                     Website : ayushsharma.net                        | #
-# |                     Twitter : @taggosaurus                           | #
-# |                                                                      | #
-# |                                                                      | #
-# |~~~~~~/|\~~~~~~/|\~~~~~~/|\~~~~~~/|\~~~~~~/|\~~~~~~/|\~~~~~~/|\~~~~~~~| #
-# |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~| #
 
 #  ======================================
 #  
@@ -47,44 +37,12 @@
 #  ======================================
 
 local root=$(dirname $0)
-source $(dirname $0)/node/node.sh
-source $(dirname $0)/react/react.sh
-source $(dirname $0)/python/python.sh
+source $(dirname $0)/src/containers/create.sh
+source $(dirname $0)/src/containers/run.sh
 
 # <------------------------------>
 
 function god () {
-
-  #  ======================================
-  #  
-  #    This is the main wrapper. It 
-  #    encompasses functionality of several
-  #    scripts such as:
-  #    
-  #    (*) Custom Scaffolding Scripts:
-  #        - React Project.   (react.project   || -c.react.a)
-  #        - React Component. (react.component || -c.js.rc)
-  #        - Node App.        (node.app        || -c.js.na)
-  #        
-  #  ======================================
-  
-  if [[ $1 == "create" || $1 == "-c" ]]; then  
-    if [[ $2 == "react.app" || $2 == "react.a" ]]; then
-      react.app ${root}/react ${@:3}
-    fi
-
-    if [[ $2 == "react.component" || $2 == "react.c" ]]; then
-      react.component ${root}/react ${@:3}
-    fi
-
-    if [[ $2 == "node.app" || $2 == "node.a" ]]; then
-      node.app ${root}/node ${@:3}
-    fi
-
-    if [[ $2 == "python.app" || $2 == "py.a" ]]; then
-      python.app ${root}/python ${@:3}
-    fi
-  fi
-
-  return
+  god.create  ${root} $@
+  god.run     ${root} $@
 }

@@ -11,25 +11,12 @@
 #    
 #  ======================================================
 #  
-#  Everything that I can automate, related to React.
+#  Everything that I can automate related to React.
 #  
 #  1. React Project Scaffolding (Custom)
 #  2. React Component Scaffolding (Custom, P5)
 #  
 #  ======================================================
-
-# |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~| #
-# |~~~~~~\|/~~~~~~\|/~~~~~~\|/~~~~~~\|/~~~~~~\|/~~~~~~\|/~~~~~~\|/~~~~~~~| #
-# |                                                                      | #
-# |                                                                      | #
-# |                     Author  : Ayush Sharma                           | #
-# |                     Github  : a-y-u-s-h                              | #
-# |                     Website : ayushsharma.net                        | #
-# |                     Twitter : @taggosaurus                           | #
-# |                                                                      | #
-# |                                                                      | #
-# |~~~~~~/|\~~~~~~/|\~~~~~~/|\~~~~~~/|\~~~~~~/|\~~~~~~/|\~~~~~~/|\~~~~~~~| #
-# |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~| #
 
 function react.component () {
   
@@ -68,10 +55,13 @@ function react.app () {
   local initial=$(pwd)
   for i in "${@:2}"; do
     create-react-app $i
-    cd $1/src/
-    mkdir components
-    rm -rvf App*
-    rm -rvf index.css
+    if [[ -d $i/src/ ]]; then
+      cd $i
+      rm -rvf src/
+      cp -R "${root}/templates/app/" src/
+      cd $initial
+    fi
+    cd $initial
   done
   cd $initial
   return
