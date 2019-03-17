@@ -28,6 +28,9 @@ function god.run () {
   source ${root}/src/components/julia/julia.sh                # Import julia.sh
   source ${root}/src/components/fortran/fortran.sh            # Import fortran.sh
   source ${root}/src/components/bash/bash.sh                  # Import bash.sh
+  source ${root}/src/components/batch/batch.sh                # Import batch.sh
+  source ${root}/src/components/lua/lua.sh                    # Import lua.sh
+  source ${root}/src/components/rust/rust.sh                  # Import rust.sh
   shift 1                                                     # shift parameters to left so that arguments become same.
 
   # <------------------------------>
@@ -50,46 +53,62 @@ function god.run () {
       
       if [[ ${ext} == "js" ]]; then
         node.run ${file}
-      fi
 
       #  ======================================
       #    Python
       #  ======================================
-      
-      if [[ ${ext} == "py" ]]; then
-        python.run ${file}
-      fi
-      
+
+      elif [[  ${ext} == "py"  ]]; then
+        python.run ${file}        
+
       #  ======================================
       #    Haskell
       #  ======================================
       
-      if [[ ${ext} == "hs" ]]; then
+      elif [[ ${ext} == "hs" ]]; then
         haskell.run ${file}
-      fi
-
+  
       #  ======================================
       #    Julia
       #  ======================================
       
-      if [[ ${ext} == "jl" ]]; then
+      elif [[ ${ext} == "jl" ]]; then
         julia.run ${file}
-      fi
 
       #  ======================================
       #    Fortran (2003, 1995, 1990)
       #  ======================================
       
-      if [[ ${ext} == "f03" || ${ext} == "f95" || ${ext} == "f90" ]]; then
+      elif [[ ${ext} == "f03" || ${ext} == "f95" || ${ext} == "f90" ]]; then
         fortran.run ${file}
-      fi
 
       #  ======================================
       #    Bash
       #  ======================================
       
-      if [[ ${ext} == "sh" ]]; then
+      elif [[ ${ext} == "sh" ]]; then
         bash.run ${file}
+
+      #  ======================================
+      #    Batch
+      #  ======================================
+      
+      elif [[ ${ext} == "bat" ]]; then
+        batch.run ${file}
+
+      #  ======================================
+      #    Lua
+      #  ======================================
+      
+      elif [[ ${ext} == "lua" ]]; then
+        lua.run ${file}  
+
+      #  ======================================
+      #    Rust
+      #  ======================================
+      
+      elif [[ ${ext} == "rs" || -f "Cargo.toml" ]]; then
+        rust.run ${file}
       fi
 
     done
