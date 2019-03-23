@@ -1,0 +1,18 @@
+<snippet>
+	<content><![CDATA[
+/*
+ |======================================================================|
+ 
+   Purpose of `$TM_FILENAME` :
+ 
+   ${1}
+ 
+ |======================================================================|
+*/
+
+
+]]></content>
+	<tabTrigger>whatfile</tabTrigger>
+	<scope>source.</scope>
+	<description>whatfile</description>
+</snippet>

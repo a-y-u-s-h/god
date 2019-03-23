@@ -1,6 +1,6 @@
-function R.run () {
+function go.run () {
   for file in "$@"; do
-    Rscript ${file}
+    go run ${file}
   done
   return
 }

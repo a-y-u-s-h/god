@@ -1,23 +1,42 @@
 #!/usr/bin/env bash
 
-function god.run () {
+function god.compile () {
 
   #  ======================================
   #    What if you know 25+ languages but 
   #    cannot remember what command to use
-  #    when you want to simply run a particular
-  #    file? Frustrating right? This is exactly 
+  #    when you want to simply compile a particular
+  #    file? Frustrating, right? This is exactly 
   #    the problem that this function tries to solve.
   #    
   #    All you need to do is:
   #    
-  #    god run {filename}.{ext} (longer)
-  #    god -r {filename}.{ext}  (shorter)
+  #    god compile {filename}.{ext} (longer)
+  #    god == {filename}.{ext}      (shorter)
   #    
   #    This function, depending on extension
-  #    will run the command that's needed by
+  #    will compile the command that's needed by
   #    the file. All it expects is that it's 
   #    installed.
+  #    
+  #    Languages included below are the ones that 
+  #    support compilation:
+  #    
+  #    1)   C++
+  #    2)   Clojure
+  #    3)   Crystal
+  #    4)   D
+  #    5)   Dart
+  #    6)   Elm
+  #    7)   Fortran
+  #    8)   Go
+  #    9)   Haskell
+  #    10)  Julia
+  #    11)  CLisp
+  #    12)  Nim
+  #    13)  Rust
+  #    14)  Scala
+  #    
   #  ======================================
 
   local root=$1                                          # Take in position of god.sh
@@ -26,7 +45,7 @@ function god.run () {
 
   # <------------------------------>
   
-  if [[ $1 == "run" || $1 == "-r" || $1 == "--" ]]; then
+  if [[ $1 == "compile" || $1 == "==" ]]; then
     for file in "${@:2}"; do
 
       #  ======================================
@@ -39,164 +58,105 @@ function god.run () {
       filename="${filename%.*}"
       
       #  ======================================
-      #    Bash
-      #  ======================================
-      
-      if [[ ${ext} == "sh" ]]; then
-        bash.run ${file}
-
-      #  ======================================
-      #    Batch
-      #  ======================================
-      
-      elif [[ ${ext} == "bat" ]]; then
-        batch.run ${file}
-
-      #  ======================================
       #    C++
       #  ======================================
 
-      elif [[ ${ext} == "cpp" || ${ext} == "cc" ]]; then
-        cpp.run ${file}
+      if [[ ${ext} == "cpp" || ${ext} == "cc" ]]; then
+        cpp.compile ${file}
 
       #  ======================================
       #    Clojure
       #  ======================================
 
       elif [[ ${ext} == "clj" ]]; then
-        clojure.run ${file}
+        clojure.compile ${file}
 
       #  ======================================
       #    Crystal
       #  ======================================
 
       elif [[ ${ext} == "cr" ]]; then
-        crystal.run ${file}
-
+        crystal.compile ${file}
 
       #  ======================================
       #    D
       #  ======================================
 
       elif [[ ${ext} == "d" ]]; then
-        D.run ${file}
+        D.compile ${file}
 
       #  ======================================
       #    Dart
       #  ======================================
 
       elif [[ ${ext} == "dart" ]]; then
-        dart.run ${file}
+        dart.compile ${file}
 
       #  ======================================
       #    Elm
       #  ======================================
       
       elif [[ ${ext} == "elm" || (${file} == "." && `ls -1 *.elm 2>/dev/null | wc -l` != 0) ]]; then
-        elm.run ${file}
+        elm.compile ${file}
 
       #  ======================================
       #    Fortran (2003, 1995, 1990)
       #  ======================================
       
       elif [[ ${ext} == "f03" || ${ext} == "f95" || ${ext} == "f90" ]]; then
-        fortran.run ${file}
+        fortran.compile ${file}
 
       #  ======================================
       #    Go
       #  ======================================
 
       elif [[ ${ext} == "go" ]]; then
-        go.run ${file}
+        go.compile ${file}
 
       #  ======================================
       #    Haskell
       #  ======================================
       
       elif [[ ${ext} == "hs" ]]; then
-        haskell.run ${file}
-
-      #  ======================================
-      #    Javascript
-      #  ======================================
-      
-      elif [[ ${ext} == "js" ]]; then
-        node.run ${file}
+        haskell.compile ${file}
 
       #  ======================================
       #    Julia
       #  ======================================
       
       elif [[ ${ext} == "jl" ]]; then
-        julia.run ${file}
+        julia.compile ${file}
 
       #  ======================================
       #    Lisp
       #  ======================================
       
       elif [[ ${ext} == "clisp" ]]; then
-        lisp.run ${file}  
-
-      #  ======================================
-      #    Lua
-      #  ======================================
-      
-      elif [[ ${ext} == "lua" ]]; then
-        lua.run ${file}  
+        lisp.compile ${file}  
 
       #  ======================================
       #    Nim
       #  ======================================
       
       elif [[ ${ext} == "nim" ]]; then
-        nim.run ${file}  
-
-      #  ======================================
-      #    Perl6
-      #  ======================================
-      
-      elif [[ ${ext} == "pm6" ]]; then
-        perl6.run ${file}  
-
-      #  ======================================
-      #    Python
-      #  ======================================
-
-      elif [[  ${ext} == "py"  ]]; then
-        python.run ${file}        
-
-      #  ======================================
-      #    R
-      #  ======================================
-
-      elif [[ ${ext} == "R" || ${ext} == "r" ]]; then
-        R.run ${file}
-
-      #  ======================================
-      #    Ruby
-      #  ======================================
-      
-      elif [[ ${ext} == "rb" ]]; then
-        ruby.run ${file}
+        nim.compile ${file}  
 
       #  ======================================
       #    Rust
       #  ======================================
       
       elif [[ ${ext} == "rs" || (${file} == "." && -f "Cargo.toml") ]]; then
-        rust.run ${file}
+        rust.compile ${file}
 
       #  ======================================
       #    Scala
       #  ======================================
 
       elif [[ ${ext} == "scala" ]]; then
-        scala.run ${file}
+        scala.compile ${file}
+
       fi
-
-
     done
   fi
-
   return
 }

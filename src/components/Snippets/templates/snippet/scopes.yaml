@@ -1,0 +1,75 @@
+actionscript                  : source.actionscript.2
+applescript                   : source.applescript
+asp                           : source.asp
+bash                          : source.shell
+batch                         : source.dosbatch
+c#                            : source.cs
+clojure                       : source.clojure
+coffeescript                  : source.coffee
+cpp                           : (source.c | source.objc | source.c++ | source.objc++) - meta.preprocessor.incomplete
+crystal                       : source.crystal
+css                           : source.css
+d                             : source.d
+dart                          : source.dart
+diff                          : source.diff
+elm                           : source.elm
+erlang                        : source.erlang
+fortran                       : source.fortran
+go                            : source.go
+graphviz                      : source.dot
+groovy                        : source.groovy
+haskell                       : source.haskell
+html                          : text.html
+jsp                           : text.html.jsp
+java                          : source.java
+javascript                    : source.js
+js                            : source.js
+java properties               : source.java-props
+java doc                      : text.html.javadoc
+json                          : source.json
+julia                         : source.julia
+bibtex                        : source.bibtex
+latex log                     : text.log.latex
+latex memoir                  : text.tex.latex.memoir
+latex                         : text.tex.latex
+less                          : source.css.less
+lisp                          : source.lisp
+lua                           : source.lua
+tex                           : text.tex
+makefile                      : source.makefile
+markdown                      : text.html.markdown
+multi markdown                : text.html.markdown.multimarkdown
+matlab                        : source.matlab
+nim                           : source.nim
+objective-c                   : source.objc
+objective-c++                 : source.objc++
+ocaml campl4                  : source.camlp4.ocaml
+ocaml                         : source.ocaml
+ocamllex                      : source.ocamllex
+perl                          : source.perl
+perl6                         : source.perl
+php                           : source.php
+regular expression(python)    : source.regexp.python
+python                        : source.python
+r console                     : source.r-console
+r                             : source.r
+rust                          : source.rust
+ruby on rails                 : source.ruby.rails
+ruby haml                     : text.haml
+ruby                          : source.ruby
+sql(ruby)                     : source.sql.ruby
+regular expression            : source.regexp
+restructuredtext              : text.restructuredtext
+ruby                          : source.ruby
+sass                          : source.sass
+scala                         : source.scala
+shell script                  : source.shell
+sql                           : source.sql
+stylus                        : source.stylus
+tcl                           : source.tcl
+html(tcl)                     : text.html.tcl
+plain text                    : text.plain
+textile                       : text.html.textile
+xml                           : text.xml
+xsl                           : text.xml.xsl
+yaml                          : source.yaml

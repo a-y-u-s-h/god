@@ -37,12 +37,14 @@
 #  ======================================
 
 local root=$(dirname $0)
-source $(dirname $0)/src/containers/create.sh
 source $(dirname $0)/src/containers/run.sh
+source $(dirname $0)/src/containers/create.sh
+source $(dirname $0)/src/containers/compile.sh
 
 # <------------------------------>
 
 function god () {
-  god.create  ${root} $@
   god.run     ${root} $@
+  god.create  ${root} $@
+  god.compile ${root} $@
 }
