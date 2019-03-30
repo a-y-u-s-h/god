@@ -21,8 +21,8 @@
 #  removing away many common things you
 #  repeatedly do throughout your life:
 #  
-#  2. Run files/projects with one simple command     : god run [query]
 #  1. Scaffolding for multiple languages/frameworks  : god create [query]
+#  2. Run files/projects with one simple command     : god run [query]
 #  
 #  ======================================
 

@@ -8,7 +8,6 @@ function julia.app () {
 
 # <------------------------------>
 
-
 function julia.run () {
   for file in "$@"; do
     julia ${file}

@@ -1,11 +1,3 @@
-function snippet.pack () {
-  local root=$1
-  local initial=$(pwd)
-  [ -z "$2" ] && set -- "${@:1}" "Language" "${@:3}"
-  cp -R "${root}/templates/snippet.pack/" ${@:2}
-  return
-}
-
 function snippet.file () {
   local root=$1
   local initial=$(pwd)
@@ -16,5 +8,13 @@ function snippet.file () {
     snippet=$(sed "s/TRIGGER/$i/g" <<< "$snippet")
     echo $snippet > $i.sublime-snippet 
   done
+  return
+}
+
+function snippet.pack () {
+  local root=$1
+  local initial=$(pwd)
+  [ -z "$2" ] && set -- "${@:1}" "Language" "${@:3}"
+  cp -R "${root}/templates/snippet.pack/" ${@:2}
   return
 }

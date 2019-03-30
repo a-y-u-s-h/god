@@ -39,9 +39,9 @@ function god.compile () {
   #    
   #  ======================================
 
-  local root=$1                                          # Take in position of god.sh
-  source $(find ${root}/src/components/ -name "*.sh")    # Import all .sh files inside component folder.
-  shift 1                                                # shift parameters to left so that arguments become same.
+  local root=$1                                                                # Take in position of god.sh
+  for f in $(find ${root}/src/components/ -name "*.sh"); do source $f; done    # Import all .sh files inside component folder.
+  shift 1                                                                      # shift parameters to left so that arguments become same.
 
   # <------------------------------>
   
