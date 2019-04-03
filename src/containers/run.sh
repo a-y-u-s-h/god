@@ -3,6 +3,7 @@
 function god.run () {
 
   #  ======================================
+  #  
   #    What if you know 25+ languages but 
   #    cannot remember what command to use
   #    when you want to simply run a particular
@@ -13,11 +14,13 @@ function god.run () {
   #    
   #    god run {filename}.{ext} (longer)
   #    god -r {filename}.{ext}  (shorter)
+  #    god -- {filename}.{ext}  (shortest)
   #    
   #    This function, depending on extension
   #    will run the command that's needed by
   #    the file. All it expects is that it's 
   #    installed.
+  #    
   #  ======================================
 
   local root=$1                                                                # Take in position of god.sh

@@ -5,7 +5,7 @@ function god.create () {
   #  =====================================================================
   #  
   #    It encompasses functionality of several
-  #    creaiton scripts such as:
+  #    creation scripts such as:
   #    
   #    (*) Custom Scaffolding Scripts:
   #       
@@ -89,6 +89,26 @@ function god.create () {
       react.component ${script} ${@:3}
     fi
 
+    # <------------------------------>
+    
+
+    if [[ $2 == "vue.app" || $2 == "vue.a" ]]; then
+      local script=${root}/src/components/Javascript/vue
+      vue.app ${script} ${@:3}
+    fi
+
+    if [[ $2 == "vue.component" || $2 == "vue.c" ]]; then
+      local script=${root}/src/components/Javascript/vue
+      vue.component ${script} ${@:3}
+    fi
+
+    if [[ $2 == "vue.container" || $2 == "vue.C" ]]; then
+      local script=${root}/src/components/Javascript/vue
+      vue.container ${script} ${@:3}
+    fi
+
+    # <------------------------------>
+    
     if [[ $2 == "node.app" || $2 == "node.a" ]]; then
       local script=${root}/src/components/Javascript/node 
       node.app ${script} ${@:3}

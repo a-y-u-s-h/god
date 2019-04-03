@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <div class="Placeholder"></div>
+  <div id="Placeholder"></div>
 </template>
 
 <!--
@@ -45,7 +45,7 @@ export default {
 -->
 
 <style scoped lang="scss">
-.Placeholder {
+#Placeholder {
   padding: 0;
   margin: 0;
   position: relative;

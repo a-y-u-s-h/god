@@ -13,24 +13,45 @@
 #  
 #  Everything that can be automated related to Vue.
 #  
-#  1. React Project Scaffolding (Custom)
-#  2. React Component Scaffolding (Custom, P5)
+#  1. Vue Project Scaffolding (Custom)
+#  2. Vue Component Scaffolding (Custom)
+#  3. Vue Container Scaffolding (Custom)
 #  
 #  ==================================
 
 function vue.component () {
   
   #  ======================================
-  #    Create a folder with a JS and CSS
-  #    file inside it corresponding to 
-  #    component name inside it.
+  #    Create a single file Vue
+  #    component (one with a class)
   #  ======================================
   
   local root=$1
   local initial=$(pwd)
-  for i in "${@:2}"; do
-    local JS="$(tr '[:lower:]' '[:upper:]' <<< ${i:0:1})${i:1}"
-    touch ${JS}.vue
+  [ -z "$2" ] && set -- "${@:1}" "Component" "${@:3}"
+  for file in "${@:2}"; do
+    local component=`cat ${root}/templates/Component.vue`
+    component=$(sed "s/Placeholder/${file}/g" <<< "$component")
+    echo $component > ${file}.vue 
+    cd $initial 
+  done
+  return
+}
+
+function vue.container () {
+  
+  #  ======================================
+  #    Create a single file Vue
+  #    container (a component w/ an ID)
+  #  ======================================
+  
+  local root=$1
+  local initial=$(pwd)
+  [ -z "$2" ] && set -- "${@:1}" "Container" "${@:3}"
+  for file in "${@:2}"; do
+    local container=`cat ${root}/templates/Container.vue`
+    container=$(sed "s/Placeholder/${file}/g" <<< "$container")
+    echo $container > ${file}.vue 
     cd $initial 
   done
   return
@@ -41,18 +62,21 @@ function vue.component () {
 function vue.app () {
   
   #  ======================================
-  #    Create a project with `create-react-app`,
+  #    Create a project with `vue-cli`,
   #    and then delete and add some files
   #    like I always do whenever I start a 
-  #    React project.
+  #    Vue project.
   #  ======================================
 
   local root=$1
   local initial=$(pwd)
+  [ -z "$2" ] && set -- "${@:1}" "app" "${@:3}"
   for i in "${@:2}"; do
-    create-react-app $i
+    vue create --preset "${root}/templates/presets/app.json" $i
     if [[ -d $i/src/ ]]; then
       cd $i
+      cp -R ${root}/templates/configs/.prettierrc ./.prettierrc 
+      npm i axios
       rm -rvf src/
       rm -rvf README.md
       touch README.md

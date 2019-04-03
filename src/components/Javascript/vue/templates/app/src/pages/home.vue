@@ -1,35 +1,23 @@
 <!--
   ======================================
-    Skeleton of `Placeholder`
+    Skeleton of `home`
   ======================================
 -->
 
 <template>
-  <div class="Placeholder"></div>
+  <div id="home"></div>
 </template>
 
 <!--
   ======================================
-    Behavior associated w/ `Placeholder`
+    Behavior associated w/ `home`
   ======================================
 -->
 
 <script>
 export default {
   name: "home",
-  components: {},
-  props: {},
-  data() {
-    return {}
-  },
-  beforeCreate() {},
-  created() {},
-  beforeMount() {},
-  mounted() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeDestroy() {},
-  destroyed() {}
+  components: {}
 }
 </script>
 
@@ -45,7 +33,7 @@ export default {
 -->
 
 <style scoped lang="scss">
-.Placeholder {
+#home {
   padding: 0;
   margin: 0;
   position: relative;
@@ -55,4 +43,3 @@ export default {
   height: 100%;
 }
 </style>
-

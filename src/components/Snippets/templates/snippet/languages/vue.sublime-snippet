@@ -1,0 +1,7 @@
+<snippet>
+  <content><![CDATA[
+ 
+]]></content>
+  <tabTrigger>TRIGGER</tabTrigger>
+  <scope>text.html.vue, text.html, source.js</scope>
+</snippet>
