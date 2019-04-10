@@ -41,7 +41,6 @@ function react.component () {
       CSS=$(sed "s/Placeholder/${file}/g" <<< "$CSS")
       echo $JS > ${file}.js 
       echo $CSS > ${file}.css
-      echo "NODE_PATH=src/" > .env
     fi
     cd $initial 
   done
@@ -68,6 +67,7 @@ function react.app () {
       rm -rvf src/
       rm -rvf README.md
       touch README.md
+      echo "NODE_PATH=src/" > .env
       cp -R "${root}/templates/app/src/" ./src/ 
       cd $initial
     fi

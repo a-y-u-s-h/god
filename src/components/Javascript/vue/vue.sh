@@ -57,6 +57,25 @@ function vue.container () {
   return
 }
 
+function vue.p5 () {
+  
+  #  ======================================
+  #    Create a single file Vue
+  #    container (a component w/ an ID)
+  #  ======================================
+  
+  local root=$1
+  local initial=$(pwd)
+  [ -z "$2" ] && set -- "${@:1}" "P5" "${@:3}"
+  for file in "${@:2}"; do
+    local p5=`cat ${root}/templates/P5.vue`
+    p5=$(sed "s/Placeholder/${file}/g" <<< "$p5")
+    echo $p5 > ${file}.vue 
+    cd $initial 
+  done
+  return
+}
+
 # <------------------------------>
 
 function vue.app () {

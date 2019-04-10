@@ -107,6 +107,11 @@ function god.create () {
       vue.container ${script} ${@:3}
     fi
 
+    if [[ $2 == "vue.p5" || $2 == "vue.sketch" ]]; then
+      local script=${root}/src/components/Javascript/vue
+      vue.p5 ${script} ${@:3}
+    fi
+
     # <------------------------------>
     
     if [[ $2 == "node.app" || $2 == "node.a" ]]; then
