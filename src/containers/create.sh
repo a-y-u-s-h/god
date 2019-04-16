@@ -89,6 +89,16 @@ function god.create () {
       react.component ${script} ${@:3}
     fi
 
+    if [[ $2 == "react.native" || $2 == "react.na" ]]; then
+      local script=${root}/src/components/Javascript/react
+      react.native.app ${script} ${@:3}
+    fi
+
+    if [[ $2 == "react.native.component" || $2 == "react.nc" ]]; then
+      local script=${root}/src/components/Javascript/react
+      react.native.component ${script} ${@:3}
+    fi
+
     # <------------------------------>
     
 

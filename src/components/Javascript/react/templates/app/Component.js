@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import props from "./props.json"
 import './Placeholder.css'
 
 class Placeholder extends Component {
