@@ -28,7 +28,7 @@ function god.create () {
   # <------------------------------>
   
 
-  if [[ $1 == "create" || $1 == "-c" || $1 == "::" ]]; then
+  if [[ $1 == "create" || $1 == "-c" || $1 == "::" || $1 == "init" ]]; then
 
     #  ============================================
     #  
@@ -89,6 +89,11 @@ function god.create () {
       react.component ${script} ${@:3}
     fi
 
+    if [[ $2 == "react.page" || $2 == "react.p" ]]; then
+      local script=${root}/src/components/Javascript/react
+      react.page ${script} ${@:3}
+    fi
+
     if [[ $2 == "react.native" || $2 == "react.na" ]]; then
       local script=${root}/src/components/Javascript/react
       react.native.app ${script} ${@:3}
@@ -100,7 +105,24 @@ function god.create () {
     fi
 
     # <------------------------------>
-    
+
+    if [[ $2 == "gatsby.app" || $2 == "gatsby.a" ]]; then
+      local script=${root}/src/components/Javascript/gatsby
+      gatsby.app ${script} ${@:3}
+    fi
+
+    if [[ $2 == "gatsby.component" || $2 == "gatsby.c" ]]; then
+      local script=${root}/src/components/Javascript/gatsby
+      gatsby.component ${script} ${@:3}
+    fi
+
+    if [[ $2 == "gatsby.page" || $2 == "gatsby.p" ]]; then
+      local script=${root}/src/components/Javascript/gatsby
+      gatsby.page ${script} ${@:3}
+    fi
+
+
+    # <------------------------------>
 
     if [[ $2 == "vue.app" || $2 == "vue.a" ]]; then
       local script=${root}/src/components/Javascript/vue

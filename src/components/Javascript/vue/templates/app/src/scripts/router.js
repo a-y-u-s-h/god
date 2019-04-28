@@ -10,7 +10,7 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: () => import("@/pages/home.vue"),
+      component: () => import("@/layout/pages/home.vue"),
       props: true
     },
     {

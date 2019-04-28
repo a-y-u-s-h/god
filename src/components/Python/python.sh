@@ -44,3 +44,12 @@ function python.run () {
   done
   return
 }
+
+# <------------------------------>
+
+function python.update () {
+  sudo pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo pip3 install -U
+  return
+}
+
+# <------------------------------>

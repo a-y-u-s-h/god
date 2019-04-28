@@ -37,12 +37,49 @@ function react.component () {
     [ -d ${folder} ] || mkdir -p ${folder}
     if [[ -d ${folder} ]]; then
       cd ${folder}
-      local JS=`cat ${root}/templates/app/Component.js`
-      local CSS=`cat ${root}/templates/app/Component.css`
+      local JS=`cat ${root}/templates/app/component/Component.js`
+      local CSS=`cat ${root}/templates/app/component/Component.css`
       JS=$(sed "s/Placeholder/${file}/g" <<< "$JS")
       CSS=$(sed "s/Placeholder/${file}/g" <<< "$CSS")
       echo $JS > ${file}.js 
       echo $CSS > ${file}.css
+      echo "{}" > props.json
+    fi
+    cd $initial 
+  done
+  return
+}
+
+# <------------------------------>
+
+function react.page () {
+  
+  #  ======================================
+  #    Create a folder with a JS and CSS
+  #    file inside it corresponding to 
+  #    page name inside it.
+  #    
+  #    Also props.json to keep things neat.
+  #  ======================================
+  
+  local root=$1
+  local initial=$(pwd)
+  for i in "${@:2}"; do
+    local file="$(tr '[:lower:]' '[:upper:]' <<< ${i:0:1})${i:1}"
+    local folder="$(tr '[:upper:]' '[:lower:]' <<< $i)"
+    
+    [ -d ${folder} ] || mkdir -p ${folder}
+    if [[ -d ${folder} ]]; then
+      cd ${folder}
+      local JS=`cat ${root}/templates/app/page/Component.js`
+      local CSS=`cat ${root}/templates/app/page/Component.css`
+      local index=`cat ${root}/templates/app/page/index.js`
+      JS=$(sed "s/Placeholder/${file}/g" <<< "$JS")
+      CSS=$(sed "s/Placeholder/${file}/g" <<< "$CSS")
+      index=$(sed "s/Placeholder/${file}/g" <<< "$index")
+      echo $JS > ${file}.js 
+      echo $CSS > ${file}.css
+      echo $index > index.js
       echo "{}" > props.json
     fi
     cd $initial 
