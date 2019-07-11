@@ -110,11 +110,13 @@ function node.api () {
   cp -R "${root}/templates/api/" ${@:2}
   for i in ${@:2}; do
     if [[ -d $i ]]; then
-      cd $i
+      cd $i                                            
       npm init -y                       >/dev/null 2>&1
-      echo "Executed    : npm init"
+      echo "Executed    : npm init"                    
       git init -y                       >/dev/null 2>&1
-      echo "Executed    : git init"      
+      echo "Executed    : git init"                    
+      echo "Installing  : express"                     
+      npm i --save express              >/dev/null 2>&1
     fi
     cd $initial
   done

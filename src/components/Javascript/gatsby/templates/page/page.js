@@ -1,12 +1,10 @@
 import React from "react"
-import data from "./props.json"
+import properties from "./props.json"
 import classes from "./placeholder.module.scss"
 
-const Placeholder = (props = data) => {
+export default ({ data = properties, children, ...props }) => {
   return (
-    <div className={classes.placeholder}>
+    <div className={classes.container}>
     </div>
   )
 }
-
-export default Placeholder

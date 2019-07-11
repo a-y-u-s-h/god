@@ -39,10 +39,13 @@ function react.component () {
       cd ${folder}
       local JS=`cat ${root}/templates/app/component/Component.js`
       local CSS=`cat ${root}/templates/app/component/Component.css`
+      local index=`cat ${root}/templates/app/component/index.js`
       JS=$(sed "s/Placeholder/${file}/g" <<< "$JS")
       CSS=$(sed "s/Placeholder/${file}/g" <<< "$CSS")
+      index=$(sed "s/Placeholder/${file}/g" <<< "$index")
       echo $JS > ${file}.js 
       echo $CSS > ${file}.css
+      echo $index > index.js
       echo "{}" > props.json
     fi
     cd $initial 

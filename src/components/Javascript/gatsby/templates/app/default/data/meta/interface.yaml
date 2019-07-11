@@ -1,0 +1,23 @@
+templates:
+  home:
+    type: "default"
+    available:
+      - "default"
+
+  _404:
+    type: "default"
+    available:
+      - "default"
+
+components:
+  polymers:
+
+  molecules:
+
+  atoms:
+    header:
+      type: "default"
+      available:
+        - "default"
+  
+  extras:

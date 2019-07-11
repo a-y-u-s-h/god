@@ -4,21 +4,29 @@
   ======================================
 */
 
-const path     = require("path");
-const express  = require("express");
-const api      = express();
+const path     = require("path")
+const express  = require("express")
+const api      = express()
+const port     = 4000
 
-exports.main = () => {
-  api.use(express.static(path.join(__dirname, "data")));
-  api.use(express.static(path.join(__dirname, "src")));
+function main () {
+  api.use(express.static(path.join(__dirname, "data")))
+  api.use(express.static(path.join(__dirname, "src")))
 
   /* :: -------------------------------------- :: */
 
   api.get("/api/", (request, response) => {
     
-  });
+  })
 
   /* :: -------------------------------------- :: */
 
-  api.listen(4000);
-};
+  console.log(`Listening @ port:${port}`)
+  api.listen(port)
+}
+
+if (require.main === module) {
+  main()
+} else {
+  exports.main = (typeof(main) != "undefined") ? main : undefined
+}
