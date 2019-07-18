@@ -29,3 +29,5 @@
 */
 
 export { default as _DEFAULT } from "./default"
+export { default as _HORIZONTAL } from "./horizontal"
+export { default as _VERTICAL } from "./vertical"

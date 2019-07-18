@@ -34,6 +34,6 @@ import React from "react"
 import * as types from "./types"
 
 export default ({ children, type = "default", ...props }) => {
-  const _Placeholder = types[`_${type.replace(/-/g, "_").toUpperCase()}`]
+  const _Placeholder = types[`_${type.replace(/-|\s+/g, "_").toUpperCase()}`]
   return <_Placeholder {...props}>{children}</_Placeholder>
 }

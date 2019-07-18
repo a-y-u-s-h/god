@@ -56,7 +56,7 @@ def readyaml(path):
     ======================================
   """
   with open(f"{path}", "r") as file:
-    content = yaml.load(file)
+    content = yaml.load(file, Loader = yaml.FullLoader)
   return content
 
 # <---------------------------->

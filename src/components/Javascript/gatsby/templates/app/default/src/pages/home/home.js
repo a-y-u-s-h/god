@@ -23,7 +23,7 @@ export default ({ data = props, children }) => {
   `)
   const type = data.site.siteMetadata.interface.templates.home.type
   return (
-    <div className={classes.home}>
+    <div className={classes.container}>
       <Home type={type} />
     </div>
   )
