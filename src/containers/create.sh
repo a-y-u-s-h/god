@@ -80,89 +80,89 @@ function god.create () {
     #  ========================
 
     if [[ $2 == "react.app" || $2 == "react.a" ]]; then
-      local script=${root}/src/components/Javascript/react
+      local script=${root}/src/components/Javascript/frameworks/react
       react.app ${script} ${@:3}
     fi
 
     if [[ $2 == "react.component" || $2 == "react.c" ]]; then
-      local script=${root}/src/components/Javascript/react
+      local script=${root}/src/components/Javascript/frameworks/react
       react.component ${script} ${@:3}
     fi
 
     if [[ $2 == "react.page" || $2 == "react.p" ]]; then
-      local script=${root}/src/components/Javascript/react
+      local script=${root}/src/components/Javascript/frameworks/react
       react.page ${script} ${@:3}
     fi
 
     if [[ $2 == "react.native" || $2 == "react.na" ]]; then
-      local script=${root}/src/components/Javascript/react
+      local script=${root}/src/components/Javascript/frameworks/react
       react.native.app ${script} ${@:3}
     fi
 
     if [[ $2 == "react.native.component" || $2 == "react.nc" ]]; then
-      local script=${root}/src/components/Javascript/react
+      local script=${root}/src/components/Javascript/frameworks/react
       react.native.component ${script} ${@:3}
     fi
 
     # <------------------------------>
 
     if [[ $2 == "gatsby.app" || $2 == "gatsby.a" ]]; then
-      local script=${root}/src/components/Javascript/gatsby
+      local script=${root}/src/components/Javascript/frameworks/gatsby
       gatsby.app ${script} default ${@:3}
     fi
 
     if [[ $2 == "gatsby.component" || $2 == "gatsby.c" ]]; then
-      local script=${root}/src/components/Javascript/gatsby
+      local script=${root}/src/components/Javascript/frameworks/gatsby
       gatsby.component ${script} default ${@:3}
     fi
 
     if [[ $2 == "gatsby.storybook.component" || $2 == "gatsby.sc" ]]; then
-      local script=${root}/src/components/Javascript/gatsby
+      local script=${root}/src/components/Javascript/frameworks/gatsby
       gatsby.component ${script} storybook.default ${@:3}
     fi
 
     if [[ $2 == "gatsby.componentdynamicquery" || $2 == "gatsby.cd" ]]; then
-      local script=${root}/src/components/Javascript/gatsby
+      local script=${root}/src/components/Javascript/frameworks/gatsby
       gatsby.component ${script} dynamicquery ${@:3}
     fi
 
     if [[ $2 == "gatsby.storybook.componentdynamicquery" || $2 == "gatsby.scd" ]]; then
-      local script=${root}/src/components/Javascript/gatsby
+      local script=${root}/src/components/Javascript/frameworks/gatsby
       gatsby.component ${script} storybook.dynamicquery ${@:3}
     fi
 
     if [[ $2 == "gatsby.componentstaticquery" || $2 == "gatsby.cs" ]]; then
-      local script=${root}/src/components/Javascript/gatsby
+      local script=${root}/src/components/Javascript/frameworks/gatsby
       gatsby.component ${script} staticquery ${@:3}
     fi
 
     if [[ $2 == "gatsby.storybook.componentstaticquery" || $2 == "gatsby.scs" ]]; then
-      local script=${root}/src/components/Javascript/gatsby
+      local script=${root}/src/components/Javascript/frameworks/gatsby
       gatsby.component ${script} storybook.staticquery ${@:3}
     fi
 
     if [[ $2 == "gatsby.cp5" || $2 == "gatsby.p5" || $2 == "gatsby.p5c" || $2 == "gatsby.componentp5" ]]; then
-      local script=${root}/src/components/Javascript/gatsby
+      local script=${root}/src/components/Javascript/frameworks/gatsby
       gatsby.component ${script} p5 ${@:3}
     fi
 
     if [[ $2 == "gatsby.scp5" || $2 == "gatsby.sp5" || $2 == "gatsby.sp5c" || $2 == "gatsby.scomponentp5" ]]; then
-      local script=${root}/src/components/Javascript/gatsby
+      local script=${root}/src/components/Javascript/frameworks/gatsby
       gatsby.component ${script} storybook.p5 ${@:3}
     fi
 
     if [[ $2 == "gatsby.cm" || $2 == "gatsby.mt" || $2 == "gatsby.cmt" || $2 == "gatsby.componentmultipletypes" ]]; then
-      local script=${root}/src/components/Javascript/gatsby
+      local script=${root}/src/components/Javascript/frameworks/gatsby
       gatsby.component ${script} multipletypes ${@:3}
     fi
 
     if [[ $2 == "gatsby.scm" || $2 == "gatsby.smt" || $2 == "gatsby.scmt" || $2 == "gatsby.storybook.componentmultipletypes" || $2 == "gatsby.s" ]]; then
-      local script=${root}/src/components/Javascript/gatsby
+      local script=${root}/src/components/Javascript/frameworks/gatsby
       gatsby.component ${script} storybook.multipletypes ${@:3}
     fi
 
     if [[ $2 == "gatsby.page" || $2 == "gatsby.p" ]]; then
-      local script=${root}/src/components/Javascript/gatsby
+      local script=${root}/src/components/Javascript/frameworks/gatsby
       gatsby.page ${script} ${@:3}
     fi
 
@@ -170,39 +170,39 @@ function god.create () {
     # <------------------------------>
 
     if [[ $2 == "vue.app" || $2 == "vue.a" ]]; then
-      local script=${root}/src/components/Javascript/vue
+      local script=${root}/src/components/Javascript/frameworks/vue
       vue.app ${script} ${@:3}
     fi
 
     if [[ $2 == "vue.component" || $2 == "vue.c" ]]; then
-      local script=${root}/src/components/Javascript/vue
+      local script=${root}/src/components/Javascript/frameworks/vue
       vue.component ${script} ${@:3}
     fi
 
     if [[ $2 == "vue.container" || $2 == "vue.C" ]]; then
-      local script=${root}/src/components/Javascript/vue
+      local script=${root}/src/components/Javascript/frameworks/vue
       vue.container ${script} ${@:3}
     fi
 
     if [[ $2 == "vue.p5" || $2 == "vue.sketch" ]]; then
-      local script=${root}/src/components/Javascript/vue
+      local script=${root}/src/components/Javascript/frameworks/vue
       vue.p5 ${script} ${@:3}
     fi
 
     # <------------------------------>
     
     if [[ $2 == "node.app" || $2 == "node.a" ]]; then
-      local script=${root}/src/components/Javascript/node 
+      local script=${root}/src/components/Javascript/frameworks/node 
       node.app ${script} ${@:3}
     fi
 
     if [[ $2 == "node.pixi.app" || $2 == "pixi.app" || $2 == "pixi.a" ]]; then
-      local script=${root}/src/components/Javascript/node 
+      local script=${root}/src/components/Javascript/frameworks/node 
       node.pixi ${script} ${@:3}
     fi
 
     if [[ $2 == "node.api" ]]; then
-      local script=${root}/src/components/Javascript/node 
+      local script=${root}/src/components/Javascript/frameworks/node 
       node.api ${script} ${@:3}
     fi
 

@@ -266,6 +266,7 @@ function gatsby.app () {
       site=$(sed "s/placeholder/${i}/g" <<< "$site")
       echo $site > ./data/meta/site.yaml
       
+      yarn init -y
       yarn install
       yarn upgrade -D
       git init
