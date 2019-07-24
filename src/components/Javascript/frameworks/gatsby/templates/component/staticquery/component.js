@@ -1,11 +1,12 @@
 import React from "react"
-import properties from "./props.json"
-import classes from "./placeholder.module.scss"
+import settings from "./settings.json"
+import * as components from "./style";
 
-export default ({ data = properties, children, ...props }) => {
+export default ({ data = settings, children, ...props }) => {
+  const { Container } = components
   return (
-    <div className={classes.container}>
-      {children}    
-    </div>
+    <Container>
+      {children}
+    </Container>
   )
 }

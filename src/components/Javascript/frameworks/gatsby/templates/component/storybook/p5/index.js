@@ -28,9 +28,9 @@
 import React, { Component } from "react"
 import ReactDOM from "react-dom"
 import p5 from "p5"
-import props from "./props.json"
-import classes from "./placeholder.module.scss"
 import sketch from "./placeholder.js"
+import settings from "./settings.json"
+import * as components from "./style.js"
 
 class _ extends Component {
   constructor({ data = props, props = props, children }) {
@@ -38,7 +38,10 @@ class _ extends Component {
     this.visualization = React.createRef()
   }
 
-  render = () => <div ref={e => (this.visualization = e)} className={classes.container} />
+  render = () => {
+    const { Container } = components 
+    return <Container ref={e => (this.visualization = e)} />
+  }
 
   componentDidMount() {
     setTimeout(() => {

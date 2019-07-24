@@ -1,10 +1,13 @@
 import React from "react"
-import properties from "./props.json"
-import classes from "./placeholder.module.scss"
+import settings from "./settings.json"
+import * as components from "./style"
+import { graphql, useStaticQuery } from "gatsby"
 
-export default ({ data = properties, children, ...props }) => {
+export default ({ data = settings, children, ...props }) => {
+  const { Container } = components
   return (
-    <div className={classes.container}>
-    </div>
+    <Container>
+      {children}
+    </Container>
   )
 }

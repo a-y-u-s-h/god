@@ -24,7 +24,7 @@ function gatsby.post () {
   #    file inside it corresponding to 
   #    page name inside it.
   #    
-  #    Also props.json to keep things neat.
+  #    Also settings.json to keep things neat.
   #  ======================================
   
   local root=$1
@@ -37,22 +37,22 @@ function gatsby.post () {
     if [[ -d ${folder} ]]; then
       cd ${folder}
       local JS=`cat ${root}/templates/page/page.js`
-      local SCSS=`cat ${root}/templates/page/page.module.scss`
+      local style=`cat ${root}/templates/page/style.js`
       local index=`cat ${root}/templates/page/index.js`
       
       JS=$(sed "s/Placeholder/${file}/g" <<< "$JS")
       JS=$(sed "s/placeholder/${folder}/g" <<< "$JS")
       
-      SCSS=$(sed "s/Placeholder/${file}/g" <<< "$SCSS")
-      SCSS=$(sed "s/placeholder/${folder}/g" <<< "$SCSS")
+      style=$(sed "s/Placeholder/${file}/g" <<< "$style")
+      style=$(sed "s/placeholder/${folder}/g" <<< "$style")
 
       index=$(sed "s/Placeholder/${file}/g" <<< "$index")+
       index=$(sed "s/placeholder/${folder}/g" <<< "$index")
 
       echo $JS > ${folder}.js 
       echo $index > index.js 
-      echo $SCSS > ${folder}.module.scss
-      echo "{}" > props.json
+      echo $style > style.js
+      echo "{}" > settings.json
     fi
     cd $initial 
   done
@@ -68,7 +68,7 @@ function gatsby.component () {
   #    file inside it corresponding to 
   #    component name inside it.
   #    
-  #    Also props.json to keep things neat.
+  #    Also settings.json to keep things neat.
   #  ======================================
   
   local root=$1
@@ -104,19 +104,19 @@ function gatsby.component () {
           cp -R ${root}/templates/component/storybook/${category}/* ./
           rm -rvf ./component.js            >/dev/null 2>&1
           rm -rvf ./component.index.js      >/dev/null 2>&1
-          rm -rvf ./component.module.scss   >/dev/null 2>&1
+          rm -rvf ./style.js   >/dev/null 2>&1
           rm -rvf ./component.stories.js    >/dev/null 2>&1
 
           local JS=`cat ${root}/templates/component/storybook/${category}/component.js`
-          local SCSS=`cat ${root}/templates/component/storybook/${category}/component.module.scss`
+          local style=`cat ${root}/templates/component/storybook/${category}/style.js`
           local index=`cat ${root}/templates/component/storybook/${category}/index.js`
           local story=`cat ${root}/templates/component/storybook/${category}/component.stories.js`
 
           JS=$(sed "s/Placeholder/${file}/g" <<< "$JS")
           JS=$(sed "s/placeholder/${folder}/g" <<< "$JS")
           
-          SCSS=$(sed "s/Placeholder/${file}/g" <<< "$SCSS")
-          SCSS=$(sed "s/placeholder/${folder}/g" <<< "$SCSS")
+          style=$(sed "s/Placeholder/${file}/g" <<< "$style")
+          style=$(sed "s/placeholder/${folder}/g" <<< "$style")
 
           index=$(sed "s/Placeholder/${file}/g" <<< "$index")
           index=$(sed "s/placeholder/${folder}/g" <<< "$index")
@@ -126,9 +126,9 @@ function gatsby.component () {
 
           echo $JS > ${folder}.js
           echo $index > index.js 
-          echo $SCSS > ${folder}.module.scss
+          echo $style > style.js
           echo $story > ${folder}.stories.js
-          echo "{}" > props.json
+          echo "{}" > settings.json
         else
           #  ======================================
           #    If it is a multitype story component, just
@@ -155,22 +155,22 @@ function gatsby.component () {
         #  ======================================
   
         local JS=`cat ${root}/templates/component/${type}/component.js`
-        local SCSS=`cat ${root}/templates/component/${type}/component.module.scss`
+        local style=`cat ${root}/templates/component/${type}/style.js`
         local index=`cat ${root}/templates/component/${type}/index.js`
         
         JS=$(sed "s/Placeholder/${file}/g" <<< "$JS")
         JS=$(sed "s/placeholder/${folder}/g" <<< "$JS")
         
-        SCSS=$(sed "s/Placeholder/${file}/g" <<< "$SCSS")
-        SCSS=$(sed "s/placeholder/${folder}/g" <<< "$SCSS")
+        style=$(sed "s/Placeholder/${file}/g" <<< "$style")
+        style=$(sed "s/placeholder/${folder}/g" <<< "$style")
 
         index=$(sed "s/Placeholder/${file}/g" <<< "$index")
         index=$(sed "s/placeholder/${folder}/g" <<< "$index")
 
         echo $JS > ${folder}.js
         echo $index > index.js 
-        echo $SCSS > ${folder}.module.scss
-        echo "{}" > props.json
+        echo $style > style.js
+        echo "{}" > settings.json
       else
         
         #  ======================================
@@ -197,7 +197,7 @@ function gatsby.page () {
   #    file inside it corresponding to 
   #    page name inside it.
   #    
-  #    Also props.json to keep things neat.
+  #    Also settings.json to keep things neat.
   #  ======================================
   
   local root=$1
@@ -210,22 +210,22 @@ function gatsby.page () {
     if [[ -d ${folder} ]]; then
       cd ${folder}
       local JS=`cat ${root}/templates/page/page.js`
-      local SCSS=`cat ${root}/templates/page/page.module.scss`
+      local style=`cat ${root}/templates/page/style.js`
       local index=`cat ${root}/templates/page/index.js`
       
       JS=$(sed "s/Placeholder/${file}/g" <<< "$JS")
       JS=$(sed "s/placeholder/${folder}/g" <<< "$JS")
       
-      SCSS=$(sed "s/Placeholder/${file}/g" <<< "$SCSS")
-      SCSS=$(sed "s/placeholder/${folder}/g" <<< "$SCSS")
+      style=$(sed "s/Placeholder/${file}/g" <<< "$style")
+      style=$(sed "s/placeholder/${folder}/g" <<< "$style")
 
       index=$(sed "s/Placeholder/${file}/g" <<< "$index")
       index=$(sed "s/placeholder/${folder}/g" <<< "$index")
 
       echo $JS > ${folder}.js 
       echo $index > index.js 
-      echo $SCSS > ${folder}.module.scss
-      echo "{}" > props.json
+      echo $style > style.js
+      echo "{}" > settings.json
     fi
     cd $initial 
   done
