@@ -7,6 +7,6 @@ import { withKnobs, text, boolean, number } from "@storybook/addon-knobs"
 import notes from "./notes"
 import _ from "."
 
-storiesOf("Templates|404", module)
+storiesOf("404", module)
   .addDecorator(withKnobs)
   .add("default", () => <_ onClick={action("clicked")} />, { notes: { markdown: notes["default"] } })

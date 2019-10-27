@@ -166,7 +166,6 @@ function god.create () {
       gatsby.page ${script} ${@:3}
     fi
 
-
     # <------------------------------>
 
     if [[ $2 == "vue.app" || $2 == "vue.a" ]]; then
@@ -204,6 +203,13 @@ function god.create () {
     if [[ $2 == "node.api" ]]; then
       local script=${root}/src/components/Javascript/frameworks/node 
       node.api ${script} ${@:3}
+    fi
+
+    # <------------------------------>
+    
+    if [[ $2 == "p5.app" || $2 == "p5.experiment" ]]; then
+      local script=${root}/src/components/Javascript/projects/p5
+      p5.app ${script} default ${@:3}
     fi
 
     #  ==================================================

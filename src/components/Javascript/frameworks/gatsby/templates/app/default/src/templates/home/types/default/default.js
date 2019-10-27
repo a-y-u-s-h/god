@@ -1,14 +1,12 @@
 import React from "react"
-import properties from "./props.json"
-import classes from "./default.module.scss"
-import classnames from "classnames"
-import Header from "src/components/atoms/header"
+import settings from "./settings.json"
+import * as components from "./style";
 
-export default ({ data = properties, children, ...props }) => {
+export default ({ data = settings, children, ...props }) => {
+  const { Container } = components
   return (
-    <div className={classes.container}>
-      <Header />
+    <Container>
       {children}
-    </div>
+    </Container>
   )
 }
