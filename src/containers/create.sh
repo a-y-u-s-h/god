@@ -189,7 +189,19 @@ function god.create () {
     fi
 
     # <------------------------------>
-    
+
+    if [[ $2 == "gridsome.app" || $2 == "gridsome.a" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/gridsome
+      gridsome.app ${script} default ${@:3}
+    fi
+
+    if [[ $2 == "gridsome.component" || $2 == "gridsome.c" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/gridsome
+      gridsome.component ${script} ${@:3}
+    fi
+
+    # <------------------------------>
+
     if [[ $2 == "node.app" || $2 == "node.a" ]]; then
       local script=${root}/src/components/Javascript/frameworks/node 
       node.app ${script} ${@:3}
@@ -243,7 +255,7 @@ function god.create () {
     #  
     #  ===============================================================
     
-    if [[ $2 == "python.app" || $2 == "py.a" ]]; then
+    if [[ $2 == "python.app" || $2 == "py.a" || $2 == "python.a" ]]; then
       local script=${root}/src/components/Python
       python.app ${script} ${@:3}
     fi

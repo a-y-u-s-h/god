@@ -104,7 +104,7 @@ function react.app () {
   local root=$1
   local initial=$(pwd)
   for i in "${@:2}"; do
-    create-react-app $i
+    yarn create react-app $ic
     if [[ -d $i/src/ ]]; then
       cd $i
       rm -rvf src/

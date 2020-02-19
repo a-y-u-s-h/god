@@ -92,6 +92,7 @@ function vue.app () {
   [ -z "$2" ] && set -- "${@:1}" "app" "${@:3}"
   for i in "${@:2}"; do
     vue create --preset "${root}/templates/presets/app.json" $i
+    npm i tailwindcss
     if [[ -d $i/src/ ]]; then
       cd $i
       cp -R ${root}/templates/configs/.prettierrc ./.prettierrc 

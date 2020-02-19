@@ -1,7 +1,10 @@
 function python.app () {
   local root=$1
+  local initial=$(pwd)
   [ -z "$2" ] && set -- "${@:1}" "app" "${@:3}"
-  cp -R "${root}/templates/app/" ${@:2}
+  for i in "${@:2}"; do
+    cp -R "${root}/templates/app/" $i
+  done
   return
 }
 
@@ -48,7 +51,7 @@ function python.run () {
 # <------------------------------>
 
 function python.update () {
-  sudo pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo pip3 install -U
+  sudo pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo pip3 install --user -U --ignore-installed  --no-warn-script-location
   return
 }
 

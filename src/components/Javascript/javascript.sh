@@ -4,6 +4,6 @@ function javascript.update () {
   nvm alias default node
   nvm use default
   sudo npm i -g npm@latest
-  sudo npm update -g
+  npx npm-check-updates -g && npm update -g
   return
 }

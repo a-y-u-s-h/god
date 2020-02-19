@@ -1,13 +1,6 @@
 
 function p5.app () {
   
-  #  ======================================
-  #    Create a project with `create-gatsby-app`,
-  #    and then delete and add some files
-  #    like I always do whenever I start a 
-  #    React project.
-  #  ======================================
-
   local root=$1
   local initial=$(pwd)
   local type=$2
@@ -20,6 +13,12 @@ function p5.app () {
     if [[ -d ${folder} ]]; then
       cd ${folder}
       cp -r ${root}/templates/${type}/. .
+      
+      local index=`cat ${root}/templates/${type}/index.html`
+      index=$(sed "s/Placeholder/${file}/g" <<< "$index")+
+      index=$(sed "s/placeholder/${folder}/g" <<< "$index")
+      echo $index > index.html 
+
       cd $initial
     fi
     cd $initial

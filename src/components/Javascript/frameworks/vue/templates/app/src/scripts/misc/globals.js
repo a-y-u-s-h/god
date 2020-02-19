@@ -1,6 +1,6 @@
 import Vue from "vue"
 
-let get = require.context("@/layout/globals/", false, /\w*\.(vue|js)$/)
+let get = require.context("@/interface/globals/", false, /\w*\.(vue|js)$/)
 
 get.keys().forEach(file => {
   let config = get(file)
