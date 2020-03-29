@@ -1,8 +1,18 @@
 function batch.run () {
-  wineboot >/dev/null 2>&1
-  for file in "$@"; do
-    wine cmd /c ${file}
-  done
+
+  #  ======================================
+  #    Check whether the extension is right,
+  #    and if it is, run the file with proper
+  #    command.
+  #  ======================================
+  
+  local ext=$1 && shift 1
+  if [[ ${ext} == "bat" ]]; then
+    wineboot >/dev/null 2>&1
+    for file in "$@"; do
+      wine cmd /c ${file}
+    done
+  fi
   return
 }
 

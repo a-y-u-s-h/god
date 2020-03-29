@@ -1,9 +1,19 @@
 function cpp.run () {
-  for file in "$@"; do
-    g++ ${file} -o ${file}.o
-    ./${file}.o
-    rm -rvf ${file}.o >/dev/null 2>&1
-  done
+
+  #  ======================================
+  #    Check whether the extension is right,
+  #    and if it is, run the file with proper
+  #    command.
+  #  ======================================
+  
+  local ext=$1 && shift 1
+  if [[ ${ext} == "cpp" || ${ext} == "cc" ]]; then
+    for file in "$@"; do
+      g++ ${file} -o ${file}.o
+      ./${file}.o
+      rm -rvf ${file}.o >/dev/null 2>&1
+    done
+  fi
   return
 }
 

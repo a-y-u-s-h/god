@@ -104,7 +104,7 @@ function react.app () {
   local root=$1
   local initial=$(pwd)
   for i in "${@:2}"; do
-    yarn create react-app $ic
+    npx create-react-app $i
     if [[ -d $i/src/ ]]; then
       cd $i
       rm -rvf src/
@@ -166,11 +166,8 @@ function react.native.app () {
 function react.native.component () {
   
   #  ======================================
-  #    Create a folder with a JS
-  #    files inside it corresponding to 
-  #    component name inside it, and a styles.json.
-  #    
-  #    Also props.json to keep things neat.
+  #    Create a component using the template
+  #    stored in 'native' directory.
   #  ======================================
   
   local root=$1
@@ -182,11 +179,72 @@ function react.native.component () {
     [ -d ${folder} ] || mkdir -p ${folder}
     if [[ -d ${folder} ]]; then
       cd ${folder}
-      local JS=`cat ${root}/templates/native/Component.js`
-      JS=$(sed "s/Placeholder/${file}/g" <<< "$JS")
-      echo $JS > ${file}.js 
-      echo $CSS > ${file}.css
-      echo "{}" > props.json
+      local store=`cat ${root}/templates/native/component/component.store.js`
+      local style=`cat ${root}/templates/native/component/component.style.js`
+      local types=`cat ${root}/templates/native/component/component.types.js`
+      local index=`cat ${root}/templates/native/component/index.js`
+      
+      store=$(sed "s/Placeholder/${file}/g" <<< "$store")
+      style=$(sed "s/Placeholder/${file}/g" <<< "$style")
+      types=$(sed "s/Placeholder/${file}/g" <<< "$types")
+      index=$(sed "s/Placeholder/${file}/g" <<< "$index")
+
+      store=$(sed "s/placeholder/${folder}/g" <<< "$store")
+      style=$(sed "s/placeholder/${folder}/g" <<< "$style")
+      types=$(sed "s/placeholder/${folder}/g" <<< "$types")
+      index=$(sed "s/placeholder/${folder}/g" <<< "$index")
+
+      echo $store > ${folder}.store.js
+      echo $style > ${folder}.style.js
+      echo $types > ${folder}.types.js
+      echo $index > index.js
+    fi
+    cd $initial 
+  done
+  return
+}
+
+# <------------------------------>
+
+function react.native.screen () {
+  
+  #  ======================================
+  #    Create a component using the template
+  #    stored in 'native' directory.
+  #  ======================================
+  
+  local root=$1
+  local initial=$(pwd)
+  for i in "${@:2}"; do
+    local file="$(tr '[:lower:]' '[:upper:]' <<< ${i:0:1})${i:1}"
+    local folder="$(tr '[:upper:]' '[:lower:]' <<< $i)"
+
+    [ -d ${folder} ] || mkdir -p ${folder}
+    if [[ -d ${folder} ]]; then
+      cd ${folder}
+      local index=`cat ${root}/templates/native/screen/index.js`
+      local store=`cat ${root}/templates/native/screen/component.store.js`
+      local style=`cat ${root}/templates/native/screen/component.style.js`
+      local types=`cat ${root}/templates/native/screen/component.types.js`
+      local navigaton=`cat ${root}/templates/native/screen/component.navigation.js`
+      
+      store=$(sed "s/Placeholder/${file}/g" <<< "$store")
+      style=$(sed "s/Placeholder/${file}/g" <<< "$style")
+      types=$(sed "s/Placeholder/${file}/g" <<< "$types")
+      index=$(sed "s/Placeholder/${file}/g" <<< "$index")
+      navigation=$(sed "s/Placeholder/${file}/g" <<< "$navigation")
+
+      store=$(sed "s/placeholder/${folder}/g" <<< "$store")
+      style=$(sed "s/placeholder/${folder}/g" <<< "$style")
+      types=$(sed "s/placeholder/${folder}/g" <<< "$types")
+      index=$(sed "s/placeholder/${folder}/g" <<< "$index")
+      navigation=$(sed "s/placeholder/${folder}/g" <<< "$navigation")
+
+      echo $index       > index.js
+      echo $store       > ${folder}.store.js
+      echo $style       > ${folder}.style.js
+      echo $types       > ${folder}.types.js
+      echo $navigation  > ${folder}.navigation.js
     fi
     cd $initial 
   done

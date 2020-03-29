@@ -51,6 +51,7 @@ function python.run () {
 # <------------------------------>
 
 function python.update () {
+  sudo -H pip3 install --upgrade pip
   sudo pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo pip3 install --user -U --ignore-installed  --no-warn-script-location
   return
 }

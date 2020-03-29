@@ -1,7 +1,16 @@
 function bash.run () {
-  for file in "$@"; do
-    bash ${file}
-  done
+  #  ======================================
+  #    Check whether the extension is right,
+  #    and if it is, run the file with proper
+  #    command.
+  #  ======================================
+  
+  local ext=$1 && shift 1
+  if [[ ${ext} == "sh" ]]; then
+    for file in "$@"; do
+      bash ${file}
+    done
+  fi
   return
 }
 
