@@ -13,17 +13,11 @@
                       |  $$$$$$/
                        \______/
 
-    This file stores all the styles related to component.
-    By default it imports StyleSheet and styled-components,
-    so make sure you have them in your dependencies. 
+    This file stores all the styles related to component. 
 
   ======================================
 */
 
-import styled from "styled-components/native"
-import { StyleSheet } from "react-native"
-
-import styled from "styled-components/native"
 import { StyleSheet } from "react-native"
 
 const classes = {}

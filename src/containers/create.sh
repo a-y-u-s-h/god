@@ -112,63 +112,23 @@ function god.create () {
     # <------------------------------>
 
     if [[ $2 == "gatsby.app" || $2 == "gatsby.a" ]]; then
-      local script=${root}/src/components/Javascript/frameworks/gatsby
+      local script=${root}/src/components/Javascript/frameworks/react/frameworks/gatsby
       gatsby.app ${script} default ${@:3}
     fi
 
+    if [[ $2 == "gatsby.desktop" || $2 == "electron.gatsby" || $2 == "electron.react" || $2 == "electron.a" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/react/frameworks/gatsby
+      gatsby.app ${script} desktop ${@:3}
+    fi
+
     if [[ $2 == "gatsby.component" || $2 == "gatsby.c" ]]; then
-      local script=${root}/src/components/Javascript/frameworks/gatsby
+      local script=${root}/src/components/Javascript/frameworks/react/frameworks/gatsby
       gatsby.component ${script} default ${@:3}
     fi
 
-    if [[ $2 == "gatsby.storybook.component" || $2 == "gatsby.sc" ]]; then
-      local script=${root}/src/components/Javascript/frameworks/gatsby
-      gatsby.component ${script} storybook.default ${@:3}
-    fi
-
-    if [[ $2 == "gatsby.componentdynamicquery" || $2 == "gatsby.cd" ]]; then
-      local script=${root}/src/components/Javascript/frameworks/gatsby
-      gatsby.component ${script} dynamicquery ${@:3}
-    fi
-
-    if [[ $2 == "gatsby.storybook.componentdynamicquery" || $2 == "gatsby.scd" ]]; then
-      local script=${root}/src/components/Javascript/frameworks/gatsby
-      gatsby.component ${script} storybook.dynamicquery ${@:3}
-    fi
-
-    if [[ $2 == "gatsby.componentstaticquery" || $2 == "gatsby.cs" ]]; then
-      local script=${root}/src/components/Javascript/frameworks/gatsby
-      gatsby.component ${script} staticquery ${@:3}
-    fi
-
-    if [[ $2 == "gatsby.storybook.componentstaticquery" || $2 == "gatsby.scs" ]]; then
-      local script=${root}/src/components/Javascript/frameworks/gatsby
-      gatsby.component ${script} storybook.staticquery ${@:3}
-    fi
-
     if [[ $2 == "gatsby.cp5" || $2 == "gatsby.p5" || $2 == "gatsby.p5c" || $2 == "gatsby.componentp5" ]]; then
-      local script=${root}/src/components/Javascript/frameworks/gatsby
-      gatsby.component ${script} p5 ${@:3}
-    fi
-
-    if [[ $2 == "gatsby.scp5" || $2 == "gatsby.sp5" || $2 == "gatsby.sp5c" || $2 == "gatsby.scomponentp5" ]]; then
-      local script=${root}/src/components/Javascript/frameworks/gatsby
-      gatsby.component ${script} storybook.p5 ${@:3}
-    fi
-
-    if [[ $2 == "gatsby.cm" || $2 == "gatsby.mt" || $2 == "gatsby.cmt" || $2 == "gatsby.componentmultipletypes" ]]; then
-      local script=${root}/src/components/Javascript/frameworks/gatsby
-      gatsby.component ${script} multipletypes ${@:3}
-    fi
-
-    if [[ $2 == "gatsby.scm" || $2 == "gatsby.smt" || $2 == "gatsby.scmt" || $2 == "gatsby.storybook.componentmultipletypes" || $2 == "gatsby.s" ]]; then
-      local script=${root}/src/components/Javascript/frameworks/gatsby
-      gatsby.component ${script} storybook.multipletypes ${@:3}
-    fi
-
-    if [[ $2 == "gatsby.page" || $2 == "gatsby.p" ]]; then
-      local script=${root}/src/components/Javascript/frameworks/gatsby
-      gatsby.page ${script} ${@:3}
+      local script=${root}/src/components/Javascript/frameworks/react/frameworks/gatsby
+      gatsby.p5 ${script} p5 ${@:3}
     fi
 
     # <------------------------------>
@@ -196,12 +156,12 @@ function god.create () {
     # <------------------------------>
 
     if [[ $2 == "gridsome.app" || $2 == "gridsome.a" ]]; then
-      local script=${root}/src/components/Javascript/frameworks/gridsome
+      local script=${root}/src/components/Javascript/frameworks/vue/frameworks/gridsome
       gridsome.app ${script} default ${@:3}
     fi
 
     if [[ $2 == "gridsome.component" || $2 == "gridsome.c" ]]; then
-      local script=${root}/src/components/Javascript/frameworks/gridsome
+      local script=${root}/src/components/Javascript/frameworks/vue/frameworks/gridsome
       gridsome.component ${script} ${@:3}
     fi
 
@@ -210,6 +170,11 @@ function god.create () {
     if [[ $2 == "node.app" || $2 == "node.a" ]]; then
       local script=${root}/src/components/Javascript/frameworks/node 
       node.app ${script} ${@:3}
+    fi
+
+    if [[ $2 == "node.cli" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/node 
+      node.cli ${script} ${@:3}
     fi
 
     if [[ $2 == "node.pixi.app" || $2 == "pixi.app" || $2 == "pixi.a" ]]; then
@@ -227,6 +192,13 @@ function god.create () {
     if [[ $2 == "p5.app" || $2 == "p5.experiment" ]]; then
       local script=${root}/src/components/Javascript/projects/p5
       p5.app ${script} default ${@:3}
+    fi
+
+    # <------------------------------>
+    
+    if [[ $2 == "documentation.app" || $2 == "docs" || $2 == "documentation" || $2 == "docs.app" ]]; then
+      local script=${root}/src/components/Javascript/projects/documentation
+      documentation.app ${script} default ${@:3}
     fi
 
     #  ==================================================

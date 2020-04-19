@@ -1,0 +1,24 @@
+{
+  "name": "hindustan.fyi",
+  "private": true,
+  "scripts": {
+    "build": "gridsome build",
+    "develop": "gridsome develop",
+    "explore": "gridsome explore",
+    "update": "npx npm-check-updates -u && yarn"
+  },
+  "dependencies": {
+    "@tailwindcss/ui": "^0.1.2",
+    "gridsome": "^0.7.12",
+    "node-sass": "^4.13.1",
+    "p5": "^0.10.2",
+    "sass-loader": "^8.0.2",
+    "tailwindcss": "^1.2.0"
+  },
+  "devDependencies": {
+    "@deck.gl/core": "^8.1.0",
+    "@deck.gl/layers": "^8.1.0",
+    "@deck.gl/mapbox": "^8.1.0",
+    "mapbox-gl": "^1.8.1"
+  }
+}

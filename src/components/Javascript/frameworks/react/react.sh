@@ -222,7 +222,6 @@ function react.native.screen () {
     [ -d ${folder} ] || mkdir -p ${folder}
     if [[ -d ${folder} ]]; then
       cd ${folder}
-      local index=`cat ${root}/templates/native/screen/index.js`
       local store=`cat ${root}/templates/native/screen/component.store.js`
       local style=`cat ${root}/templates/native/screen/component.style.js`
       local types=`cat ${root}/templates/native/screen/component.types.js`
@@ -231,16 +230,13 @@ function react.native.screen () {
       store=$(sed "s/Placeholder/${file}/g" <<< "$store")
       style=$(sed "s/Placeholder/${file}/g" <<< "$style")
       types=$(sed "s/Placeholder/${file}/g" <<< "$types")
-      index=$(sed "s/Placeholder/${file}/g" <<< "$index")
       navigation=$(sed "s/Placeholder/${file}/g" <<< "$navigation")
 
       store=$(sed "s/placeholder/${folder}/g" <<< "$store")
       style=$(sed "s/placeholder/${folder}/g" <<< "$style")
       types=$(sed "s/placeholder/${folder}/g" <<< "$types")
-      index=$(sed "s/placeholder/${folder}/g" <<< "$index")
       navigation=$(sed "s/placeholder/${folder}/g" <<< "$navigation")
 
-      echo $index       > index.js
       echo $store       > ${folder}.store.js
       echo $style       > ${folder}.style.js
       echo $types       > ${folder}.types.js

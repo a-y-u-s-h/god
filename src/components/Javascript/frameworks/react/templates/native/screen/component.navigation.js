@@ -26,6 +26,22 @@ const Stack = createStackNavigator()
 
 import Placeholder from "./index.js"
 
+/*
+  ======================================
+    'extract' is a helper utility
+    function that extracts various
+    types from the screen as their own
+    component.
+  ======================================
+*/
+const extract = type => Screen => {
+  return ({ children, ...props }) => (
+    <Screen type={type} {...props}>
+      {children}
+    </Screen>
+  )
+}
+
 const Navigator = () => {
   return (
     <Stack.Navigator headerMode="none">

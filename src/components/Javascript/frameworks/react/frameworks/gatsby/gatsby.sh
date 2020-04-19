@@ -17,56 +17,12 @@
 #  
 #  ===============================================================
 
-function gatsby.post () {
-  
-  #  ======================================
-  #    Create a folder with a JS and CSS
-  #    file inside it corresponding to 
-  #    page name inside it.
-  #    
-  #    Also settings.json to keep things neat.
-  #  ======================================
-  
-  local root=$1
-  local initial=$(pwd)
-  for i in "${@:2}"; do
-    local file="$(tr '[:lower:]' '[:upper:]' <<< ${i:0:1})${i:1}"
-    local folder="$(tr '[:upper:]' '[:lower:]' <<< $i)"
-    
-    [ -d ${folder} ] || mkdir -p ${folder}
-    if [[ -d ${folder} ]]; then
-      cd ${folder}
-      local JS=`cat ${root}/templates/page/page.js`
-      local style=`cat ${root}/templates/page/style.js`
-      local index=`cat ${root}/templates/page/index.js`
-      
-      JS=$(sed "s/Placeholder/${file}/g" <<< "$JS")
-      JS=$(sed "s/placeholder/${folder}/g" <<< "$JS")
-      
-      style=$(sed "s/Placeholder/${file}/g" <<< "$style")
-      style=$(sed "s/placeholder/${folder}/g" <<< "$style")
-
-      index=$(sed "s/Placeholder/${file}/g" <<< "$index")+
-      index=$(sed "s/placeholder/${folder}/g" <<< "$index")
-
-      echo $JS > ${folder}.js 
-      echo $index > index.js 
-      echo $style > style.js
-      echo "{}" > settings.json
-    fi
-    cd $initial 
-  done
-  return
-}
-
-# <------------------------------>
-
 function gatsby.component () {
   
   #  ======================================
   #    Create a folder with a JS and CSS
   #    file inside it corresponding to 
-  #    component name inside it.
+  #    page name inside it.
   #    
   #    Also settings.json to keep things neat.
   #  ======================================
@@ -78,110 +34,32 @@ function gatsby.component () {
   for i in "${@:3}"; do
     local file="$(tr '[:lower:]' '[:upper:]' <<< ${i:0:1})${i:1}"
     local folder="$(tr '[:upper:]' '[:lower:]' <<< $i)"
-
+    
     [ -d ${folder} ] || mkdir -p ${folder}
     if [[ -d ${folder} ]]; then
       cd ${folder}
-
-      if [[ $type == storybook* ]]; then
-
-        #  ======================================
-        #    If it's a storybook type component.
-        #  ======================================
-
-        local category=$(echo $type | cut -f2 -d.)
-
-        if [[ $category != "multipletypes" ]]; then
-
-          #  ======================================
-          #    Copy everything from those folders
-          #    and then delete the template files
-          #    that get copied also. Instead create
-          #    new files from template available in
-          #    God.
-          #  ======================================
-          
-          cp -R ${root}/templates/component/storybook/${category}/* ./
-          rm -rvf ./component.js            >/dev/null 2>&1
-          rm -rvf ./component.index.js      >/dev/null 2>&1
-          rm -rvf ./style.js   >/dev/null 2>&1
-          rm -rvf ./component.stories.js    >/dev/null 2>&1
-
-          local JS=`cat ${root}/templates/component/storybook/${category}/component.js`
-          local style=`cat ${root}/templates/component/storybook/${category}/style.js`
-          local index=`cat ${root}/templates/component/storybook/${category}/index.js`
-          local story=`cat ${root}/templates/component/storybook/${category}/component.stories.js`
-
-          JS=$(sed "s/Placeholder/${file}/g" <<< "$JS")
-          JS=$(sed "s/placeholder/${folder}/g" <<< "$JS")
-          
-          style=$(sed "s/Placeholder/${file}/g" <<< "$style")
-          style=$(sed "s/placeholder/${folder}/g" <<< "$style")
-
-          index=$(sed "s/Placeholder/${file}/g" <<< "$index")
-          index=$(sed "s/placeholder/${folder}/g" <<< "$index")
-
-          story=$(sed "s/Placeholder/${file}/g" <<< "$story")
-          story=$(sed "s/placeholder/${folder}/g" <<< "$story")
-
-          echo $JS > ${folder}.js
-          echo $index > index.js 
-          echo $style > style.js
-          echo $story > ${folder}.stories.js
-          echo "{}" > settings.json
-        else
-          #  ======================================
-          #    If it is a multitype story component, just
-          #    copy paste whatever's inside template
-          #    folder. Then remove the component.stories.js
-          #    and update it with a proper one.
-          #  ======================================
-          
-          cp -R ${root}/templates/component/storybook/${category}/* ./
-          rm -rvf ./component.stories.js >/dev/null 2>&1
-
-          local story=`cat ${root}/templates/component/storybook/${category}/component.stories.js`
-          story=$(sed "s/Placeholder/${file}/g" <<< "$story")
-          story=$(sed "s/placeholder/${folder}/g" <<< "$story")
-          echo $story > ${folder}.stories.js
-        fi
+      local index=`cat ${root}/templates/component/$type/index.js`
+      local store=`cat ${root}/templates/component/$type/component.store.js`
+      local style=`cat ${root}/templates/component/$type/component.style.js`
+      local types=`cat ${root}/templates/component/$type/component.types.js`
       
-      elif [[ $type != "multipletypes" ]]; then
-  
-        #  ======================================
-        #    If it's not a multipletype component,
-        #    and not a storybook type as well,
-        #    deal with it normally.
-        #  ======================================
-  
-        local JS=`cat ${root}/templates/component/${type}/component.js`
-        local style=`cat ${root}/templates/component/${type}/style.js`
-        local index=`cat ${root}/templates/component/${type}/index.js`
-        
-        JS=$(sed "s/Placeholder/${file}/g" <<< "$JS")
-        JS=$(sed "s/placeholder/${folder}/g" <<< "$JS")
-        
-        style=$(sed "s/Placeholder/${file}/g" <<< "$style")
-        style=$(sed "s/placeholder/${folder}/g" <<< "$style")
+      index=$(sed "s/Placeholder/${file}/g" <<< "$index")
+      index=$(sed "s/placeholder/${folder}/g" <<< "$index")
+      
+      store=$(sed "s/Placeholder/${file}/g" <<< "$store")
+      store=$(sed "s/placeholder/${folder}/g" <<< "$store")
+      
+      style=$(sed "s/Placeholder/${file}/g" <<< "$style")
+      style=$(sed "s/placeholder/${folder}/g" <<< "$style")
+      
+      types=$(sed "s/Placeholder/${file}/g" <<< "$types")
+      types=$(sed "s/placeholder/${folder}/g" <<< "$types")
 
-        index=$(sed "s/Placeholder/${file}/g" <<< "$index")
-        index=$(sed "s/placeholder/${folder}/g" <<< "$index")
 
-        echo $JS > ${folder}.js
-        echo $index > index.js 
-        echo $style > style.js
-        echo "{}" > settings.json
-      else
-        
-        #  ======================================
-        #    If it is a multitype component, just
-        #    copy paste whatever's inside template
-        #    folder. Because we don't need to do
-        #    anything else in this case.
-        #  ======================================
-        
-        cp -R ${root}/templates/component/${type}/* ./
-      fi
+      echo $index > index.js 
+      echo $store > ${folder}.store.js 
+      echo $style > ${folder}.style.js 
+      echo $types > ${folder}.types.js 
     fi
     cd $initial 
   done
@@ -190,7 +68,8 @@ function gatsby.component () {
 
 # <------------------------------>
 
-function gatsby.page () {
+
+function gatsby.p5 () {
   
   #  ======================================
   #    Create a folder with a JS and CSS
@@ -202,30 +81,37 @@ function gatsby.page () {
   
   local root=$1
   local initial=$(pwd)
-  for i in "${@:2}"; do
+  local type=$2
+
+  for i in "${@:3}"; do
     local file="$(tr '[:lower:]' '[:upper:]' <<< ${i:0:1})${i:1}"
     local folder="$(tr '[:upper:]' '[:lower:]' <<< $i)"
     
     [ -d ${folder} ] || mkdir -p ${folder}
     if [[ -d ${folder} ]]; then
       cd ${folder}
-      local JS=`cat ${root}/templates/page/page.js`
-      local style=`cat ${root}/templates/page/style.js`
-      local index=`cat ${root}/templates/page/index.js`
+      local index=`cat ${root}/templates/component/p5/index.js`
+      local store=`cat ${root}/templates/component/p5/component.store.js`
+      local sketch=`cat ${root}/templates/component/p5/component.sketch.js`
+      local types=`cat ${root}/templates/component/p5/component.types.js`
       
-      JS=$(sed "s/Placeholder/${file}/g" <<< "$JS")
-      JS=$(sed "s/placeholder/${folder}/g" <<< "$JS")
-      
-      style=$(sed "s/Placeholder/${file}/g" <<< "$style")
-      style=$(sed "s/placeholder/${folder}/g" <<< "$style")
-
       index=$(sed "s/Placeholder/${file}/g" <<< "$index")
       index=$(sed "s/placeholder/${folder}/g" <<< "$index")
+      
+      store=$(sed "s/Placeholder/${file}/g" <<< "$store")
+      store=$(sed "s/placeholder/${folder}/g" <<< "$store")
+      
+      sketch=$(sed "s/Placeholder/${file}/g" <<< "$sketch")
+      sketch=$(sed "s/placeholder/${folder}/g" <<< "$sketch")
+      
+      types=$(sed "s/Placeholder/${file}/g" <<< "$types")
+      types=$(sed "s/placeholder/${folder}/g" <<< "$types")
 
-      echo $JS > ${folder}.js 
+
       echo $index > index.js 
-      echo $style > style.js
-      echo "{}" > settings.json
+      echo $store > ${folder}.store.js 
+      echo $sketch > ${folder}.sketch.js 
+      echo $types > ${folder}.types.js 
     fi
     cd $initial 
   done
@@ -261,14 +147,13 @@ function gatsby.app () {
       package=$(sed "s/placeholder/${i}/g" <<< "$package")
       echo $package > package.json
       
-      local site=`cat ./data/meta/site.yaml`
+      local site=`cat ./src/assets/settings/application.yaml`
       site=$(sed "s/Placeholder/${i}/g" <<< "$site")
       site=$(sed "s/placeholder/${i}/g" <<< "$site")
-      echo $site > ./data/meta/site.yaml
+      echo $site > ./src/assets/settings/application.yaml
       
       yarn init -y
-      yarn install
-      yarn upgrade -D
+      npx npm-check-updates -u && yarn install
       git init
       git add . && git commit -m "Initial Commit."
       cd $initial

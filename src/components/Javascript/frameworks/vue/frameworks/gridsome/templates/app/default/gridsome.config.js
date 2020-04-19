@@ -14,8 +14,16 @@
 
   ======================================
 */
+
 module.exports = {
   siteName: "Placeholder",
   titleTemplate: "<siteName>",
-  plugins: []
+  plugins: [],
+  css: {
+    loaderOptions: {
+      postcss: {
+        plugins: [require("tailwindcss")]
+      }
+    }
+  }
 }

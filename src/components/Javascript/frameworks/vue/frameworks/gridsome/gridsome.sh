@@ -251,6 +251,7 @@ function gridsome.app () {
       
       yarn init -y
       npx npm-check-updates -u && yarn install
+      npx tailwindcss init src/settings/tailwind.config.js
       git init
       git add . && git commit -m "Initial Commit."
       cd $initial

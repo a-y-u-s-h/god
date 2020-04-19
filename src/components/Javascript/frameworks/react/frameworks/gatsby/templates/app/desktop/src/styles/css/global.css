@@ -1,0 +1,18 @@
+/*
+  ======================================
+    Include: blueprintjs
+  ======================================
+*/
+@import url("~@blueprintjs/core/lib/css/blueprint.css");
+@import url("~@blueprintjs/datetime/lib/css/blueprint.css");
+@import url("~@blueprintjs/icons/lib/css/blueprint.css");
+@import url("~@blueprintjs/select/lib/css/blueprint.css");
+@import url("~@blueprintjs/table/lib/css/blueprint.css");
+@import url("~@blueprintjs/timezone/lib/css/blueprint.css");
+/*
+  ======================================
+    Fonts
+  ======================================
+*/
+
+/*# sourceMappingURL=global.css.map */

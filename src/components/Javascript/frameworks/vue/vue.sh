@@ -30,7 +30,7 @@ function vue.component () {
   local initial=$(pwd)
   [ -z "$2" ] && set -- "${@:1}" "Component" "${@:3}"
   for file in "${@:2}"; do
-    local component=`cat ${root}/templates/Component.vue`
+    local component=`cat ${root}/templates/components/Component.vue`
     component=$(sed "s/Placeholder/${file}/g" <<< "$component")
     echo $component > ${file}.vue 
     cd $initial 
@@ -49,7 +49,7 @@ function vue.container () {
   local initial=$(pwd)
   [ -z "$2" ] && set -- "${@:1}" "Container" "${@:3}"
   for file in "${@:2}"; do
-    local container=`cat ${root}/templates/Container.vue`
+    local container=`cat ${root}/templates/components/Container.vue`
     container=$(sed "s/Placeholder/${file}/g" <<< "$container")
     echo $container > ${file}.vue 
     cd $initial 
@@ -68,7 +68,7 @@ function vue.p5 () {
   local initial=$(pwd)
   [ -z "$2" ] && set -- "${@:1}" "P5" "${@:3}"
   for file in "${@:2}"; do
-    local p5=`cat ${root}/templates/P5.vue`
+    local p5=`cat ${root}/templates/components/P5.vue`
     p5=$(sed "s/Placeholder/${file}/g" <<< "$p5")
     echo $p5 > ${file}.vue 
     cd $initial 
@@ -91,16 +91,16 @@ function vue.app () {
   local initial=$(pwd)
   [ -z "$2" ] && set -- "${@:1}" "app" "${@:3}"
   for i in "${@:2}"; do
-    vue create --preset "${root}/templates/presets/app.json" $i
-    npm i tailwindcss
+    vue create --preset "${root}/templates/settings/presets/app.json" $i
     if [[ -d $i/src/ ]]; then
       cd $i
-      cp -R ${root}/templates/configs/.prettierrc ./.prettierrc 
-      npm i axios
+      cp -R ${root}/templates/settings/configs/.prettierrc ./.prettierrc 
       rm -rvf src/
       rm -rvf README.md
       touch README.md
-      cp -R "${root}/templates/app/src/" ./src/ 
+      cp -R "${root}/templates/app/default/src/" ./src/ 
+      yarn upgrade --latest
+      yarn add axios
       cd $initial
     fi
     cd $initial

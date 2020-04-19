@@ -5,5 +5,6 @@ function javascript.update () {
   nvm use default
   sudo npm i -g npm@latest
   npx npm-check-updates -g && npm update -g
+  yarn global upgrade
   return
 }

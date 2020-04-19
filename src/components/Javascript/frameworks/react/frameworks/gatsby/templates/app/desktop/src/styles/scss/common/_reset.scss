@@ -1,0 +1,16 @@
+/*
+  ======================================
+    Overriding some styles from 
+    Evergreen UI. It has some annoying
+    stuff in it, like it outlines tabs
+    on focus.
+  ======================================
+*/
+span {
+  &:focus {
+    outline: none;
+    box-shadow: none !important;
+    text-decoration: none;
+    user-select: none;
+  }
+}
