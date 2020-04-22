@@ -30,13 +30,7 @@ module.exports = environment => ({
   ],
   resolve: {
     alias: {
-      src: path.resolve(__dirname, "src/"),
-      assets: path.resolve(__dirname, "src/assets/"),
-      scripts: path.resolve(__dirname, "src/scripts/"),
-      utilties: path.resolve(__dirname, "src/utilties/"),
-      components: path.resolve(__dirname, "src/components/"),
-      interfaces: path.resolve(__dirname, "src/interfaces/"),
-      settings: path.resolve(__dirname, "src/settings/")
+      "@": path.resolve(__dirname, "src")
     }
   },
   module: {

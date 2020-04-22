@@ -21,7 +21,7 @@ module.exports = environment => ({
   stats: "none",
   output: {
     path: path.join(__dirname, "build"),
-    filename: "placeholder"
+    filename: "node.library"
   },
   externals: [require("webpack-node-externals")()],
   plugins: [
@@ -30,12 +30,7 @@ module.exports = environment => ({
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
-      scripts: path.resolve(__dirname, "src/scripts/"),
-      utilties: path.resolve(__dirname, "src/utilties/"),
-      components: path.resolve(__dirname, "src/components/"),
-      interfaces: path.resolve(__dirname, "src/interfaces/"),
-      settings: path.resolve(__dirname, "src/settings/")
+      "@": path.resolve(__dirname, "src")
     }
   },
   module: {

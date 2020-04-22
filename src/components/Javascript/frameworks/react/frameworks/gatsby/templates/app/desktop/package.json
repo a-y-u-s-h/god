@@ -40,6 +40,7 @@
     "classnames": "^2.2.6",
     "codemirror": "^5.52.2",
     "formik": "^2.1.4",
+    "framer-motion": "^1.10.3",
     "electron-is-dev": "^1.2.0",
     "evergreen-ui": "^4.25.0",
     "gatsby": "^2.20.22",

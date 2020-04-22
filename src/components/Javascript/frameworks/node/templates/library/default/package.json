@@ -1,22 +1,26 @@
 {
-  "name": "placeholder",
+  "name": "node.library",
   "version": "1.0.0",
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
     "clean": "rimraf build",
     "prestart": "npm run clean",
-    "build": "webpack --env.mode production",
-    "execute": "./build/placeholder",
+    "execute": "./build/node.library",
+    "test": "jest --config ./jest.config.js",
     "develop": "yarn build && yarn execute",
+    "build": "webpack --env.mode production",
     "update": "npx npm-check-updates -u && yarn install"
   },
   "dependencies": {},
   "devDependencies": {
+    "@babel/code-frame": "^7.8.3",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
     "babel-loader": "^8.1.0",
+    "cypress": "^4.4.1",
+    "jest": "^25.4.0",
     "nodemon": "^2.0.3",
     "nodemon-webpack-plugin": "^4.3.1",
     "webpack": "^4.42.1",
@@ -25,7 +29,6 @@
     "webpack-node-externals": "^1.7.2",
     "webpack-shell-plugin": "^0.5.0",
     "ws": "^7.2.3",
-    "jest": "^25.4.0",
     "yaml-loader": "^0.6.0"
   },
   "babel": {
@@ -40,5 +43,6 @@
         }
       ]
     ]
-  }
+  },
+  "author": "Ayush Sharma <code.ayush@gmail.com>"
 }

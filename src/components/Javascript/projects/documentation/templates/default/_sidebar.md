@@ -3,6 +3,7 @@
   - [About](/)
   - [Guide](/sections/introduction/guide/guide.md)
   - [Resources](/sections/introduction/resources/resources.md)
+  - [Code of Conduct](/sections/introduction/CoC/CoC.md)
 
 - Architecture
 

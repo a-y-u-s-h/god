@@ -12,8 +12,8 @@
   | $$                                        | $$
   |__/                                        |__/
 
-    Usage: 
-    
+    Usage:
+
     import prompts from "components/elements/prompts"
     const answers = await prompts(<questions>)
 
@@ -24,7 +24,7 @@
   ======================================
 */
 
-const Enquirer = require("enquirer")
+import Enquirer from "enquirer"
 const enquirer = new Enquirer()
 
 const prompter = questions => enquirer.prompt(questions)
