@@ -28,15 +28,15 @@ class _ extends Container {
         tabs: settings.navigation.default.tabs,
         search: {
           switch: settings.navigation.default.search,
-          value: "",
-        },
-      },
+          value: ""
+        }
+      }
     }
   }
 
   search(e) {
     const value = e.target.value
-    this.setState(state => {
+    this.setState((state) => {
       const search = state.default.search
       search.value = value
       state.default.search = search

@@ -5,11 +5,16 @@
   "license": "MIT",
   "scripts": {
     "clean": "rimraf build",
+    "prepublish": "yarn test",
     "prestart": "npm run clean",
-    "build": "webpack --env.mode production",
     "execute": "./build/placeholder",
+    "test": "jest --config ./jest.config.js --passWithNoTests",
     "develop": "yarn build && yarn execute",
+    "build": "webpack --env.mode production",
     "update": "npx npm-check-updates -u && yarn install"
+  },
+  "bin": {
+    "placeholder": "./build/placeholder"
   },
   "dependencies": {},
   "devDependencies": {
@@ -17,15 +22,15 @@
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
     "babel-loader": "^8.1.0",
+    "jest": "^25.4.0",
     "nodemon": "^2.0.3",
     "nodemon-webpack-plugin": "^4.3.1",
-    "webpack": "^4.42.1",
+    "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3",
     "webpack-node-externals": "^1.7.2",
     "webpack-shell-plugin": "^0.5.0",
     "ws": "^7.2.3",
-    "jest": "^25.4.0",
     "yaml-loader": "^0.6.0"
   },
   "babel": {

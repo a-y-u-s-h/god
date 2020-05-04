@@ -28,6 +28,10 @@ module.exports = environment => ({
     new NodemonPlugin(),
     new webpack.BannerPlugin({ banner: "#!/usr/bin/env node", raw: true })
   ],
+  node: {
+    __dirname: false,
+    __filename: false
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src")

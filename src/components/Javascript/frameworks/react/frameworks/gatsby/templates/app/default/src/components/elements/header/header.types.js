@@ -22,7 +22,7 @@ export default {
     return (
       <Provider>
         <Subscribe to={[store]}>
-          {store => (
+          {(store) => (
             <React.Fragment>
               <Helmet title={`${data.site.siteMetadata.application.title}`} />
             </React.Fragment>
@@ -30,5 +30,5 @@ export default {
         </Subscribe>
       </Provider>
     )
-  },
+  }
 }

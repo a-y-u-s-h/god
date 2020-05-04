@@ -13,7 +13,7 @@ export default {
     ======================================
   */
   get: {
-    single: model => async (request, response) => {
+    single: shape => async (request, response) => {
       /*
         ======================================
           Returns ->
@@ -23,7 +23,7 @@ export default {
         ======================================
       */
       try {
-        const _document = await model
+        const _document = await shape.model
           .findOne({ createdBy: request.user._id, _id: request.params.id })
           .lean()
           .exec()
@@ -34,7 +34,7 @@ export default {
         response.status(400).end()
       }
     },
-    multiple: model => async (request, response) => {
+    multiple: shape => async (request, response) => {
       /*
         ======================================
           Returns ->
@@ -44,7 +44,7 @@ export default {
         ======================================
       */
       try {
-        const documents = await model
+        const documents = await shape.model
           .find({ createdBy: request.user._id })
           .lean()
           .exec()
@@ -57,7 +57,7 @@ export default {
     }
   },
   create: {
-    single: model => async (request, response) => {
+    single: shape => async (request, response) => {
       /*
         ======================================
           Returns ->
@@ -67,7 +67,10 @@ export default {
         ======================================
       */
       try {
-        const _document = await model.create({
+        const { error } = shape.validate.schema(request.body)
+        if (error)
+          return response.status(400).send({ error: error.details[0].message })
+        const _document = await shape.model.create({
           ...request.body,
           createdBy: request.user._id
         })
@@ -79,7 +82,7 @@ export default {
     }
   },
   update: {
-    single: model => async (request, response) => {
+    single: shape => async (request, response) => {
       /*
         ======================================
           Returns ->
@@ -91,7 +94,10 @@ export default {
         ======================================
       */
       try {
-        const updatedDocument = await model
+        const { error } = shape.validate.schema(request.body)
+        if (error)
+          return response.status(400).send({ error: error.details[0].message })
+        const updatedDocument = await shape.model
           .findOneAndUpdate(
             {
               createdBy: request.user._id,
@@ -111,7 +117,7 @@ export default {
     }
   },
   delete: {
-    single: model => async (request, response) => {
+    single: shape => async (request, response) => {
       /*
         ======================================
           Returns ->
@@ -123,7 +129,7 @@ export default {
         ======================================
       */
       try {
-        const removed = await model.findOneAndRemove(
+        const removed = await shape.model.findOneAndRemove(
           {
             createdBy: request.user._id,
             _id: request.params.id

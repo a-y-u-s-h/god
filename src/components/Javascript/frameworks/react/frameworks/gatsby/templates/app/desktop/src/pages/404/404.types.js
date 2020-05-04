@@ -43,9 +43,7 @@ export default {
      */
     return (
       <Provider>
-        <Subscribe to={[store]}>
-          {store => <React.Fragment></React.Fragment>}
-        </Subscribe>
+        <Subscribe to={[store]}>{(store) => <React.Fragment></React.Fragment>}</Subscribe>
       </Provider>
     )
   }

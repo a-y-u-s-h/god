@@ -14,10 +14,10 @@
               |__/
 
     This is the script that does something with the options
-    specified by the user either though traditional CLI or 
-    through interactive CLI modes. This file is simply for 
+    specified by the user either though traditional CLI or
+    through interactive CLI modes. This file is simply for
     dealing with the logic for options of the program.
-    
+
   ======================================
 */
 

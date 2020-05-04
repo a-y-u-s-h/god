@@ -13,10 +13,10 @@
    Usage: import text from "components/elements/text"
 
    and then you can use either of the functions mentioned
-   below. You should also checkout the docs of 
+   below. You should also checkout the docs of
    dependencies that this file uses while working
    with it because they're very short and provide a
-   much richer documentation.   
+   much richer documentation.
 
   ======================================
 */
@@ -62,7 +62,7 @@ export default {
     /*
       ======================================
         Use some of these functions to create
-        colorful animations on the terminal 
+        colorful animations on the terminal
         that support it. It doesn't work well
         if you pipe it with say gradient functions,
         so keep that in mind while using it.
@@ -78,7 +78,7 @@ export default {
   heading(content) {
     /*
       ======================================
-        This function returns a figlet header 
+        This function returns a figlet header
         without a box surrounding it. If you
         want the box or gradient, you can pipe
         or compose these functions together because
@@ -116,7 +116,7 @@ export default {
         surrounding some string in the terminal.
         You can pass in options to the call if you
         want to override default behavior. Look
-        for boxen's npm docs to know how to do that. 
+        for boxen's npm docs to know how to do that.
       ======================================
     */
     return boxen(string, { padding: 1, borderStyle: "bold", ...options })
@@ -166,10 +166,10 @@ export default {
         boxed colorful header on the terminal.
       ======================================
     */
-    const gradient = options.gradient ? options.gradient : "fruit"
+    const gradient = options.gradient ? options.gradient : "yellow,blue"
     return R.pipe(
       string => this.basic(string),
-      string => this.fancy(string, { gradient: "yellow,blue" }),
+      string => this.fancy(string, { gradient: gradient }),
       string => this.boxed(string, { margin: { bottom: 1 } })
     )(string)
   }

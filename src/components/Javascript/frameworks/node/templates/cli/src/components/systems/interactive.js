@@ -26,7 +26,9 @@ export default async settings => {
   console.log(intro)
 
   try {
-    const answers = await prompt(configuration.options)
+    const answers = await prompt(
+      configuration.options.map(option => option.question)
+    )
     answers["version"] = application.version
     await options(answers)
   } finally {

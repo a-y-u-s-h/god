@@ -33,7 +33,7 @@ export const classes = {
         paddingX: majorScale(1),
         display: "flex",
         alignItems: "center",
-        background: "white",
+        background: "white"
       },
       tabs: {
         left: {
@@ -41,7 +41,7 @@ export const classes = {
           height: "100%",
           paddingX: majorScale(1),
           display: "flex",
-          alignItems: "center",
+          alignItems: "center"
         },
         right: {
           width: "100%",
@@ -49,26 +49,26 @@ export const classes = {
           paddingX: majorScale(1),
           display: "flex",
           alignItems: "center",
-          flexDirection: "row-reverse",
-        },
+          flexDirection: "row-reverse"
+        }
       },
       search: {
         width: "50%",
         height: "100%",
         marginRight: majorScale(1),
         display: "flex",
-        alignItems: "center",
-      },
+        alignItems: "center"
+      }
     },
     tab: {},
     link: {
       textDecoration: "none",
-      margin: "0 0.5rem 0 0",
-    },
-  },
+      margin: "0 0.5rem 0 0"
+    }
+  }
 }
 export const components = {
-  link: props => {
+  link: (props) => {
     /*
       ======================================
         Modify default Gatsby Link to work
@@ -91,10 +91,10 @@ export const components = {
         {children}
       </a>
     )
-  },
+  }
 }
 
 export default {
   classes,
-  components,
+  components
 }

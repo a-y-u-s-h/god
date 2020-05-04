@@ -24,7 +24,7 @@ export default ({ children, type = "default", ...props }) => {
       if an invalid type is passed as a prop.
     ======================================
   */
-  if (!(type in types)) type = "default" 
+  if (!(type in types)) type = "default"
   const Component = types[type]
   return <Component {...props}>{children}</Component>
 }

@@ -49,6 +49,42 @@ function node.app () {
   return
 }
 
+function node.library () {
+
+  #  ======================================
+  #
+  #    Scaffold a basic opinionated
+  #    NodeJS application based on the
+  #    template provided.
+  #
+  #  ======================================
+
+  local root=$1
+  local initial=$(pwd)
+  [ -z "$2" ] && set -- "${@:1}" "library" "${@:3}"
+  cp -R "${root}/templates/library/default/" ${@:2}
+  for i in ${@:2}; do
+    if [[ -d $i ]]; then
+      cd $i
+
+      local package=`cat ${root}/templates/library/default/package.json`
+      package=$(sed "s/Placeholder/$i/g" <<< "$package")
+      package=$(sed "s/placeholder/$i/g" <<< "$package")
+      echo $package > package.json
+
+      local webpack=`cat ${root}/templates/library/default/webpack.config.js`
+      webpack=$(sed "s/Placeholder/$i/g" <<< "$webpack")
+      webpack=$(sed "s/placeholder/$i/g" <<< "$webpack")
+      echo $webpack > webpack.config.js
+
+      yarn init -y
+      npx npm-check-updates -u && yarn install
+    fi
+    cd $initial
+  done
+  return
+}
+
 function node.cli () {
 
   #  ======================================
@@ -95,16 +131,11 @@ function node.api () {
 
   #  ======================================
   #
-  #    Scaffold a basic api template for Node.
-  #    Following things happen:
-  #
-  #    1. Copy the template 'api'.
-  #    2. If user passes no name, use default: 'api'.
-  #    3. Execute npm init.
-  #    4. Execute git init.
+  #    Scaffold a basic opinionated
+  #    NodeJS application based on the
+  #    template provided.
   #
   #  ======================================
-
 
   local root=$1
   local initial=$(pwd)
@@ -113,18 +144,24 @@ function node.api () {
   for i in ${@:2}; do
     if [[ -d $i ]]; then
       cd $i
-      npm init -y                       >/dev/null 2>&1
-      echo "Executed    : npm init"
-      git init -y                       >/dev/null 2>&1
-      echo "Executed    : git init"
-      echo "Installing  : express"
-      npm i --save express              >/dev/null 2>&1
+
+      local package=`cat ${root}/templates/api/default/package.json`
+      package=$(sed "s/Placeholder/$i/g" <<< "$package")
+      package=$(sed "s/placeholder/$i/g" <<< "$package")
+      echo $package > package.json
+
+      local webpack=`cat ${root}/templates/api/default/webpack.config.js`
+      webpack=$(sed "s/Placeholder/$i/g" <<< "$webpack")
+      webpack=$(sed "s/placeholder/$i/g" <<< "$webpack")
+      echo $webpack > webpack.config.js
+
+      yarn init -y
+      npx npm-check-updates -u && yarn install
     fi
     cd $initial
   done
   return
 }
-
 function node.api.resource () {
   local root=$1
   local initial=$(pwd)
@@ -167,17 +204,39 @@ function node.api.resource () {
 function node.jest.test () {
   local root=$1
   local initial=$(pwd)
+  local files=($(ls *js))
+  [ -d __tests__ ] || mkdir -p __tests__
 
-  [ -z "$2" ] && set -- "${@:1}" "index" "${@:3}"
-  for i in "${@:2}"; do
-    local file="$(tr '[:lower:]' '[:upper:]' <<< ${i:0:1})${i:1}"
-    local folder="$(tr '[:upper:]' '[:lower:]' <<< $i)"
+  for i in "${(z)files}"; do
+    local filename=$(basename -- "$i")
+    local extension="${filename##*.}"
+    filename="${filename%.*}"
 
-    local test=`cat ${root}/templates/jest/placeholder.test.js`
+    local file="$(tr '[:upper:]' '[:lower:]' <<< $filename)"
+    local test=`cat ${root}/templates/test/unit.test.js`
+    test=$(sed "s/placeholder/${file}/g" <<< "$test")
     test=$(sed "s/Placeholder/${file}/g" <<< "$test")
-    test=$(sed "s/placeholder/${folder}/g" <<< "$test")
-    echo $test > $folder.test.js
 
+    cd __tests__
+    if [[ ! -f "$file.test.js" ]]; then
+      echo $test > "$file.test.js"
+    fi
+    cd $initial
+  done
+  return
+}
+
+function node.cypress.test () {
+  local root=$1
+  local initial=$(pwd)
+
+  for i in "${@:2}"; do
+    local file="$(tr '[:upper:]' '[:lower:]' <<< $i)"
+    local test=`cat ${root}/templates/test/e2e.test.js`
+    test=$(sed "s/placeholder/${file}/g" <<< "$test")
+    test=$(sed "s/Placeholder/${file}/g" <<< "$test")
+    echo "$i"
+    echo $test > "$file.spec.js"
     cd $initial
   done
   return

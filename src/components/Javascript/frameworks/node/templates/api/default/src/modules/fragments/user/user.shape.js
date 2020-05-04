@@ -1,0 +1,114 @@
+/*
+  ======================================
+    This file contains information that
+    describes the shape of the resource.
+    This involves a schema, model and validations
+    for various routes that this resource
+    can have. You need to populate the
+    schema here and validations and then
+    use proper validations inside proper
+    controllers.
+  ======================================
+*/
+
+import Joi from "@hapi/joi"
+import mongoose from "mongoose"
+
+/*
+  ======================================
+    Descibe the schema for this resource.
+  ======================================
+*/
+export const schema = mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      min: 6,
+      max: 255
+    },
+    email: {
+      type: String,
+      required: true,
+      min: 6,
+      max: 255
+    },
+    password: {
+      type: String,
+      required: true,
+      min: 6,
+      max: 1024
+    }
+  },
+  { timestamps: true }
+)
+
+/*
+  ======================================
+    Inside this you can specify various
+    validation functions for this resource's
+    endpoints.
+  ======================================
+*/
+const validate = {
+  schema: body => {
+    const validator = Joi.object().keys({
+      name: Joi.string()
+        .min(6)
+        .required(),
+      email: Joi.string()
+        .min(6)
+        .required()
+        .email(),
+      password: Joi.string()
+        .min(6)
+        .required()
+    })
+    return validator.validate(body)
+  },
+  register: body => {
+    const validator = Joi.object().keys({
+      name: Joi.string()
+        .min(6)
+        .required(),
+      email: Joi.string()
+        .min(6)
+        .required()
+        .email(),
+      password: Joi.string()
+        .min(6)
+        .required()
+    })
+    return validator.validate(body)
+  },
+  login: body => {
+    const validator = Joi.object().keys({
+      name: Joi.string().min(6),
+      email: Joi.string()
+        .min(6)
+        .required()
+        .email(),
+      password: Joi.string()
+        .min(6)
+        .required()
+    })
+    return validator.validate(body)
+  }
+}
+
+export const model = mongoose.model("user", schema)
+
+/*
+  ======================================
+    For practical purposes we don't
+    really need schema, we just need the
+    model and validations. But we'll export it anyways and
+    call both of them together: "shape"
+    of user.
+  ======================================
+*/
+export default {
+  schema,
+  model,
+  validate
+}

@@ -7,7 +7,7 @@
 const yaml = require("js-yaml")
 const fs = require("fs")
 
-exports.readyaml = path => {
+exports.readyaml = (path) => {
   /*
     ======================================
       Read YAML file and return a JSON object.

@@ -21,13 +21,17 @@ module.exports = environment => ({
   stats: "none",
   output: {
     path: path.join(__dirname, "build"),
-    filename: "node.library"
+    filename: "placeholder"
   },
   externals: [require("webpack-node-externals")()],
   plugins: [
     new NodemonPlugin(),
     new webpack.BannerPlugin({ banner: "#!/usr/bin/env node", raw: true })
   ],
+  node: {
+    __dirname: false,
+    __filename: false
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src")

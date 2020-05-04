@@ -1,16 +1,20 @@
 {
-  "name": "node.library",
+  "name": "placeholder",
   "version": "1.0.0",
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
     "clean": "rimraf build",
+    "prepublish": "yarn test",
     "prestart": "npm run clean",
-    "execute": "./build/node.library",
-    "test": "jest --config ./jest.config.js",
+    "execute": "./build/placeholder",
+    "test": "jest --config ./jest.config.js --passWithNoTests",
     "develop": "yarn build && yarn execute",
     "build": "webpack --env.mode production",
     "update": "npx npm-check-updates -u && yarn install"
+  },
+  "bin": {
+    "placeholder": "./build/placeholder"
   },
   "dependencies": {},
   "devDependencies": {

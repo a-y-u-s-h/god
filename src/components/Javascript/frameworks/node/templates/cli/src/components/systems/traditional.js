@@ -18,6 +18,7 @@ export default async settings => {
       program itself - name, version.
     ======================================
   */
+  program.storeOptionsAsProperties(false).passCommandToAction(false)
   program.name(application.name).version(application.version, "-v --version")
   /*
     ======================================
@@ -29,7 +30,8 @@ export default async settings => {
   */
   if (configuration.options) {
     configuration.options.forEach(option => {
-      if (option.format && option.description) {
+      if (option.format) {
+        const description = option.description ? option.description : ""
         program.option(option.format, option.description)
       }
     })
@@ -44,12 +46,15 @@ export default async settings => {
   if (configuration.commands) {
     configuration.commands.forEach(command => {
       if (command.name) {
-        const options = command.options ? command.options : []
         const c = program.createCommand(command.name)
+        c.storeOptionsAsProperties(false)
         if (command.alias) c.alias(command.alias)
+        if (command.arguments.format) c.arguments(command.arguments.format)
+        const options = command.options ? command.options : []
         options.forEach(option => {
-          if (option.format && option.description) {
-            c.option(option.format, option.description)
+          if (option.format) {
+            const description = options.description ? options.description : ""
+            c.option(option.format, description)
           }
         })
         c.action(commands(command.name))
@@ -59,7 +64,7 @@ export default async settings => {
   }
   /*
     ======================================
-      Reading the argument list provided 
+      Reading the argument list provided
       to the program and providing it
       to the controller 'program' variable.
     ======================================

@@ -19,7 +19,7 @@ export default {
     return (
       <Provider>
         <Subscribe to={[store]}>
-          {store => (
+          {(store) => (
             <React.Fragment>
               <Header />
               <Pane width="100vw" height="100vh" elevation={0}>
@@ -35,5 +35,5 @@ export default {
         </Subscribe>
       </Provider>
     )
-  },
+  }
 }

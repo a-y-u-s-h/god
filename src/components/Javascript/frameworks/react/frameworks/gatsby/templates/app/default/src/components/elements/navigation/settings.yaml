@@ -3,7 +3,7 @@ navigation:
   default:
     search: false
     tabs:
-      - name: 
+      - name:
         link: /
         icon: home
         position: left

@@ -28,11 +28,11 @@ export default {
     return (
       <Provider>
         <Subscribe to={[store]}>
-          {store => (
+          {(store) => (
             <React.Fragment>
               <Layout>
                 <Pane height="100%" width="100%" position="relative" background="silver">
-                  <Pattern variant="brick wall" background="brown" foreground="#FFFEEE" opacity={0.4}></Pattern>
+                  <Pattern></Pattern>
                 </Pane>
               </Layout>
             </React.Fragment>
@@ -40,5 +40,5 @@ export default {
         </Subscribe>
       </Provider>
     )
-  },
+  }
 }

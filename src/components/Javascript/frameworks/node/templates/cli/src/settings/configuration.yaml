@@ -21,16 +21,27 @@
 
 ---
 options:
-  - type:
-    name:
-    message:
-    format:
+  - format:
     description:
+    question:
+      type:
+      name:
+      message:
 
 commands:
   - name:
-    description:
     alias:
+    description:
+    arguments:
+      format:
+      questions:
+        - type:
+          name:
+          message:
     options:
       - format:
         description:
+        question:
+          type:
+          name:
+          message:

@@ -1,0 +1,22 @@
+---
+server:
+  port: 3000
+
+database:
+  uri:
+
+environments:
+  development:
+      JWT:
+        secret:
+        expiry:
+
+  production:
+      JWT:
+        secret:
+        expiry:
+
+  testing:
+      JWT:
+        secret:
+        expiry:

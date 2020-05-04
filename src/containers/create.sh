@@ -109,6 +109,10 @@ function god.create () {
       react.native.screen ${script} ${@:3}
     fi
 
+    if [[ $2 == "react.test" || $2 == "react.t" || $2 == "react.unit.test" || $2 == "react.ut" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/react
+      react.test ${script} ${@:3}
+    fi
     # <------------------------------>
 
     if [[ $2 == "gatsby.app" || $2 == "gatsby.a" ]]; then
@@ -177,6 +181,10 @@ function god.create () {
       node.cli ${script} ${@:3}
     fi
 
+    if [[ $2 == "node.library" || $2 == "node.lib" || $2 == "npm.package" || $2 == "npm.a" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/node
+      node.library ${script} ${@:3}
+    fi
 
     if [[ $2 == "node.api" ]]; then
       local script=${root}/src/components/Javascript/frameworks/node
@@ -193,9 +201,14 @@ function god.create () {
       node.api.resource ${script} private ${@:3}
     fi
 
-    if [[ $2 == "node.test" || $2 == "node.jest.test" || $2 == "jest.test" ]]; then
+    if [[ $2 == "node.test" || $2 == "node.test.unit" || $2 == "node.unit.test" || $2 == "node.test.u" || $2 == "node.jest.test" || $2 == "jest.test" ]]; then
       local script=${root}/src/components/Javascript/frameworks/node
       node.jest.test ${script} ${@:3}
+    fi
+
+    if [[ $2 == "node.test.e2e" || $2 == "node.test.e" || $2 == "node.e2e.test" || $2 == "node.test.end2end" || $2 == "node.cypress.test" || $2 == "cypress.test" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/node
+      node.cypress.test ${script} ${@:3}
     fi
 
     # <------------------------------>

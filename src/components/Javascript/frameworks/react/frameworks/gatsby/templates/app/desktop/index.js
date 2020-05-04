@@ -29,7 +29,7 @@ function createWindow() {
   /*
     ======================================
       Create a browser window and
-      either load the app from a URL (development) 
+      either load the app from a URL (development)
       or load the application from a bundled
       file (in production).
     ======================================
@@ -48,7 +48,7 @@ function createWindow() {
 
 /*
   ======================================
-   This method will be called when Electron has finished 
+   This method will be called when Electron has finished
    initialization and is ready to create browser windows.
    Some APIs can only be used after this event occurs.
   ======================================

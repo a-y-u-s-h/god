@@ -23,6 +23,10 @@ module.exports = environment => ({
     path: path.join(__dirname, "build"),
     filename: "placeholder"
   },
+  node: {
+    __dirname: false,
+    __filename: false
+  },
   externals: [require("webpack-node-externals")()],
   plugins: [
     new NodemonPlugin(),

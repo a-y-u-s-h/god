@@ -11,7 +11,7 @@ export default {
     return (
       <Provider>
         <Subscribe to={[store]}>
-          {store => (
+          {(store) => (
             <React.Fragment>
               <Pane {...styles.containers.main}>
                 {/*
@@ -23,16 +23,16 @@ export default {
                 */}
                 <Pane {...styles.containers.tabs.left}>
                   {store.state.default.tabs
-                    .filter(tab => !tab.name)
-                    .filter(tab => tab.position === "left" || !tab.position)
+                    .filter((tab) => !tab.name)
+                    .filter((tab) => tab.position === "left" || !tab.position)
                     .map((tab, index) => (
                       <Link key={index} to={tab.link} {...styles.link} {...styles.tab}>
                         <IconButton icon={tab.icon} />
                       </Link>
                     ))}
                   {store.state.default.tabs
-                    .filter(tab => tab.name)
-                    .filter(tab => tab.position === "left" || !tab.position)
+                    .filter((tab) => tab.name)
+                    .filter((tab) => tab.position === "left" || !tab.position)
                     .map((tab, index) => (
                       <Link key={index} to={tab.link} {...styles.link} {...styles.tab}>
                         <Button iconBefore={tab.icon}>{tab.name}</Button>
@@ -49,8 +49,8 @@ export default {
                 */}
                 <Pane {...styles.containers.tabs.right}>
                   {store.state.default.tabs
-                    .filter(tab => tab.name)
-                    .filter(tab => tab.position === "right")
+                    .filter((tab) => tab.name)
+                    .filter((tab) => tab.position === "right")
                     .map((tab, index) => (
                       <Link key={index} to={tab.link} {...styles.link} {...styles.tab}>
                         <Button iconBefore={tab.icon}>{tab.name}</Button>
@@ -67,7 +67,7 @@ export default {
                 */}
                 {store.state.default.search.switch ? (
                   <Pane {...styles.containers.search}>
-                    <SearchInput onChange={e => store.search(e)} value={store.state.default.search.value} />
+                    <SearchInput onChange={(e) => store.search(e)} value={store.state.default.search.value} />
                   </Pane>
                 ) : (
                   ""
@@ -78,5 +78,5 @@ export default {
         </Subscribe>
       </Provider>
     )
-  },
+  }
 }
