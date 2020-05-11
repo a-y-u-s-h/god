@@ -3,25 +3,25 @@
 function god.update () {
 
   #  ======================================
-  #  
-  #    What if you know several environments but 
+  #
+  #    What if you know several environments but
   #    cannot remember what command to use
   #    when you want to simply update a particular
-  #    environment? Frustrating, right? This is exactly 
+  #    environment? Frustrating, right? This is exactly
   #    the problem that this function tries to solve.
-  #    
+  #
   #    All you need to do is:
-  #    
+  #
   #    god update {environment}     (longer)
   #    god -.- {environment}        (shorter)
-  #    
+  #
   #    This function, depending on environment
   #    will update the environment by picking
-  #    it's update commands. 
+  #    it's update commands.
   #    All it expects is that it's installed.
-  #    
+  #
   #    Supported Environments:
-  #    
+  #
   #    1)   Everything
   #    2)   Javascript
   #    3)   Python 3
@@ -36,7 +36,7 @@ function god.update () {
   #    12)  Nim
   #    13)  Rust
   #    14)  Scala
-  #    
+  #
   #  ======================================
 
   local root=$1                                                                # Take in position of god.sh
@@ -44,21 +44,21 @@ function god.update () {
   shift 1                                                                      # shift parameters to left so that arguments become same.
 
   # <------------------------------>
-  
+
   if [[ $1 == "update" || $1 == "!" || $1 == "-u" ]]; then
 
     #  ======================================
     #    Everything
     #  ======================================
 
-    if [[ -z "$2" || $2 == "everything" || $2 == "all" ]] then
+    if [[ -z "$2" || $2 == "everything" || $2 == "all" ]]; then
         archlinux.update
         python.update
         javascript.update
     fi
 
     for environment in "${@:2}"; do
-      
+
       #  ======================================
       #    Arch Linux
       #  ======================================
@@ -97,14 +97,14 @@ function god.update () {
       #  ======================================
       #    Elm
       #  ======================================
-      
+
       elif [[ ${environment} == "elm" || (${environment} == "." && `ls -1 *.elm 2>/dev/null | wc -l` != 0) ]]; then
         elm.update
 
       #  ======================================
       #    Fortran (2003, 1995, 1990)
       #  ======================================
-      
+
       elif [[ ${environment} == "f03" || ${environment} == "f95" || ${environment} == "f90" ]]; then
         fortran.update
 
@@ -118,35 +118,35 @@ function god.update () {
       #  ======================================
       #    Haskell
       #  ======================================
-      
+
       elif [[ ${environment} == "hs" ]]; then
         haskell.update
 
       #  ======================================
       #    Julia
       #  ======================================
-      
+
       elif [[ ${environment} == "jl" ]]; then
         julia.update
 
       #  ======================================
       #    Lisp
       #  ======================================
-      
+
       elif [[ ${environment} == "clisp" ]]; then
-        lisp.update  
+        lisp.update
 
       #  ======================================
       #    Nim
       #  ======================================
-      
+
       elif [[ ${environment} == "nim" ]]; then
-        nim.update  
+        nim.update
 
       #  ======================================
       #    Rust
       #  ======================================
-      
+
       elif [[ ${environment} == "rs" || (${environment} == "." && -f "Cargo.toml") ]]; then
         rust.update
 
