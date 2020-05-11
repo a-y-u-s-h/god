@@ -36,7 +36,7 @@
 #
 #  ======================================
 
-root=$(dirname -- $(realpath -- "$0"))
+GOD=$(dirname -- $(realpath -- "$0"))
 source $(dirname -- $(realpath -- "$0"))/src/containers/run.sh
 source $(dirname -- $(realpath -- "$0"))/src/containers/create.sh
 source $(dirname -- $(realpath -- "$0"))/src/containers/compile.sh
@@ -45,8 +45,8 @@ source $(dirname -- $(realpath -- "$0"))/src/containers/update.sh
 # <------------------------------>
 
 function god () {
-  god.run     ${root} $@
-  god.create  ${root} $@
-  god.compile ${root} $@
-  god.update  ${root} $@
+  god.run     ${GOD} $@
+  god.create  ${GOD} $@
+  god.compile ${GOD} $@
+  god.update  ${GOD} $@
 }
