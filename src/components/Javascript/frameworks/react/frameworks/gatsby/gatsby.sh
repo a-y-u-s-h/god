@@ -69,6 +69,37 @@ function gatsby.component () {
 # <------------------------------>
 
 
+function gatsby.content () {
+
+  #  ======================================
+  #    Create a folder with a JS and CSS
+  #    file inside it corresponding to
+  #    page name inside it.
+  #
+  #    Also settings.json to keep things neat.
+  #  ======================================
+
+  local root=$1
+  local initial=$(pwd)
+  local type=$2
+
+  for i in "${@:3}"; do
+    local file="$(tr '[:lower:]' '[:upper:]' <<< ${i:0:1})${i:1}"
+    local folder="$(tr '[:upper:]' '[:lower:]' <<< $i)"
+
+    [ -d ${folder} ] || mkdir -p ${folder}
+    if [[ -d ${folder} ]]; then
+      cd ${folder}
+      cp -r ${root}/templates/content/${type}/. .
+    fi
+    cd $initial
+  done
+  return
+}
+
+# <------------------------------>
+
+
 function gatsby.p5 () {
 
   #  ======================================

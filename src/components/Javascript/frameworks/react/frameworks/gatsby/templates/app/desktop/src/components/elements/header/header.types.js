@@ -22,9 +22,12 @@ export default {
     return (
       <Provider>
         <Subscribe to={[store]}>
-          {(store) => (
+          {store => (
             <React.Fragment>
               <Helmet title={`${data.site.siteMetadata.application.title}`} />
+              <header className="toolbar toolbar-header">
+                <h2 className="title">Header</h2>
+              </header>
             </React.Fragment>
           )}
         </Subscribe>

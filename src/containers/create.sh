@@ -95,17 +95,17 @@ function god.create () {
     fi
 
     if [[ $2 == "react.native" || $2 == "react.na" ]]; then
-      local script=${root}/src/components/Javascript/frameworks/react
+      local script=${root}/src/components/Javascript/frameworks/react/frameworks/react.native
       react.native.app ${script} ${@:3}
     fi
 
     if [[ $2 == "react.native.component" || $2 == "react.nc" || $2 == "rn.c" ]]; then
-      local script=${root}/src/components/Javascript/frameworks/react
+      local script=${root}/src/components/Javascript/frameworks/react/frameworks/react.native
       react.native.component ${script} ${@:3}
     fi
 
     if [[ $2 == "react.native.screen" || $2 == "react.ns" || $2 == "rn.s" ]]; then
-      local script=${root}/src/components/Javascript/frameworks/react
+      local script=${root}/src/components/Javascript/frameworks/react/frameworks/react.native
       react.native.screen ${script} ${@:3}
     fi
 
@@ -128,6 +128,16 @@ function god.create () {
     if [[ $2 == "gatsby.component" || $2 == "gatsby.c" ]]; then
       local script=${root}/src/components/Javascript/frameworks/react/frameworks/gatsby
       gatsby.component ${script} default ${@:3}
+    fi
+
+    if [[ $2 == "gatsby.template" || $2 == "gatsby.t" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/react/frameworks/gatsby
+      gatsby.component ${script} template ${@:3}
+    fi
+
+    if [[ $2 == "gatsby.content" || $2 == "gatsby.data" || $2 == "gatsby.article" || $2 == "gatsby.a" || $2 == "gatsby.d" || $2 == "gatsby.co"  ]]; then
+      local script=${root}/src/components/Javascript/frameworks/react/frameworks/gatsby
+      gatsby.content ${script} default ${@:3}
     fi
 
     if [[ $2 == "gatsby.cp5" || $2 == "gatsby.p5" || $2 == "gatsby.p5c" || $2 == "gatsby.componentp5" ]]; then

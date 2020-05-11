@@ -18,23 +18,17 @@ import store from "./home.store.js"
 import { classes, components } from "./home.style.js"
 import { Provider, Subscribe } from "unstated"
 
-import * as evergreen from "evergreen-ui"
+import { Pane } from "evergreen-ui"
 import Layout from "src/components/layouts/default"
-import Pattern from "src/components/elements/pattern"
 
 export default {
   default: () => {
-    const { Pane, majorScale, Card } = evergreen
     return (
       <Provider>
         <Subscribe to={[store]}>
-          {(store) => (
+          {store => (
             <React.Fragment>
-              <Layout>
-                <Pane height="100%" width="100%" position="relative" background="silver">
-                  <Pattern></Pattern>
-                </Pane>
-              </Layout>
+              <Layout></Layout>
             </React.Fragment>
           )}
         </Subscribe>
