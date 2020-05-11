@@ -36,11 +36,11 @@
 #
 #  ======================================
 
-local root=$(dirname $(realpath "$0"))
-source $(dirname $(realpath "$0"))/src/containers/run.sh
-source $(dirname $(realpath "$0"))/src/containers/create.sh
-source $(dirname $(realpath "$0"))/src/containers/compile.sh
-source $(dirname $(realpath "$0"))/src/containers/update.sh
+local root=$(dirname -- $(realpath -- "$0"))
+source $(dirname -- $(realpath -- "$0"))/src/containers/run.sh
+source $(dirname -- $(realpath -- "$0"))/src/containers/create.sh
+source $(dirname -- $(realpath -- "$0"))/src/containers/compile.sh
+source $(dirname -- $(realpath -- "$0"))/src/containers/update.sh
 
 # <------------------------------>
 
