@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "src/index.js",
   "license": "MIT",
+  "author": "Ayush Sharma <code.ayush@gmail.com>",
   "scripts": {
     "clean": "rimraf build",
     "prepublish": "yarn test",
@@ -35,5 +36,17 @@
     "ws": "^7.2.3",
     "yaml-loader": "^0.6.0"
   },
-  "author": "Ayush Sharma <code.ayush@gmail.com>"
+  "babel": {
+    "presets": [
+      "@babel/preset-react",
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": true
+          }
+        }
+      ]
+    ]
+  }
 }
