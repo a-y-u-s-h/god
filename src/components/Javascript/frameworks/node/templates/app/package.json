@@ -32,18 +32,5 @@
     "webpack-shell-plugin": "^0.5.0",
     "ws": "^7.2.3",
     "yaml-loader": "^0.6.0"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-react",
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": true
-          }
-        }
-      ]
-    ]
   }
 }
