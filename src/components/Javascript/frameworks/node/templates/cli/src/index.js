@@ -30,12 +30,14 @@
   ======================================
 */
 
-import options from "@/scripts/options"
-import commands from "@/scripts/commands"
 import application from "@/settings/application.yaml"
 import configuration from "@/settings/configuration.yaml"
-import traditional from "@/components/systems/traditional"
-import interactive from "@/components/systems/interactive"
+
+import options from "@/components/molecules/options"
+import commands from "@/components/molecules/commands"
+
+import traditional from "@/components/organisms/traditional"
+import interactive from "@/components/organisms/interactive"
 
 /*
   ======================================

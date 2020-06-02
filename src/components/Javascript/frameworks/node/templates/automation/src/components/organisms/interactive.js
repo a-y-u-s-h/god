@@ -21,9 +21,9 @@ export default async settings => {
   const { options, data } = settings
   const { application, configuration } = data
 
-  const intro = text.poster(application.messages.intro)
-  const outro = text.basic.dim(`\n${application.messages.outro}`)
-  console.log(intro)
+  const intro = application.messages.intro ? text.poster(application.messages.intro) : null
+  const outro = application.messages.outro ? text.basic.dim(`\n${application.messages.outro}`) : null
+  if (intro) console.log(intro)
 
   try {
     const answers = await prompt(
@@ -32,7 +32,7 @@ export default async settings => {
     answers["version"] = application.version
     await options(answers)
   } finally {
-    console.log(outro)
+    if (outro) console.log(outro)
     process.exit()
   }
 }

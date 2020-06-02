@@ -20,5 +20,5 @@
   ======================================
 */
 
-import execa from "execa"
-export default execa.commandSync
+import shell from "shelljs.exec"
+export default (command, options = {}) => shell(command || "", { ...options })
