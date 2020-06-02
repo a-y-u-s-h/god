@@ -26,21 +26,25 @@
 #
 #  ======================================
 
-#  ======================================
-#
-#    Declaring some path variables,
-#    and importing required scripts.
-#    Root path will let scripts obtain
-#    files that are relative to them
-#    and paste them anywhere on computer.
-#
-#  ======================================
 
-local root=$(dirname $(realpath "$0"))
-source $(dirname $(realpath "$0"))/src/containers/run.sh
-source $(dirname $(realpath "$0"))/src/containers/create.sh
-source $(dirname $(realpath "$0"))/src/containers/compile.sh
-source $(dirname $(realpath "$0"))/src/containers/update.sh
+if [[ -z "${BASH_SOURCE}" ]]; then
+
+  #  ======================================
+  #
+  #    Declaring some path variables,
+  #    and importing required scripts.
+  #    Root path will let scripts obtain
+  #    files that are relative to them
+  #    and paste them anywhere on computer.
+  #    This will work in ZSH
+  #
+  #  ======================================
+
+  local root=$(dirname $(realpath "$0"))
+  source $(dirname $(realpath "$0"))/src/containers/run.sh
+  source $(dirname $(realpath "$0"))/src/containers/create.sh
+  source $(dirname $(realpath "$0"))/src/containers/compile.sh
+  source $(dirname $(realpath "$0"))/src/containers/update.sh
 
 # <------------------------------>
 
@@ -50,3 +54,34 @@ function god () {
   god.compile ${root} $@
   god.update  ${root} $@
 }
+
+else
+
+  #  ======================================
+  #
+  #    Declaring some path variables,
+  #    and importing required scripts.
+  #    Root path will let scripts obtain
+  #    files that are relative to them
+  #    and paste them anywhere on computer.
+  #    This will work in BASH.
+  #
+  #  ======================================
+
+  GOD=$(dirname $(realpath "$BASH_SOURCE"))
+  source $(dirname $(realpath "$BASH_SOURCE"))/src/containers/run.sh
+  source $(dirname $(realpath "$BASH_SOURCE"))/src/containers/create.sh
+  source $(dirname $(realpath "$BASH_SOURCE"))/src/containers/compile.sh
+  source $(dirname $(realpath "$BASH_SOURCE"))/src/containers/update.sh
+
+# <------------------------------>
+
+function god () {
+  god.run     ${GOD} $@
+  god.create  ${GOD} $@
+  god.compile ${GOD} $@
+  god.update  ${GOD} $@
+}
+
+fi
+
