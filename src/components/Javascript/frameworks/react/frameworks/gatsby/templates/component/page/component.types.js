@@ -31,27 +31,22 @@ import store from "./placeholder.store.js"
 import { Provider, Subscribe } from "unstated"
 import { classes, components, devices } from "./placeholder.style.js"
 
-import Layout from "@/components/layouts/default"
+import * as evergreen from "evergreen-ui"
+import Layout from "src/components/layouts/default"
+import Pattern from "src/components/elements/pattern"
 
 export default {
-  default: props => {
-    /*
-       ======================================
-          Start writing the template markup
-          here. The data variable contains result
-          of a query that we have specified in
-          `index.js` of this component.
-       ======================================
-     */
-    const data = props.data.mdx
-    const MDX = components.markdown
+  default: () => {
+    const { Pane } = evergreen
     return (
       <Provider>
         <Subscribe to={[store]}>
-          {store => (
+          {(store) => (
             <React.Fragment>
               <Layout>
-                <MDX>{data.body}</MDX>
+                <Pane height="100%" width="100%" position="relative" background="silver">
+                  <Pattern></Pattern>
+                </Pane>
               </Layout>
             </React.Fragment>
           )}

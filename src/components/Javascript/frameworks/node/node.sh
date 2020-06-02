@@ -127,6 +127,49 @@ function node.cli () {
   return
 }
 
+function node.automation () {
+
+  #  ======================================
+  #
+  #   Create a CLI application based on
+  #   the template provided, and update
+  #   the dependencies if they're not already
+  #   the newest ones.
+  #
+  #  ======================================
+
+  local root=$1
+  local initial=$(pwd)
+  [ -z "$2" ] && set -- "${@:1}" "automation" "${@:3}"
+  cp -R "${root}/templates/automation/" ${@:2}
+  for i in ${@:2}; do
+    if [[ -d $i ]]; then
+      cd $i
+      local package=`cat ${root}/templates/automation/package.json`
+      local webpack=`cat ${root}/templates/automation/webpack.config.js`
+      local application=`cat ${root}/templates/automation/src/settings/application.yaml`
+
+      webpack=$(sed "s/Placeholder/$i/g" <<< "$webpack")
+      webpack=$(sed "s/placeholder/$i/g" <<< "$webpack")
+
+      package=$(sed "s/Placeholder/$i/g" <<< "$package")
+      package=$(sed "s/placeholder/$i/g" <<< "$package")
+
+      application=$(sed "s/Placeholder/$i/g" <<< "$application")
+      application=$(sed "s/placeholder/$i/g" <<< "$application")
+
+      echo $package > package.json
+      echo $webpack > webpack.config.js
+      echo $application > src/settings/application.yaml
+      yarn init -y
+      npx npm-check-updates -u && yarn install
+    fi
+    cd $initial
+  done
+  return
+}
+
+
 function node.api () {
 
   #  ======================================

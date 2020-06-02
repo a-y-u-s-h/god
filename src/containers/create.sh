@@ -191,6 +191,11 @@ function god.create () {
       node.cli ${script} ${@:3}
     fi
 
+    if [[ $2 == "node.automation" || $2 == "node.auto" || $2 == "node.scraper" || $2 == "web.automation" || $2 == "web.scraper" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/node
+      node.automation ${script} ${@:3}
+    fi
+
     if [[ $2 == "node.library" || $2 == "node.lib" || $2 == "npm.package" || $2 == "npm.a" ]]; then
       local script=${root}/src/components/Javascript/frameworks/node
       node.library ${script} ${@:3}
