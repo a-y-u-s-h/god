@@ -31,12 +31,12 @@ function node.app () {
     if [[ -d $i ]]; then
       cd $i
 
-      local package=`cat ${root}/templates/app/package.json`
+      local package="$(cat ${root}/templates/app/package.json)"
       package=$(sed "s/Placeholder/$i/g" <<< "$package")
       package=$(sed "s/placeholder/$i/g" <<< "$package")
       echo $package > package.json
 
-      local webpack=`cat ${root}/templates/app/webpack.config.js`
+      local webpack="$(cat ${root}/templates/app/webpack.config.js)"
       webpack=$(sed "s/Placeholder/$i/g" <<< "$webpack")
       webpack=$(sed "s/placeholder/$i/g" <<< "$webpack")
       echo $webpack > webpack.config.js
@@ -67,12 +67,12 @@ function node.library () {
     if [[ -d $i ]]; then
       cd $i
 
-      local package=`cat ${root}/templates/library/default/package.json`
+      local package="$(cat ${root}/templates/library/default/package.json)"
       package=$(sed "s/Placeholder/$i/g" <<< "$package")
       package=$(sed "s/placeholder/$i/g" <<< "$package")
       echo $package > package.json
 
-      local webpack=`cat ${root}/templates/library/default/webpack.config.js`
+      local webpack="$(cat ${root}/templates/library/default/webpack.config.js)"
       webpack=$(sed "s/Placeholder/$i/g" <<< "$webpack")
       webpack=$(sed "s/placeholder/$i/g" <<< "$webpack")
       echo $webpack > webpack.config.js
@@ -103,9 +103,9 @@ function node.cli () {
   for i in ${@:2}; do
     if [[ -d $i ]]; then
       cd $i
-      local package=`cat ${root}/templates/cli/package.json`
-      local webpack=`cat ${root}/templates/cli/webpack.config.js`
-      local application=`cat ${root}/templates/cli/src/settings/application.yaml`
+      local package="$(cat ${root}/templates/cli/package.json)"
+      local webpack="$(cat ${root}/templates/cli/webpack.config.js)"
+      local application="$(cat ${root}/templates/cli/src/settings/application.yaml)"
 
       webpack=$(sed "s/Placeholder/$i/g" <<< "$webpack")
       webpack=$(sed "s/placeholder/$i/g" <<< "$webpack")
@@ -145,9 +145,9 @@ function node.automation () {
   for i in ${@:2}; do
     if [[ -d $i ]]; then
       cd $i
-      local package=`cat ${root}/templates/automation/package.json`
-      local webpack=`cat ${root}/templates/automation/webpack.config.js`
-      local application=`cat ${root}/templates/automation/src/settings/application.yaml`
+      local package="$(cat ${root}/templates/automation/package.json)"
+      local webpack="$(cat ${root}/templates/automation/webpack.config.js)"
+      local application="$(cat ${root}/templates/automation/src/settings/application.yaml)"
 
       webpack=$(sed "s/Placeholder/$i/g" <<< "$webpack")
       webpack=$(sed "s/placeholder/$i/g" <<< "$webpack")
@@ -188,12 +188,12 @@ function node.api () {
     if [[ -d $i ]]; then
       cd $i
 
-      local package=`cat ${root}/templates/api/default/package.json`
+      local package="$(cat ${root}/templates/api/default/package.json)"
       package=$(sed "s/Placeholder/$i/g" <<< "$package")
       package=$(sed "s/placeholder/$i/g" <<< "$package")
       echo $package > package.json
 
-      local webpack=`cat ${root}/templates/api/default/webpack.config.js`
+      local webpack="$(cat ${root}/templates/api/default/webpack.config.js)"
       webpack=$(sed "s/Placeholder/$i/g" <<< "$webpack")
       webpack=$(sed "s/placeholder/$i/g" <<< "$webpack")
       echo $webpack > webpack.config.js
@@ -216,10 +216,10 @@ function node.api.resource () {
     [ -d ${folder} ] || mkdir -p ${folder}
     if [[ -d ${folder} ]]; then
       cd ${folder}
-      local index=`cat ${root}/templates/api/components/resource/${type}/index.js`
-      local shape=`cat ${root}/templates/api/components/resource/${type}/resource.shape.js`
-      local router=`cat ${root}/templates/api/components/resource/${type}/resource.router.js`
-      local actions=`cat ${root}/templates/api/components/resource/${type}/resource.actions.js`
+      local index="$(cat ${root}/templates/api/components/resource/${type}/index.js)"
+      local shape="$(cat ${root}/templates/api/components/resource/${type}/resource.shape.js)"
+      local router="$(cat ${root}/templates/api/components/resource/${type}/resource.router.js)"
+      local actions="$(cat ${root}/templates/api/components/resource/${type}/resource.actions.js)"
 
       index=$(sed "s/Resource/${file}/g" <<< "$index")
       index=$(sed "s/resource/${folder}/g" <<< "$index")
@@ -256,7 +256,7 @@ function node.jest.test () {
     filename="${filename%.*}"
 
     local file="$(tr '[:upper:]' '[:lower:]' <<< $filename)"
-    local test=`cat ${root}/templates/test/unit.test.js`
+    local test="$(cat ${root}/templates/test/unit.test.js)"
     test=$(sed "s/placeholder/${file}/g" <<< "$test")
     test=$(sed "s/Placeholder/${file}/g" <<< "$test")
 
@@ -275,7 +275,7 @@ function node.cypress.test () {
 
   for i in "${@:2}"; do
     local file="$(tr '[:upper:]' '[:lower:]' <<< $i)"
-    local test=`cat ${root}/templates/test/e2e.test.js`
+    local test="$(cat ${root}/templates/test/e2e.test.js)"
     test=$(sed "s/placeholder/${file}/g" <<< "$test")
     test=$(sed "s/Placeholder/${file}/g" <<< "$test")
     echo "$i"

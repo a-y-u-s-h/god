@@ -7,11 +7,11 @@
 #    | $$  | $$| $$  | $$| $$       \____  $$
 #    |  $$$$$$$|  $$$$$$/|  $$$$$$$ /$$$$$$$/
 #     \_______/ \______/  \_______/|_______/
-#     
+#
 #  ======================================
 
 function documentation.app () {
-  
+
   local root=$1
   local initial=$(pwd)
   local type=$2
@@ -25,11 +25,11 @@ function documentation.app () {
     if [[ -d ${folder} ]]; then
       cd ${folder}
       cp -r ${root}/templates/${type}/. .
-      
-      local index=`cat ${root}/templates/${type}/index.html`
+
+      local index="$(cat ${root}/templates/${type}/index.html)"
       index=$(sed "s/Placeholder/${file}/g" <<< "$index")+
       index=$(sed "s/placeholder/${folder}/g" <<< "$index")
-      echo $index > index.html 
+      echo $index > index.html
 
       cd $initial
     fi

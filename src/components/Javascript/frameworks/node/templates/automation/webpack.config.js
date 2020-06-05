@@ -24,10 +24,7 @@ module.exports = environment => ({
     filename: "placeholder"
   },
   externals: [require("webpack-node-externals")()],
-  plugins: [
-    new NodemonPlugin(),
-    new webpack.BannerPlugin({ banner: "#!/usr/bin/env node", raw: true })
-  ],
+  plugins: [new NodemonPlugin(), new webpack.BannerPlugin({ banner: "#!/usr/bin/env node", raw: true })],
   node: {
     __dirname: false,
     __filename: false

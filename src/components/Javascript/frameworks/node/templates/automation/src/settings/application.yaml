@@ -38,29 +38,28 @@ messages:
 #  ======================================
 
 automation:
-
-    #  ======================================
-    #     Here you write the data associated
-    #     with your automation template. The structure
-    #     for this totally depends on you, you can
-    #     change the root URL here as well, and maybe
-    #     call it something else according to your
-    #     preference.
-    #  ======================================
+  #  ======================================
+  #     Here you write the data associated
+  #     with your automation template. The structure
+  #     for this totally depends on you, you can
+  #     change the root URL here as well, and maybe
+  #     call it something else according to your
+  #     preference.
+  #  ======================================
 
   information:
     root: about:blank
 
   # <-------------------------------------->
 
-    #  ======================================
-    #    These settings are here for you to
-    #    use whenever you create a new browser
-    #    or a page. These options make the page
-    #    or browser behave in the most predictable
-    #    way possible.
-    #  ======================================
-    #
+  #  ======================================
+  #    These settings are here for you to
+  #    use whenever you create a new browser
+  #    or a page. These options make the page
+  #    or browser behave in the most predictable
+  #    way possible.
+  #  ======================================
+  #
   settings:
     browser:
       ignoreHTTPSErrors: true

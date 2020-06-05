@@ -37,9 +37,9 @@ function react.component () {
     [ -d ${folder} ] || mkdir -p ${folder}
     if [[ -d ${folder} ]]; then
       cd ${folder}
-      local JS=`cat ${root}/templates/app/component/Component.js`
-      local CSS=`cat ${root}/templates/app/component/Component.css`
-      local index=`cat ${root}/templates/app/component/index.js`
+      local JS="$(cat ${root}/templates/app/component/Component.js)"
+      local CSS="$(cat ${root}/templates/app/component/Component.css)"
+      local index="$(cat ${root}/templates/app/component/index.js)"
       JS=$(sed "s/Placeholder/${file}/g" <<< "$JS")
       CSS=$(sed "s/Placeholder/${file}/g" <<< "$CSS")
       index=$(sed "s/Placeholder/${file}/g" <<< "$index")
@@ -74,9 +74,9 @@ function react.page () {
     [ -d ${folder} ] || mkdir -p ${folder}
     if [[ -d ${folder} ]]; then
       cd ${folder}
-      local JS=`cat ${root}/templates/app/page/Component.js`
-      local CSS=`cat ${root}/templates/app/page/Component.css`
-      local index=`cat ${root}/templates/app/page/index.js`
+      local JS="$(cat ${root}/templates/app/page/Component.js)"
+      local CSS="$(cat ${root}/templates/app/page/Component.css)"
+      local index="$(cat ${root}/templates/app/page/index.js)"
       JS=$(sed "s/Placeholder/${file}/g" <<< "$JS")
       CSS=$(sed "s/Placeholder/${file}/g" <<< "$CSS")
       index=$(sed "s/Placeholder/${file}/g" <<< "$index")
@@ -95,7 +95,7 @@ function react.page () {
 function react.app () {
 
   #  ======================================
-  #    Create a project with `create-react-app`,
+  #    Create a project with create-react-app,
   #    and then delete and add some files
   #    like I always do whenever I start a
   #    React project.
@@ -134,7 +134,7 @@ function react.jest.test () {
     filename="${filename%.*}"
 
     local file="$(tr '[:upper:]' '[:lower:]' <<< $filename)"
-    local test=`cat ${root}/templates/test/unit.test.js`
+    local test="$(cat ${root}/templates/test/unit.test.js)"
     test=$(sed "s/placeholder/${file}/g" <<< "$test")
     test=$(sed "s/Placeholder/${file}/g" <<< "$test")
 
@@ -153,7 +153,7 @@ function react.cypress.test () {
 
   for i in "${@:2}"; do
     local file="$(tr '[:upper:]' '[:lower:]' <<< $i)"
-    local test=`cat ${root}/templates/test/e2e.test.js`
+    local test="$(cat ${root}/templates/test/e2e.test.js)"
     test=$(sed "s/placeholder/${file}/g" <<< "$test")
     test=$(sed "s/Placeholder/${file}/g" <<< "$test")
     echo "$i"
