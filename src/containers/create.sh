@@ -130,6 +130,11 @@ function god.create () {
       gatsby.component ${script} default ${@:3}
     fi
 
+    if [[ $2 == "gatsby.page" || $2 == "gatsby.p" || $2 == "gatsby.screen" || $2 == "gatsby.s" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/react/frameworks/gatsby
+      gatsby.component ${script} page ${@:3}
+    fi
+
     if [[ $2 == "gatsby.template" || $2 == "gatsby.t" ]]; then
       local script=${root}/src/components/Javascript/frameworks/react/frameworks/gatsby
       gatsby.component ${script} template ${@:3}

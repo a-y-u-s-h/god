@@ -32,7 +32,7 @@ import { Provider, Subscribe } from "unstated"
 import { classes, components, devices } from "./placeholder.style.js"
 
 export default {
-  default: () => {
+  default: ({ children }) => {
     /*
        ======================================
          Start writing your markup logic here.

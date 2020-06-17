@@ -41,116 +41,127 @@ export const devices = {
       <Tablet>{children}</Tablet>
     ======================================
   */
-  mobile: ({ children }) => {
+  mobile: ({ children, not = false }) => {
     /*
       ======================================
         This covers mobile phones (S, M, L) & tablets.
         Access: device.mobile
       ======================================
     */
-    const condition = useMediaQuery({ maxWidth: 991 })
+    let condition = useMediaQuery({ maxWidth: 991 })
+    condition = not ? !condition : condition
     return condition ? children : null
   },
-  tablet: ({ children }) => {
+  tablet: ({ children, not = false }) => {
     /*
       ======================================
         Specifically for Tablets.
         Access: devices.tablet
       ======================================
     */
-    const condition = useMediaQuery({ minWidth: 768, maxWidth: 991 })
+    let condition = useMediaQuery({ minWidth: 768, maxWidth: 991 })
+    condition = not ? !condition : condition
     return condition ? children : null
   },
-  computer: ({ children }) => {
+  computer: ({ children, not = false }) => {
     /*
       ======================================
         This covers Desktops (S and above)
         Access: device.laptop
       ======================================
     */
-    const condition = useMediaQuery({ minWidth: 992 })
+    let condition = useMediaQuery({ minWidth: 992 })
+    condition = not ? !condition : condition
     return condition ? children : null
   },
-  laptop: ({ children }) => {
+  laptop: ({ children, not = false }) => {
     /*
       ======================================
         This covers Tablets & Desktops (S and above)
         Access: device.computer
       ======================================
     */
-    const condition = useMediaQuery({ minWidth: 768 })
+    let condition = useMediaQuery({ minWidth: 768 })
+    condition = not ? !condition : condition
     return condition ? children : null
   },
   phone: {
-    small: ({ children }) => {
+    small: ({ children, not = false }) => {
       /*
         ======================================
           This covers Mobile (S) screens.
           Access: devices.phone.small
         ======================================
         */
-      const condition = useMediaQuery({ maxWidth: 320 })
+      let condition = useMediaQuery({ maxWidth: 320 })
+      condition = not ? !condition : condition
       return condition ? children : null
     },
-    medium: ({ children }) => {
+    medium: ({ children, not = false }) => {
       /*
         ======================================
           This covers Mobile (M) screens.
           Access: devices.phone.medium
         ======================================
         */
-      const condition = useMediaQuery({ minWidth: 321, maxWidth: 375 })
+      let condition = useMediaQuery({ minWidth: 321, maxWidth: 375 })
+      condition = not ? !condition : condition
       return condition ? children : null
     },
-    large: ({ children }) => {
+    large: ({ children, not = false }) => {
       /*
         ======================================
           This covers Mobile (L) screens.
           Access: devices.phone.large
         ======================================
         */
-      const condition = useMediaQuery({ minWidth: 376, maxWidth: 767 })
+      let condition = useMediaQuery({ minWidth: 376, maxWidth: 767 })
+      condition = not ? !condition : condition
       return condition ? children : null
     }
   },
   desktop: {
-    small: ({ children }) => {
+    small: ({ children, not = false }) => {
       /*
         ======================================
           Specifically for Desktops (S)
           Access: device.desktop.small
         ======================================
         */
-      const condition = useMediaQuery({ minWidth: 992, maxWidth: 1024 })
+      let condition = useMediaQuery({ minWidth: 992, maxWidth: 1024 })
+      condition = not ? !condition : condition
       return condition ? children : null
     },
-    medium: ({ children }) => {
+    medium: ({ children, not = false }) => {
       /*
         ======================================
           Specifically for Desktops (M)
           Access: device.desktop.medium
         ======================================
         */
-      const condition = useMediaQuery({ minWidth: 1024, maxWidth: 1360 })
+      let condition = useMediaQuery({ minWidth: 1024, maxWidth: 1360 })
+      condition = not ? !condition : condition
       return condition ? children : null
     },
-    large: ({ children }) => {
+    large: ({ children, not = false }) => {
       /*
         ======================================
           Specifically for Desktops (L or 2k)
           Access: device.desktop.large
         ======================================
         */
-      const condition = useMediaQuery({ minWidth: 1360, maxWidth: 2000 })
+      let condition = useMediaQuery({ minWidth: 1360, maxWidth: 2000 })
+      condition = not ? !condition : condition
       return condition ? children : null
     },
-    xlarge: ({ children }) => {
+    xlarge: ({ children, not = false }) => {
       /*
         ======================================
           Specifically for Desktops (XL or 4k)
         ======================================
         */
-      const condition = useMediaQuery({ minWidth: 2000, maxWidth: 2560 })
+      let condition = useMediaQuery({ minWidth: 2000, maxWidth: 2560 })
+      condition = not ? !condition : condition
       return condition ? children : null
     }
   }

@@ -30,24 +30,16 @@ import React from "react"
 import store from "./placeholder.store.js"
 import { Provider, Subscribe } from "unstated"
 import { classes, components, devices } from "./placeholder.style.js"
-
-import * as evergreen from "evergreen-ui"
 import Layout from "src/components/layouts/default"
-import Pattern from "src/components/elements/pattern"
 
 export default {
-  default: () => {
-    const { Pane } = evergreen
+  default: ({ children }) => {
     return (
       <Provider>
         <Subscribe to={[store]}>
-          {(store) => (
+          {store => (
             <React.Fragment>
-              <Layout>
-                <Pane height="100%" width="100%" position="relative" background="silver">
-                  <Pattern></Pattern>
-                </Pane>
-              </Layout>
+              <Layout></Layout>
             </React.Fragment>
           )}
         </Subscribe>
