@@ -58,7 +58,21 @@ const sanitize = settings => command => async (...options) => {
       const value = p[key]
       args[key] = value
     }
-    await command({ args, configuration: settings, options: info._optionValues })
+    let questions = {
+      arguments: settings.arguments.questions.filter(q => q.prompt && q.prompt === true),
+      options: settings.options.map(o => o.question).filter(q => q.prompt && q.prompt === true)
+    }
+    const inputs = {
+      arguments: await prompter(questions.arguments),
+      options: await prompter(questions.options)
+    }
+    delete inputs.arguments.command
+    delete inputs.arguments.version
+    await command({
+      args: { ...args, ...inputs.arguments },
+      configuration: settings,
+      options: { ...info._optionValues, ...inputs.options }
+    })
   } else {
     /*
       ======================================

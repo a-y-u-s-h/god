@@ -36,7 +36,7 @@ options:
       message:
 
 commands:
-  - name:
+  - name: automate
     alias:
     description:
     arguments:
@@ -44,6 +44,7 @@ commands:
       questions:
         - type:
           name:
+          prompt: false
           message:
     options:
       - format:
@@ -51,4 +52,5 @@ commands:
         question:
           type:
           name:
+          prompt: false
           message:
