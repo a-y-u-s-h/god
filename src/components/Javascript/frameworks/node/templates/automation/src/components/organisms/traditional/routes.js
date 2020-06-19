@@ -60,7 +60,9 @@ const sanitize = settings => command => async (...options) => {
     }
     let questions = {
       arguments: settings.arguments.questions.filter(q => q.prompt && q.prompt === true),
-      options: settings.options.map(o => o.question).filter(q => q.prompt && q.prompt === true)
+      options: settings.options
+        .map(o => o.question)
+        .filter(q => q.prompt && q.prompt === true && q.name in Object.keys(info._optionValues))
     }
     const inputs = {
       arguments: await prompter(questions.arguments),
