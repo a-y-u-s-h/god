@@ -32,12 +32,10 @@
 
 import application from "@/settings/application.yaml"
 import configuration from "@/settings/configuration.yaml"
-
-import options from "@/components/molecules/options"
-import commands from "@/components/molecules/commands"
-
-import traditional from "@/components/organisms/traditional"
 import interactive from "@/components/organisms/interactive"
+import traditional from "@/components/organisms/traditional"
+import options from "@/components/organisms/interactive/routes"
+import commands from "@/components/organisms/traditional/routes"
 
 /*
   ======================================

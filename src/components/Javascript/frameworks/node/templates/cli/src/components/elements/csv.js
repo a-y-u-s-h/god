@@ -3,7 +3,7 @@ import Writer from "objects-to-csv"
 import Parser from "data-to-json"
 
 export default {
-  write: async (object, location) => {
+  write: async (object, location, options = {}) => {
     /*
       ======================================
         Data must be an array of objects.
@@ -13,7 +13,7 @@ export default {
       ======================================
     */
     const converted = new Writer(object)
-    if (location) await converted.toDisk(location, { allColumns: true })
+    if (location) await converted.toDisk(location, { allColumns: true, ...options })
     return await converted.toString()
   },
   read: location => {

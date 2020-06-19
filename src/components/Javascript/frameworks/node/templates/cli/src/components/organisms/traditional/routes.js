@@ -20,11 +20,13 @@
 
 import prompter from "@/components/elements/prompt"
 import configuration from "@/settings/configuration.yaml"
+import routes from "@/program/commands"
 
 const commands = {
-  command: async data => {
-    const { args, options, settings } = data
-  }
+  __example: async data => {
+    const { args, options, configuration } = data
+  },
+  ...routes
 }
 
 const sanitize = settings => command => async (...options) => {
@@ -56,7 +58,7 @@ const sanitize = settings => command => async (...options) => {
       const value = p[key]
       args[key] = value
     }
-    await command({ args, settings, options: info._optionValues })
+    await command({ args, configuration: settings, options: info._optionValues })
   } else {
     /*
       ======================================

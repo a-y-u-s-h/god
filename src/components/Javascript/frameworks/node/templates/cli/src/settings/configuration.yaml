@@ -28,6 +28,13 @@ options:
       name:
       message:
 
+  - format:
+    description:
+    question:
+      type:
+      name:
+      message:
+
 commands:
   - name:
     alias:

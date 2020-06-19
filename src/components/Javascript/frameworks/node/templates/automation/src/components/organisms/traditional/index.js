@@ -69,7 +69,7 @@ export default async settings => {
       to the controller 'program' variable.
     ======================================
   */
-  program.parse(process.argv)
+  await program.parseAsync(process.argv)
   await options(program.opts())
   process.exit()
 }

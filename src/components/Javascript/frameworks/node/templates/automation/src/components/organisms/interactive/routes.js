@@ -21,12 +21,11 @@
   ======================================
 */
 
-import program from "@/program"
 import csv from "@/components/elements/csv"
 import text from "@/components/elements/text"
-import configuration from "@/settings/configuration.yaml"
+import program from "@/program/arguments"
 
 export default async options => {
-  if (options == {}) return {}
-  const data = await program({ options, configuration })
+  if (Object.keys(options).length === 0) return {}
+  const data = await program({ options })
 }
