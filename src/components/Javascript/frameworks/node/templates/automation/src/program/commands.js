@@ -6,7 +6,7 @@ import puppeteer from "puppeteer"
 import automation from "@/settings/automation.yaml"
 
 export default {
-  command: async data => {
+  automate: async data => {
     const { args, options, configuration } = data
     const { information, settings } = automation
 

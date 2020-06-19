@@ -26,6 +26,5 @@ import text from "@/components/elements/text"
 import program from "@/program/arguments"
 
 export default async options => {
-  if (Object.keys(options).length === 0) return {}
-  const data = await program({ options })
+  await program({ options })
 }
