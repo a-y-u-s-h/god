@@ -16,7 +16,7 @@ export default {
     if (location) await converted.toDisk(location, { allColumns: true, ...options })
     return await converted.toString()
   },
-  read: location => {
+  read: async location => {
     /*
       ======================================
         The file must exist, that's all.
@@ -24,6 +24,6 @@ export default {
         an object, which will be valid JSON data.
       ======================================
     */
-    return Parser.csv({ filePath: location }).toJson()
+    return await Parser.csv({ filePath: location }).toJson()
   }
 }
