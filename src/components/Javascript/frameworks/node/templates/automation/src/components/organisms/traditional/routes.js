@@ -68,6 +68,8 @@ const sanitize = settings => command => async (...options) => {
     }
     delete inputs.arguments.command
     delete inputs.arguments.version
+    delete inputs.options.command
+    delete inputs.options.version
     await command({
       args: { ...args, ...inputs.arguments },
       configuration: settings,
