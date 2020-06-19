@@ -70,6 +70,5 @@ export default async settings => {
     ======================================
   */
   await program.parseAsync(process.argv)
-  await options(program.opts())
   process.exit()
 }
