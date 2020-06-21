@@ -32,7 +32,8 @@ export default async settings => {
     configuration.options.forEach(option => {
       if (option.format) {
         const description = option.description ? option.description : ""
-        program.option(option.format, option.description)
+        const defaultValue = option.question ? (option.question.initial ? option.question.initial : null) : null
+        program.option(option.format, option.description, defaultValue)
       }
     })
   }
@@ -47,6 +48,7 @@ export default async settings => {
     configuration.commands.forEach(command => {
       if (command.name) {
         const c = program.createCommand(command.name)
+
         c.storeOptionsAsProperties(false)
         if (command.alias) c.alias(command.alias)
         if (command.arguments.format) c.arguments(command.arguments.format)
@@ -54,7 +56,8 @@ export default async settings => {
         options.forEach(option => {
           if (option.format) {
             const description = options.description ? options.description : ""
-            c.option(option.format, description)
+            const defaultValue = option.question ? (option.question.initial ? option.question.initial : null) : null
+            c.option(option.format, description, defaultValue)
           }
         })
         c.action(commands(command.name))

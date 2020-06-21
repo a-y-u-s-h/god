@@ -59,11 +59,19 @@ const sanitize = settings => command => async (...options) => {
       args[key] = value
     }
     let questions = {
-      arguments: settings.arguments.questions.filter(q => q.prompt && q.prompt === true),
+      arguments: settings.arguments.questions
+        .filter(q => q.prompt && q.prompt === true)
+        .filter(q => !args.hasOwnProperty(q.name) || args[q.name] === null || args[q.name] === q.initial),
+
       options: settings.options
         .map(o => o.question)
         .filter(q => q.prompt && q.prompt === true)
-        .filter(q => !info._optionValues.hasOwnProperty(q.name))
+        .filter(
+          q =>
+            !info._optionValues.hasOwnProperty(q.name) ||
+            info._optionValues[q.name] === null ||
+            info._optionValues[q.name] === q.initial
+        )
     }
     const inputs = {
       arguments: await prompter(questions.arguments),

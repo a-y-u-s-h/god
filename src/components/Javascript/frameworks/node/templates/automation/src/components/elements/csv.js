@@ -1,9 +1,9 @@
 import fs from "fs"
-import Writer from "objects-to-csv"
-import Parser from "data-to-json"
+import Writer from "json2csv"
+import Reader from "csvtojson"
 
 export default {
-  write: async (object, location, options = {}) => {
+  write: async (array, location, options = {}) => {
     /*
       ======================================
         Data must be an array of objects.
@@ -12,9 +12,9 @@ export default {
         that'll form the columns of the CSV.
       ======================================
     */
-    const converted = new Writer(object)
-    if (location) await converted.toDisk(location, { allColumns: true, ...options })
-    return await converted.toString()
+    const converted = Writer.parse(array, { fields: Object.keys(array[0]) })
+    if (location) await fs.writeFileSync(location, converted)
+    return await converted
   },
   read: async location => {
     /*
@@ -24,6 +24,6 @@ export default {
         an object, which will be valid JSON data.
       ======================================
     */
-    return await Parser.csv({ filePath: location }).toJson()
+    return await Reader().fromFile(location)
   }
 }
