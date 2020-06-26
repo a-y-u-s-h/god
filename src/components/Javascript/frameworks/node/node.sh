@@ -34,12 +34,12 @@ function node.app () {
       local package="$(cat ${root}/templates/app/package.json)"
       package=$(sed "s/Placeholder/$i/g" <<< "$package")
       package=$(sed "s/placeholder/$i/g" <<< "$package")
-      echo $package > package.json
+      echo "$package" > package.json
 
       local webpack="$(cat ${root}/templates/app/webpack.config.js)"
       webpack=$(sed "s/Placeholder/$i/g" <<< "$webpack")
       webpack=$(sed "s/placeholder/$i/g" <<< "$webpack")
-      echo $webpack > webpack.config.js
+      echo "$webpack" > webpack.config.js
 
       yarn init -y
       npx npm-check-updates -u && yarn install
@@ -70,12 +70,12 @@ function node.library () {
       local package="$(cat ${root}/templates/library/default/package.json)"
       package=$(sed "s/Placeholder/$i/g" <<< "$package")
       package=$(sed "s/placeholder/$i/g" <<< "$package")
-      echo $package > package.json
+      echo "$package" > package.json
 
       local webpack="$(cat ${root}/templates/library/default/webpack.config.js)"
       webpack=$(sed "s/Placeholder/$i/g" <<< "$webpack")
       webpack=$(sed "s/placeholder/$i/g" <<< "$webpack")
-      echo $webpack > webpack.config.js
+      echo "$webpack" > webpack.config.js
 
       yarn init -y
       npx npm-check-updates -u && yarn install
@@ -116,9 +116,9 @@ function node.cli () {
       application=$(sed "s/Placeholder/$i/g" <<< "$application")
       application=$(sed "s/placeholder/$i/g" <<< "$application")
 
-      echo $package > package.json
-      echo $webpack > webpack.config.js
-      echo $application > src/settings/application.yaml
+      echo "$package" > package.json
+      echo "$webpack" > webpack.config.js
+      echo "$application" > src/settings/application.yaml
       yarn init -y
       npx npm-check-updates -u && yarn install
     fi
@@ -158,9 +158,9 @@ function node.automation () {
       application=$(sed "s/Placeholder/$i/g" <<< "$application")
       application=$(sed "s/placeholder/$i/g" <<< "$application")
 
-      echo $package > package.json
-      echo $webpack > webpack.config.js
-      echo $application > src/settings/application.yaml
+      echo "$package" > package.json
+      echo "$webpack" > webpack.config.js
+      echo "$application" > src/settings/application.yaml
       yarn init -y
       npx npm-check-updates -u && yarn install
     fi
@@ -191,12 +191,12 @@ function node.api () {
       local package="$(cat ${root}/templates/api/default/package.json)"
       package=$(sed "s/Placeholder/$i/g" <<< "$package")
       package=$(sed "s/placeholder/$i/g" <<< "$package")
-      echo $package > package.json
+      echo "$package" > package.json
 
       local webpack="$(cat ${root}/templates/api/default/webpack.config.js)"
       webpack=$(sed "s/Placeholder/$i/g" <<< "$webpack")
       webpack=$(sed "s/placeholder/$i/g" <<< "$webpack")
-      echo $webpack > webpack.config.js
+      echo "$webpack" > webpack.config.js
 
       yarn init -y
       npx npm-check-updates -u && yarn install
@@ -234,10 +234,10 @@ function node.api.resource () {
       actions=$(sed "s/resource/${folder}/g" <<< "$actions")
 
 
-      echo $index > index.js
-      echo $shape > $folder.shape.js
-      echo $router > $folder.router.js
-      echo $actions > $folder.actions.js
+      echo "$index" > index.js
+      echo "$shape" > $folder.shape.js
+      echo "$router" > $folder.router.js
+      echo "$actions" > $folder.actions.js
     fi
     cd $initial
   done
@@ -262,7 +262,7 @@ function node.jest.test () {
 
     cd __tests__
     if [[ ! -f "$file.test.js" ]]; then
-      echo $test > "$file.test.js"
+      echo "$test" > "$file.test.js"
     fi
     cd $initial
   done
@@ -279,7 +279,7 @@ function node.cypress.test () {
     test=$(sed "s/placeholder/${file}/g" <<< "$test")
     test=$(sed "s/Placeholder/${file}/g" <<< "$test")
     echo "$i"
-    echo $test > "$file.spec.js"
+    echo "$test" > "$file.spec.js"
     cd $initial
   done
   return

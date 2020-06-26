@@ -31,12 +31,12 @@ function react.native.app () {
       local package=`cat ${root}/templates/app/${type}/package.json`
       package=$(sed "s/Placeholder/${i}/g" <<< "$package")
       package=$(sed "s/placeholder/${i}/g" <<< "$package")
-      echo $package > package.json
+      echo "$package" > package.json
 
       local app=`cat ${root}/templates/app/${type}/app.json`
       app=$(sed "s/Placeholder/${i}/g" <<< "$app")
       app=$(sed "s/placeholder/${i}/g" <<< "$app")
-      echo $app > ./app.json
+      echo "$app" > ./app.json
 
       yarn init -y
       npx npm-check-updates -u && yarn install
@@ -84,10 +84,10 @@ function react.native.component () {
       types=$(sed "s/placeholder/${folder}/g" <<< "$types")
       index=$(sed "s/placeholder/${folder}/g" <<< "$index")
 
-      echo $store > ${folder}.store.js
-      echo $style > ${folder}.style.js
-      echo $types > ${folder}.types.js
-      echo $index > index.js
+      echo "$store" > ${folder}.store.js
+      echo "$style" > ${folder}.style.js
+      echo "$types" > ${folder}.types.js
+      echo "$index" > index.js
     fi
     cd $initial
   done
@@ -127,10 +127,10 @@ function react.native.screen () {
       types=$(sed "s/placeholder/${folder}/g" <<< "$types")
       navigation=$(sed "s/placeholder/${folder}/g" <<< "$navigation")
 
-      echo $store       > ${folder}.store.js
-      echo $style       > ${folder}.style.js
-      echo $types       > ${folder}.types.js
-      echo $navigation  > ${folder}.navigation.js
+      echo "$store"       > ${folder}.store.js
+      echo "$style"       > ${folder}.style.js
+      echo "$types"       > ${folder}.types.js
+      echo "$navigation"  > ${folder}.navigation.js
     fi
     cd $initial
   done

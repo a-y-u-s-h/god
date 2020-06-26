@@ -29,7 +29,7 @@ function documentation.app () {
       local index="$(cat ${root}/templates/${type}/index.html)"
       index=$(sed "s/Placeholder/${file}/g" <<< "$index")+
       index=$(sed "s/placeholder/${folder}/g" <<< "$index")
-      echo $index > index.html
+      echo "$index" > index.html
 
       cd $initial
     fi

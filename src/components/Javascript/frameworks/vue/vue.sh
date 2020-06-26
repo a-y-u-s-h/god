@@ -32,7 +32,7 @@ function vue.component () {
   for file in "${@:2}"; do
     local component="$(cat ${root}/templates/components/Component.vue)"
     component=$(sed "s/Placeholder/${file}/g" <<< "$component")
-    echo $component > ${file}.vue
+    echo "$component" > ${file}.vue
     cd $initial
   done
   return
@@ -51,7 +51,7 @@ function vue.container () {
   for file in "${@:2}"; do
     local container="$(cat ${root}/templates/components/Container.vue)"
     container=$(sed "s/Placeholder/${file}/g" <<< "$container")
-    echo $container > ${file}.vue
+    echo "$container" > ${file}.vue
     cd $initial
   done
   return
@@ -70,7 +70,7 @@ function vue.p5 () {
   for file in "${@:2}"; do
     local p5="$(cat ${root}/templates/components/P5.vue)"
     p5=$(sed "s/Placeholder/${file}/g" <<< "$p5")
-    echo $p5 > ${file}.vue
+    echo "$p5" > ${file}.vue
     cd $initial
   done
   return

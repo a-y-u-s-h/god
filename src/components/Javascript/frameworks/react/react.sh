@@ -43,9 +43,9 @@ function react.component () {
       JS=$(sed "s/Placeholder/${file}/g" <<< "$JS")
       CSS=$(sed "s/Placeholder/${file}/g" <<< "$CSS")
       index=$(sed "s/Placeholder/${file}/g" <<< "$index")
-      echo $JS > ${file}.js
-      echo $CSS > ${file}.css
-      echo $index > index.js
+      echo "$JS" > ${file}.js
+      echo "$CSS" > ${file}.css
+      echo "$index" > index.js
       echo "{}" > props.json
     fi
     cd $initial
@@ -80,9 +80,9 @@ function react.page () {
       JS=$(sed "s/Placeholder/${file}/g" <<< "$JS")
       CSS=$(sed "s/Placeholder/${file}/g" <<< "$CSS")
       index=$(sed "s/Placeholder/${file}/g" <<< "$index")
-      echo $JS > ${file}.js
-      echo $CSS > ${file}.css
-      echo $index > index.js
+      echo "$JS" > ${file}.js
+      echo "$CSS" > ${file}.css
+      echo "$index" > index.js
       echo "{}" > props.json
     fi
     cd $initial
@@ -140,7 +140,7 @@ function react.jest.test () {
 
     cd __tests__
     if [[ ! -f "$file.test.js" ]]; then
-      echo $test > "$file.test.js"
+      echo "$test" > "$file.test.js"
     fi
     cd $initial
   done
@@ -157,7 +157,7 @@ function react.cypress.test () {
     test=$(sed "s/placeholder/${file}/g" <<< "$test")
     test=$(sed "s/Placeholder/${file}/g" <<< "$test")
     echo "$i"
-    echo $test > "$file.spec.js"
+    echo "$test" > "$file.spec.js"
     cd $initial
   done
   return

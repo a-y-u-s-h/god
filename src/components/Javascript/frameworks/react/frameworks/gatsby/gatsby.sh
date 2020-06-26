@@ -56,10 +56,10 @@ function gatsby.component () {
       types=$(sed "s/placeholder/${folder}/g" <<< "$types")
 
 
-      echo $index > index.js
-      echo $store > ${folder}.store.js
-      echo $style > ${folder}.style.js
-      echo $types > ${folder}.types.js
+      echo "$index" > index.js
+      echo "$store" > ${folder}.store.js
+      echo "$style" > ${folder}.style.js
+      echo "$types" > ${folder}.types.js
     fi
     cd $initial
   done
@@ -139,10 +139,10 @@ function gatsby.p5 () {
       types=$(sed "s/placeholder/${folder}/g" <<< "$types")
 
 
-      echo $index > index.js
-      echo $store > ${folder}.store.js
-      echo $sketch > ${folder}.sketch.js
-      echo $types > ${folder}.types.js
+      echo "$index" > index.js
+      echo "$store" > ${folder}.store.js
+      echo "$sketch" > ${folder}.sketch.js
+      echo "$types" > ${folder}.types.js
     fi
     cd $initial
   done
@@ -176,12 +176,12 @@ function gatsby.app () {
       local package=`cat ${root}/templates/app/${type}/package.json`
       package=$(sed "s/Placeholder/${i}/g" <<< "$package")
       package=$(sed "s/placeholder/${i}/g" <<< "$package")
-      echo $package > package.json
+      echo "$package" > package.json
 
       local site=`cat ./src/assets/settings.yaml`
       site=$(sed "s/Placeholder/${i}/g" <<< "$site")
       site=$(sed "s/placeholder/${i}/g" <<< "$site")
-      echo $site > ./src/assets/settings.yaml
+      echo "$site" > ./src/assets/settings.yaml
 
       yarn init -y
       npx npm-check-updates -u && yarn install
