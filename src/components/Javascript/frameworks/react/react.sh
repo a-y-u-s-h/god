@@ -37,21 +37,75 @@ function react.component () {
     [ -d ${folder} ] || mkdir -p ${folder}
     if [[ -d ${folder} ]]; then
       cd ${folder}
-      local JS="$(cat ${root}/templates/app/component/Component.js)"
-      local CSS="$(cat ${root}/templates/app/component/Component.css)"
-      local index="$(cat ${root}/templates/app/component/index.js)"
-      JS=$(sed "s/Placeholder/${file}/g" <<< "$JS")
-      CSS=$(sed "s/Placeholder/${file}/g" <<< "$CSS")
+      local index="$(cat ${root}/templates/app/component/default/index.js)"
+      local style="$(cat ${root}/templates/app/component/default/style.js)"
+      local store="$(cat ${root}/templates/app/component/default/store.js)"
       index=$(sed "s/Placeholder/${file}/g" <<< "$index")
-      echo "$JS" > ${file}.js
-      echo "$CSS" > ${file}.css
+      style=$(sed "s/Placeholder/${file}/g" <<< "$style")
+      store=$(sed "s/Placeholder/${file}/g" <<< "$store")
+      echo "$store" > store.js
+      echo "$style" > style.js
       echo "$index" > index.js
-      echo "{}" > props.json
     fi
     cd $initial
   done
   return
 }
+
+# <------------------------------>
+
+function react.chrome.extension () {
+
+  #  ======================================
+  #    Create a chrome extension with
+  #    React and minimal other dependencies.
+  #  ======================================
+
+  local root=$1
+  local initial=$(pwd)
+  for i in "${@:2}"; do
+    local file="$(tr '[:lower:]' '[:upper:]' <<< ${i:0:1})${i:1}"
+    local folder="$(tr '[:upper:]' '[:lower:]' <<< $i)"
+
+    [ -d ${folder} ] || mkdir -p ${folder}
+    if [[ -d ${folder} ]]; then
+      cd ${folder}
+      cp -r ${root}/templates/extension/. .
+
+      local package="$(cat ${root}/templates/extension/package.json)"
+      local webpack="$(cat ${root}/templates/extension/webpack.config.js)"
+      local application="$(cat ${root}/templates/extension/src/settings/application.yaml)"
+      local M1="$(cat ${root}/templates/extension/src/support/application/data/types/generic/manifest.json)"
+      local M2="$(cat ${root}/templates/extension/src/support/application/data/types/popup/manifest.json)"
+      local M3="$(cat ${root}/templates/extension/src/support/application/data/types/content/manifest.json)"
+
+      package=$(sed "s/Placeholder/${file}/g" <<< "$package")
+      package=$(sed "s/placeholder/${folder}/g" <<< "$package")
+      webpack=$(sed "s/Placeholder/${file}/g" <<< "$webpack")
+      webpack=$(sed "s/placeholder/${folder}/g" <<< "$webpack")
+      application=$(sed "s/Placeholder/${file}/g" <<< "$application")
+      application=$(sed "s/placeholder/${folder}/g" <<< "$application")
+      M1=$(sed "s/Placeholder/${file}/g" <<< "$M1")
+      M1=$(sed "s/placeholder/${folder}/g" <<< "$M1")
+      M2=$(sed "s/Placeholder/${file}/g" <<< "$M2")
+      M2=$(sed "s/placeholder/${folder}/g" <<< "$M2")
+      M3=$(sed "s/Placeholder/${file}/g" <<< "$M3")
+      M3=$(sed "s/placeholder/${folder}/g" <<< "$M3")
+
+      echo "$package" > package.json
+      echo "$webpack" > webpack.config.js
+      echo "$application" > src/settings/application.yaml
+
+      echo "$M1" > src/support/application/data/types/generic/manifest.json
+      echo "$M2" > src/support/application/data/types/popup/manifest.json
+      echo "$M3" > src/support/application/data/types/content/manifest.json
+      yarn update
+    fi
+    cd $initial
+  done
+  return
+}
+
 
 # <------------------------------>
 

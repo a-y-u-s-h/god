@@ -13,18 +13,15 @@
                       |  $$$$$$/
                        \______/
 
-    This file stores all the styles related to component.
-    You can use any dependency (styled-components, etc)
-    if you want, but make sure you export them in proper
-    objects provided below.
+    This file contains all styled components
+    associated with the component. You can
+    import this file elsewhere and use it,
+    but its intended use is to use inside
+    this component and then copied somewhere
+    else, so that this component becomes
+    independent in itself.
 
   ======================================
 */
 
-const classes = {}
-const components = {}
-
-export default {
-  classes,
-  components
-}
+export default {}

@@ -1,30 +1,30 @@
 /*
-  ======================================
-    Note: In order to use this
-    component, you should have styled-components
-    and unstated in your dependencies. To make
-    changes to functionality of the component you 
-    don't need to look at this file -> look at others. 
+  =====================================
 
-    Import as a folder component. You can
-    optionally pass in a type. If it exists,
-    it'll return the appropriate variant.
+     /$$                 /$$
+    |__/                | $$
+     /$$ /$$$$$$$   /$$$$$$$  /$$$$$$  /$$   /$$
+    | $$| $$__  $$ /$$__  $$ /$$__  $$|  $$ /$$/
+    | $$| $$  \ $$| $$  | $$| $$$$$$$$ \  $$$$/
+    | $$| $$  | $$| $$  | $$| $$_____/  >$$  $$
+    | $$| $$  | $$|  $$$$$$$|  $$$$$$$ /$$/\  $$
+    |__/|__/  |__/ \_______/ \_______/|__/  \__/
+
+    Here you write all the markup and
+    state logic associated with the
+    component. Ideally, you'd use hooks
+    and contexts in here and in the store,
+    you'll keep configurations (data), like
+    state machines and stuff if any for this
+    component.
   ======================================
 */
-import React from "react"
-import store from "./placeholder.store.js"
-import style from "./placeholder.style.js"
-import types from "./placeholder.types.js"
 
-export default ({ children, type = "default", ...props }) => {
-  /*
-    ======================================
-      By default type "default" is displayed if
-      no type prop is passed explicitly or
-      if an invalid type is passed as a prop.
-    ======================================
-  */
-  if (!(type in types)) type = "default" 
-  const Component = types[type]
-  return <Component {...props}>{children}</Component>
+import React from "react"
+import store from "./store"
+import style from "./style"
+
+
+export default () => {
+  return <></>
 }

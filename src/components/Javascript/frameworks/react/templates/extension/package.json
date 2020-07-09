@@ -1,0 +1,184 @@
+{
+  "name": "placeholder",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "Ayush Sharma <code.ayush@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rimraf public build yarn.lock yarn-error.log package-lock.json",
+    "execute": "yarn react:develop",
+    "test": "jest --config ./jest.config.js --passWithNoTests",
+    "lint": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
+    "update": "npx npm-check-updates -u && yarn install",
+    "prestart": "yarn clean",
+    "develop": "yarn start",
+    "prepublish": "yarn test",
+    "prebuild": "yarn clean",
+    "start": "yarn webpack:develop && yarn react:develop",
+    "build": "yarn webpack:build && yarn react:build",
+    "webpack:develop": "webpack --env.mode development",
+    "react:develop": "cross-env SKIP_PREFLIGHT_CHECK=true react-app-rewired start",
+    "webpack:build": "webpack --env.mode production",
+    "react:build": "cross-env SKIP_PREFLIGHT_CHECK=true INLINE_RUNTIME_CHUNK=false react-app-rewired build && rimraf public && mv build public"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "@babel/preset-react": "^7.10.1",
+    "@types/chrome": "^0.0.117",
+    "@types/react": "^16.9.41",
+    "@types/react-dom": "^16.9.8",
+    "babel-loader": "^8.1.0",
+    "copy-webpack-plugin": "^6.0.2",
+    "cross-env": "^7.0.2",
+    "css-loader": "^3.6.0",
+    "node-sass": "^4.14.1",
+    "prettier": "prettier/prettier",
+    "react-app-rewire-aliases": "^0.2.0",
+    "react-app-rewired": "^2.1.6",
+    "style-loader": "^1.2.1",
+    "ts-loader": "^7.0.5",
+    "typescript": "^3.9.5",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "yaml-loader": "^0.6.0"
+  },
+  "dependencies": {
+    "framer-motion": "^1.11.1",
+    "jquery": "^3.5.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": false,
+    "trailingComma": "none",
+    "tabWidth": 2,
+    "arrowParens": "avoid",
+    "printWidth": 200,
+    "overrides": [
+      {
+        "files": "*.sass",
+        "options": {
+          "printWidth": 999
+        }
+      },
+      {
+        "files": "*.mdx",
+        "options": {
+          "tabWidth": 2,
+          "printWidth": 80,
+          "proseWrap": "always"
+        }
+      },
+      {
+        "files": "*.md",
+        "options": {
+          "tabWidth": 2,
+          "printWidth": 80,
+          "proseWrap": "always",
+          "htmlWhitespaceSensitivity": "strict"
+        }
+      },
+      {
+        "files": "*.html",
+        "options": {
+          "htmlWhitespaceSensitivity": "strict"
+        }
+      }
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "prettier"
+    ],
+    "plugins": [
+      "react",
+      "react-hooks"
+    ],
+    "rules": {
+      "no-var": "error",
+      "no-unused-vars": [
+        "error",
+        {
+          "varsIgnorePattern": "React"
+        }
+      ],
+      "arrow-spacing": [
+        "error",
+        {
+          "before": true,
+          "after": true
+        }
+      ],
+      "indent": [
+        "error",
+        2
+      ],
+      "semi": [
+        "error",
+        "never"
+      ],
+      "arrow-parens": [
+        "error",
+        "as-needed"
+      ],
+      "standard/object-curly-even-spacing": [
+        "error",
+        "either"
+      ],
+      "standard/array-bracket-even-spacing": [
+        "error",
+        "either"
+      ],
+      "standard/computed-property-even-spacing": [
+        "error",
+        "even"
+      ],
+      "standard/no-callback-literal": [
+        "error",
+        [
+          "cb",
+          "callback"
+        ]
+      ],
+      "react/jsx-uses-react": "error",
+      "react/jsx-uses-vars": "error",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn"
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaVersion": 8
+    },
+    "env": {
+      "browser": true
+    }
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-react",
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": true
+          }
+        }
+      ]
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

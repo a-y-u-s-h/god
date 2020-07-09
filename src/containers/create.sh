@@ -84,6 +84,12 @@ function god.create () {
       react.app ${script} ${@:3}
     fi
 
+    if [[ $2 == "react.chrome.extension" || $2 == "react.extension" || $2 == "chrome.extension" || $2 == "web.extension" || $2 == "web.ext" || $2 == "chrome.ext" || $2 == "webex" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/react
+      react.chrome.extension ${script} ${@:3}
+    fi
+
+
     if [[ $2 == "react.component" || $2 == "react.c" ]]; then
       local script=${root}/src/components/Javascript/frameworks/react
       react.component ${script} ${@:3}
