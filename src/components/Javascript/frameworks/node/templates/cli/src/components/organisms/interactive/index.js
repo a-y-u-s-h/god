@@ -31,6 +31,5 @@ export default async settings => {
     await options(answers)
   } finally {
     if (outro) console.log(outro)
-    process.exit()
   }
 }

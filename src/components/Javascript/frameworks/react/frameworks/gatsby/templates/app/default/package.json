@@ -19,7 +19,7 @@
     "storybook:build": "NODE_ENV=production build-storybook -s static -o .storybook/styleguide",
     "storybook:share": "yarn build-storybook && surge .storybook/published",
     "lint": "prettier --write 'src/**/*.{js,jsx}'",
-    "update": "npx npm-check-updates -u && yarn install"
+    "update": "npx npm-check-updates -u --timeout 300000 && yarn install"
   },
   "repository": {
     "type": "git",

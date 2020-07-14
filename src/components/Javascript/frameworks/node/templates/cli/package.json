@@ -13,7 +13,7 @@
     "develop": "yarn build && yarn execute",
     "build": "webpack --env.mode production",
     "lint": "prettier --write 'src/**/*.{js,jsx}'",
-    "update": "npx npm-check-updates -u && yarn install"
+    "update": "npx npm-check-updates -u --timeout 120000 && yarn install",
   },
   "bin": {
     "placeholder": "./build/placeholder"
@@ -24,7 +24,6 @@
     "cfonts": "^2.8.5",
     "chalk": "^4.1.0",
     "chalk-animation": "^1.6.0",
-    "cheerio": "^1.0.0-rc.3",
     "clear": "^0.1.0",
     "cli-format": "^3.0.9",
     "clui": "^0.3.6",

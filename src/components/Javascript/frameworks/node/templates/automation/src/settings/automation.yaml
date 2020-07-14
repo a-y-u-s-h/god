@@ -20,7 +20,7 @@ information:
     username:
     password:
   links:
-    root:
+    root: about:blank
     login:
   selectors:
     login:
@@ -43,6 +43,7 @@ settings:
     ignoreHTTPSErrors: true
     headless: false
     defaultViewport: null
+    timeout: 0
 
   # <-------------------------------------->
 

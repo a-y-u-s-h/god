@@ -3,14 +3,11 @@ const CopyWebpackPlugin = require("copy-webpack-plugin")
 const load = require("./src/support/utilities/development/loaders.js")
 const application = load.yaml("./src/settings/application.yaml")
 
-module.exports = environment => {
-  const output = "public"
-
-  return {
-    mode: environment.mode,
-    stats: "none",
-    entry: {
-      /*
+module.exports = environment => ({
+  mode: environment.mode,
+  stats: "none",
+  entry: {
+    /*
       ======================================
         These files should be generated
         along with the react specific index.html.
@@ -19,23 +16,23 @@ module.exports = environment => {
         Other scripts are under 'support' as well.
       ======================================
     */
-      popup: "./src/support/application/routes/popup.js",
-      content: "./src/support/application/routes/content.js",
-      background: "./src/support/application/routes/background.js"
-    },
-    output: {
-      /*
+    popup: "./src/support/application/routes/popup.js",
+    content: "./src/support/application/routes/content.js",
+    background: "./src/support/application/routes/background.js"
+  },
+  output: {
+    /*
       ======================================
         All files are output as JS files.
         React components also convert to JS files.
         And when you import these files, you
       ======================================
     */
-      path: path.resolve(__dirname, output),
-      filename: "[name].js"
-    },
-    plugins: [
-      /*
+    path: path.resolve(__dirname, "public"),
+    filename: "[name].js"
+  },
+  plugins: [
+    /*
     ======================================
       CopyWebpackPlugin copies contents
       of various folders from and to certain
@@ -43,40 +40,55 @@ module.exports = environment => {
       data (assets), metadata (manifests, index.html).
     ======================================
   */
-      new CopyWebpackPlugin({
-        patterns: [
-          {
-            /*
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          /*
             ======================================
               Copying all data, metadata into output.
             ======================================
           */
-            from: `${path.resolve(__dirname, "src", "support", "application", "data", "types", `${application.type || "generic"}`)}`,
-            to: `${path.resolve(__dirname, output)}`
-          },
-          {
-            /*
+          from: `${path.resolve(
+            __dirname,
+            "src",
+            "support",
+            "application",
+            "data",
+            "types",
+            `${application.type || "generic"}`
+          )}`,
+          to: `${path.resolve(__dirname, "public")}`
+        },
+        {
+          /*
             ======================================
               Copying all assets into output.
             ======================================
           */
-            from: `${path.resolve(__dirname, "src", "assets")}`,
-            to: `${path.resolve(__dirname, output, "assets")}`
-          },
-          {
-            /*
+          from: `${path.resolve(__dirname, "src", "assets")}`,
+          to: `${path.resolve(__dirname, "public", "assets")}`
+        },
+        {
+          /*
             ======================================
               Copying all libraries into output.
             ======================================
           */
-            from: `${path.resolve(__dirname, "src", "support", "application", "data", "libraries")}`,
-            to: `${path.resolve(__dirname, output)}`
-          }
-        ]
-      })
-    ],
-    node: {
-      /*
+          from: `${path.resolve(
+            __dirname,
+            "src",
+            "support",
+            "application",
+            "data",
+            "libraries"
+          )}`,
+          to: `${path.resolve(__dirname, "public")}`
+        }
+      ]
+    })
+  ],
+  node: {
+    /*
       ======================================
         These are necessary so that webpack
         doesn't modify __dirname and __filename
@@ -84,11 +96,11 @@ module.exports = environment => {
         to the platform that they're running on.
       ======================================
     */
-      __dirname: false,
-      __filename: false
-    },
-    resolve: {
-      /*
+    __dirname: false,
+    __filename: false
+  },
+  resolve: {
+    /*
       ======================================
         Here you tell Webpack to look for
         certain extensions. And you also
@@ -96,35 +108,34 @@ module.exports = environment => {
         as paths (aliases).
       ======================================
     */
-      extensions: [".ts", ".tsx", ".js", ".jsx"],
-      alias: {
-        "@": path.resolve(__dirname, "src")
-      }
-    },
-    module: {
-      /*
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
+    alias: {
+      "@": path.resolve(__dirname, "src")
+    }
+  },
+  module: {
+    /*
       ======================================
         Here, we're specifying different
         kinds of loaders to load certain
         kinds of files.
       ======================================
     */
-      rules: [
-        { test: /\.tsx?$/, loader: "ts-loader" },
-        { test: /\.css$/, use: ["style-loader", "css-loader"] },
-        {
-          test: /\.(js|jsx)$/,
-          exclude: /node_modules/,
-          use: {
-            loader: "babel-loader"
-          }
-        },
-        {
-          test: /\.ya?ml$/,
-          type: "json",
-          use: "yaml-loader"
+    rules: [
+      { test: /\.tsx?$/, loader: "ts-loader" },
+      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
         }
-      ]
-    }
+      },
+      {
+        test: /\.ya?ml$/,
+        type: "json",
+        use: "yaml-loader"
+      }
+    ]
   }
-}
+})

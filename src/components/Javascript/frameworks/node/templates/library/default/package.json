@@ -12,7 +12,7 @@
     "test": "jest --config ./jest.config.js --passWithNoTests",
     "develop": "yarn build && yarn execute",
     "build": "webpack --env.mode production",
-    "update": "npx npm-check-updates -u && yarn install"
+    "update": "npx npm-check-updates -u --timeout 120000 && yarn install",
   },
   "bin": {
     "placeholder": "./build/placeholder"

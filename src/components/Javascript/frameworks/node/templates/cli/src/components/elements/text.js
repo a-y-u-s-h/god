@@ -35,48 +35,8 @@ export default {
   basic: chalk,
   link: link,
   format: format,
-  gradient: {
-    /*
-      ======================================
-        If you want to gradient-ify your
-        strings, use one of these functions.
-        You can pipe them and get some
-        interesting behaviors as well. May
-        not work well with animations though.
-      ======================================
-    */
-    custom: gradients,
-    teen: gradients.teen,
-    mind: gradients.mind,
-    vice: gradients.vice,
-    fruit: gradients.fruit,
-    atlas: gradients.atlas,
-    retro: gradients.retro,
-    summer: gradients.summer,
-    pastel: gradients.pastel,
-    rainbow: gradients.rainbow,
-    cristal: gradients.cristal,
-    morning: gradients.morning,
-    passion: gradients.passion,
-    instagram: gradients.instagram
-  },
-  animation: {
-    /*
-      ======================================
-        Use some of these functions to create
-        colorful animations on the terminal
-        that support it. It doesn't work well
-        if you pipe it with say gradient functions,
-        so keep that in mind while using it.
-      ======================================
-    */
-    neon: chalkAnimation.neon,
-    pulse: chalkAnimation.pulse,
-    radar: chalkAnimation.radar,
-    glitch: chalkAnimation.glitch,
-    karaoke: chalkAnimation.karaoke,
-    rainbow: chalkAnimation.rainbow
-  },
+  gradient: gradients,
+  animation: chalkAnimation,
   heading(content) {
     /*
       ======================================

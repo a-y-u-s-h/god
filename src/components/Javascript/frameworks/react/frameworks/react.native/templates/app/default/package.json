@@ -13,7 +13,7 @@
     "lint": "eslint 'src/**/*.{js,jsx}' --quiet --fix && prettier --write 'src/**/*.{js,jsx}'",
     "build:android": "expo build:android -t apk",
     "prepare": "install-peers",
-    "update": "npx npm-check-updates -u && yarn install"
+    "update": "npx npm-check-updates -u --timeout 120000 && yarn install"
   },
   "dependencies": {
     "@eva-design/eva": "^1.4.0",

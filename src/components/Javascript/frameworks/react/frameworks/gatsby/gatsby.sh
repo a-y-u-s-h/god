@@ -184,7 +184,7 @@ function gatsby.app () {
       echo "$site" > ./src/assets/settings.yaml
 
       yarn init -y
-      npx npm-check-updates -u && yarn install
+      yarn update
       git init
       git add . && git commit -m "Initial Commit."
       cd $initial

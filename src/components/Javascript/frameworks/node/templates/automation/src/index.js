@@ -44,5 +44,9 @@ import commands from "@/components/organisms/traditional/routes"
     the interactive CLI with relevant data.
   ======================================
 */
-const settings = { options, commands, data: { application, configuration } }
-process.argv.length > 2 ? traditional(settings) : interactive(settings)
+;(async () => {
+  const settings = { options, commands, data: { application, configuration } }
+  process.argv.length > 2
+    ? await traditional(settings)
+    : await interactive(settings)
+})()
