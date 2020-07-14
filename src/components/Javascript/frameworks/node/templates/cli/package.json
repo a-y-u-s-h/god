@@ -13,7 +13,7 @@
     "develop": "yarn build && yarn execute",
     "build": "webpack --env.mode production",
     "lint": "prettier --write 'src/**/*.{js,jsx}'",
-    "update": "npx npm-check-updates -u --timeout 120000 && yarn install",
+    "update": "npx npm-check-updates -u --timeout 120000 && yarn install"
   },
   "bin": {
     "placeholder": "./build/placeholder"
