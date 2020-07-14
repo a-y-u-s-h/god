@@ -42,7 +42,7 @@ function node.app () {
       echo "$webpack" > webpack.config.js
 
       yarn init -y
-      npx npm-check-updates -u && yarn install
+      yarn update
     fi
     cd $initial
   done
@@ -78,7 +78,7 @@ function node.library () {
       echo "$webpack" > webpack.config.js
 
       yarn init -y
-      npx npm-check-updates -u && yarn install
+      yarn update
     fi
     cd $initial
   done
@@ -120,7 +120,7 @@ function node.cli () {
       echo "$webpack" > webpack.config.js
       echo "$application" > src/settings/application.yaml
       yarn init -y
-      npx npm-check-updates -u && yarn install
+      yarn update
     fi
     cd $initial
   done
@@ -162,7 +162,7 @@ function node.automation () {
       echo "$webpack" > webpack.config.js
       echo "$application" > src/settings/application.yaml
       yarn init -y
-      npx npm-check-updates -u && yarn install
+      yarn update
     fi
     cd $initial
   done
@@ -199,7 +199,7 @@ function node.api () {
       echo "$webpack" > webpack.config.js
 
       yarn init -y
-      npx npm-check-updates -u && yarn install
+      yarn update
     fi
     cd $initial
   done
