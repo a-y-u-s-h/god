@@ -12,7 +12,7 @@
     "test": "jest --config ./jest.config.js --passWithNoTests",
     "develop": "yarn start",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
-    "update": "npx npm-check-updates -u --timeout 120000 && yarn install",
+    "update": "npx npm-check-updates -u --timeout 120000 && yarn",
     "prepublish": "yarn test",
     "prebuild": "yarn clean",
     "build": "webpack --env.mode production && cross-env INLINE_RUNTIME_CHUNK=false SKIP_PREFLIGHT_CHECK=true react-app-rewired build && rimraf public && mv build public"

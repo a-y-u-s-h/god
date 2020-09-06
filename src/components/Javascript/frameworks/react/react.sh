@@ -32,22 +32,11 @@ function react.component () {
   local initial=$(pwd)
   for i in "${@:2}"; do
     local file="$(tr '[:lower:]' '[:upper:]' <<< ${i:0:1})${i:1}"
-    local folder="$(tr '[:upper:]' '[:lower:]' <<< $i)"
-
-    [ -d ${folder} ] || mkdir -p ${folder}
-    if [[ -d ${folder} ]]; then
-      cd ${folder}
-      local index="$(cat ${root}/templates/app/component/default/index.js)"
-      local style="$(cat ${root}/templates/app/component/default/style.js)"
-      local store="$(cat ${root}/templates/app/component/default/store.js)"
-      index=$(sed "s/Placeholder/${file}/g" <<< "$index")
-      style=$(sed "s/Placeholder/${file}/g" <<< "$style")
-      store=$(sed "s/Placeholder/${file}/g" <<< "$store")
-      echo "$store" > store.js
-      echo "$style" > style.js
-      echo "$index" > index.js
-    fi
-    cd $initial
+    local component="$(cat ${root}/templates/app/component/defaultjs.js)"
+    component=$(sed "s/Placeholder/${file}/g" <<< "$component")
+    echo "$store" > store.js
+    echo "$style" > style.js
+    echo "$component" > $file.js
   done
   return
 }
@@ -154,18 +143,27 @@ function react.app () {
   #    like I always do whenever I start a
   #    React project.
   #  ======================================
-
   local root=$1
   local initial=$(pwd)
-  for i in "${@:2}"; do
-    npx create-react-app $i
-    if [[ -d $i/src/ ]]; then
-      cd $i
-      rm -rvf src/
-      rm -rvf README.md
-      touch README.md
-      echo "NODE_PATH=src/" > .env
-      cp -R "${root}/templates/app/src/" ./src/
+  local type=$2
+
+  for i in "${@:3}"; do
+    local file="$(tr '[:lower:]' '[:upper:]' <<< ${i:0:1})${i:1}"
+    local folder="$(tr '[:upper:]' '[:lower:]' <<< $i)"
+
+    [ -d ${folder} ] || mkdir -p ${folder}
+    if [[ -d ${folder} ]]; then
+      cd ${folder}
+      cp -r ${root}/templates/app/${type}/. .
+
+      local package=`cat ${root}/templates/app/${type}/package.json`
+      package=$(sed "s/Placeholder/${i}/g" <<< "$package")
+      package=$(sed "s/placeholder/${i}/g" <<< "$package")
+      echo "$package" > package.json
+
+      yarn update
+      git init
+      git add . && git commit -m "Initial Commit."
       cd $initial
     fi
     cd $initial

@@ -21,17 +21,17 @@ module.exports = environment => ({
   stats: "none",
   output: {
     path: path.join(__dirname, "build"),
-    filename: "placeholder"
+    filename: "placeholder.min.js"
+  },
+  node: {
+    __dirname: false,
+    __filename: false
   },
   externals: [require("webpack-node-externals")()],
   plugins: [
     new NodemonPlugin(),
     new webpack.BannerPlugin({ banner: "#!/usr/bin/env node", raw: true })
   ],
-  node: {
-    __dirname: false,
-    __filename: false
-  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src")

@@ -7,7 +7,7 @@ function archlinux.update () {
   yay -Sc --noconfirm
   sudo pacman -Syyu --noconfirm
   yay -Syyu --noconfirm --answerdiff=None
-  sudo pacman -Sc --noconfirm    
+  sudo pacman -Sc --noconfirm
   yay -Sc --noconfirm
   return
 }

@@ -81,7 +81,7 @@ function god.create () {
 
     if [[ $2 == "react.app" || $2 == "react.a" ]]; then
       local script=${root}/src/components/Javascript/frameworks/react
-      react.app ${script} ${@:3}
+      react.app ${script} default ${@:3}
     fi
 
     if [[ $2 == "react.chrome.extension" || $2 == "react.extension" || $2 == "chrome.extension" || $2 == "web.extension" || $2 == "web.ext" || $2 == "chrome.ext" || $2 == "webex" ]]; then
@@ -119,6 +119,21 @@ function god.create () {
       local script=${root}/src/components/Javascript/frameworks/react
       react.test ${script} ${@:3}
     fi
+
+    # <------------------------------>
+
+    if [[ $2 == "xstate.component" || $2 == "x.c" || $2 == "x.component" || $2 == "x.resource" || $2 == "x.state" || $2 == "xstate" || $2 == "x.r" || $2 == "x.s"  ]]; then
+      local script=${root}/src/components/Javascript/frameworks/xstate
+      xstate.component ${script} default ${@:3}
+    fi
+
+    # <------------------------------>
+
+    if [[ $2 == "next.app" || $2 == "next.a" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/react/frameworks/next
+      next.app ${script} default ${@:3}
+    fi
+
     # <------------------------------>
 
     if [[ $2 == "gatsby.app" || $2 == "gatsby.a" ]]; then

@@ -48,7 +48,10 @@ settings:
   # <-------------------------------------->
 
   page:
-    waitUntil: networkidle0
+    waitUntil:
+      - networkidle0
+      - networkidle2
+
     timeout: 0
 
     #  ======================================

@@ -1,0 +1,144 @@
+{
+  "name": "placeholder",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "develop": "SKIP_PREFLIGHT_CHECK=true react-app-rewired start",
+    "build": "SKIP_PREFLIGHT_CHECK=true react-app-rewired build",
+    "test": "jest --config ./jest.config.js --passWithNoTests",
+    "eject": "SKIP_PREFLIGHT_CHECK=true react-app-rewired eject",
+    "clean": "rimraf node_modules yarn.lock",
+    "lint": "prettier --write 'src/**/*.{js,jsx}'",
+    "update": "npx npm-check-updates -u --timeout 300000 && yarn install"
+  },
+  "dependencies": {
+    "@xstate/react": "^0.8.1",
+    "jest": "^26.4.2",
+    "prettier": "^2.1.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "xstate": "^4.13.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "@/(.*)": "<rootDir>/src/$1"
+    }
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": false,
+    "trailingComma": "none",
+    "tabWidth": 2,
+    "printWidth": 120,
+    "overrides": [
+      {
+        "files": "*.sass",
+        "options": {
+          "printWidth": 999
+        }
+      },
+      {
+        "files": "*.mdx",
+        "options": {
+          "tabWidth": 2,
+          "printWidth": 80,
+          "proseWrap": "always"
+        }
+      },
+      {
+        "files": "*.md",
+        "options": {
+          "tabWidth": 2,
+          "printWidth": 80,
+          "proseWrap": "always",
+          "htmlWhitespaceSensitivity": "strict"
+        }
+      },
+      {
+        "files": "*.html",
+        "options": {
+          "htmlWhitespaceSensitivity": "strict"
+        }
+      }
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "prettier"
+    ],
+    "plugins": [
+      "react",
+      "react-hooks"
+    ],
+    "rules": {
+      "no-var": "error",
+      "no-unused-vars": 1,
+      "arrow-spacing": [
+        "error",
+        {
+          "before": true,
+          "after": true
+        }
+      ],
+      "indent": [
+        "error",
+        2
+      ],
+      "semi": [
+        "error",
+        "never"
+      ],
+      "arrow-parens": [
+        "error",
+        "as-needed"
+      ],
+      "standard/object-curly-even-spacing": [
+        "error",
+        "either"
+      ],
+      "standard/array-bracket-even-spacing": [
+        "error",
+        "either"
+      ],
+      "standard/computed-property-even-spacing": [
+        "error",
+        "even"
+      ],
+      "standard/no-callback-literal": [
+        "error",
+        [
+          "cb",
+          "callback"
+        ]
+      ],
+      "react/jsx-uses-react": "error",
+      "react/jsx-uses-vars": "error",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn"
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaVersion": 8
+    },
+    "env": {
+      "browser": true
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "react-app-rewired": "^2.1.6"
+  }
+}

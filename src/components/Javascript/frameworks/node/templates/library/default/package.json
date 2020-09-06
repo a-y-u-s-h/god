@@ -1,9 +1,15 @@
 {
-  "name": "placeholder",
+  "name": "@taggosaurus/placeholder",
   "version": "1.0.0",
-  "main": "src/index.js",
-  "license": "MIT",
+  "main": "build/placeholder.min.js",
   "author": "Ayush Sharma <code.ayush@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "url": "git://github.com/taggosaurus/placeholder"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "clean": "rimraf build",
     "prepublish": "yarn test",
@@ -11,30 +17,69 @@
     "execute": "./build/placeholder",
     "test": "jest --config ./jest.config.js --passWithNoTests",
     "develop": "yarn build && yarn execute",
+    "prebuild": "npm run clean",
     "build": "webpack --env.mode production",
+    "lint": "prettier --write 'src/**/*.{js,jsx}'",
     "update": "npx npm-check-updates -u --timeout 120000 && yarn install"
   },
   "bin": {
-    "placeholder": "./build/placeholder"
+    "placeholder": "./build/placeholder.min.js"
   },
   "dependencies": {},
   "devDependencies": {
-    "@babel/code-frame": "^7.8.3",
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.5",
-    "@babel/preset-react": "^7.9.4",
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.1.0",
-    "cypress": "^4.4.1",
-    "jest": "^25.4.0",
-    "nodemon": "^2.0.3",
-    "nodemon-webpack-plugin": "^4.3.1",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3",
-    "webpack-node-externals": "^1.7.2",
+    "jest": "^26.4.2",
+    "nodemon": "^2.0.4",
+    "nodemon-webpack-plugin": "^4.3.2",
+    "prettier": "^2.1.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-node-externals": "^2.5.2",
     "webpack-shell-plugin": "^0.5.0",
-    "ws": "^7.2.3",
+    "ws": "^7.3.1",
     "yaml-loader": "^0.6.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": false,
+    "trailingComma": "none",
+    "tabWidth": 2,
+    "printWidth": 120,
+    "overrides": [
+      {
+        "files": "*.sass",
+        "options": {
+          "printWidth": 999
+        }
+      },
+      {
+        "files": "*.mdx",
+        "options": {
+          "tabWidth": 2,
+          "printWidth": 80,
+          "proseWrap": "always"
+        }
+      },
+      {
+        "files": "*.md",
+        "options": {
+          "tabWidth": 2,
+          "printWidth": 80,
+          "proseWrap": "always",
+          "htmlWhitespaceSensitivity": "strict"
+        }
+      },
+      {
+        "files": "*.html",
+        "options": {
+          "htmlWhitespaceSensitivity": "strict"
+        }
+      }
+    ]
   },
   "babel": {
     "presets": [
