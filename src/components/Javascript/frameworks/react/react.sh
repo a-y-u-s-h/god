@@ -32,11 +32,10 @@ function react.component () {
   local initial=$(pwd)
   for i in "${@:2}"; do
     local file="$(tr '[:lower:]' '[:upper:]' <<< ${i:0:1})${i:1}"
-    local component="$(cat ${root}/templates/app/component/defaultjs.js)"
+    local folder="$(tr '[:upper:]' '[:lower:]' <<< $i)"
+    local component="$(cat ${root}/templates/app/component/default.js)"
     component=$(sed "s/Placeholder/${file}/g" <<< "$component")
-    echo "$store" > store.js
-    echo "$style" > style.js
-    echo "$component" > $file.js
+    echo "$component" > $folder.js
   done
   return
 }
