@@ -1034,7 +1034,7 @@ export default extendTheme({
       defaultProps: {
         size: "md",
         variant: "line",
-        colorScheme: "blue"
+        colorScheme: "primary"
       }
     },
     Tag: {

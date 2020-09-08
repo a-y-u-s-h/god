@@ -1,6 +1,7 @@
 # <------------------------------>
 
 function archlinux.update () {
+  sudo paccache -rk1
   echo "Fetching latest mirrorlist..."
   sudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
   sudo pacman -Sc --noconfirm
@@ -9,6 +10,7 @@ function archlinux.update () {
   yay -Syyu --noconfirm --answerdiff=None
   sudo pacman -Sc --noconfirm
   yay -Sc --noconfirm
+  sudo paccache -rk1
   return
 }
 
