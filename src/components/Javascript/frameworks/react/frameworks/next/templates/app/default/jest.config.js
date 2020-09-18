@@ -1,8 +1,20 @@
 module.exports = {
   moduleNameMapper: {
-    ".+\\.(css|styl|less|sass|scss)$": `identity-obj-proxy`
+    ".+\\.(css|styl|less|sass|scss)$": `identity-obj-proxy`,
+    "@/(.*)$": "<rootDir>/src/$1"
   },
-  testPathIgnorePatterns: [`node_modules`, `\\.next`, `<rootDir>.*/public`],
+  setupFilesAfterEnv: ["<rootDir>/tests/setup.js"],
+  collectCoverageFrom: ["**/src/**/*.js"],
+  coverageReporters: ["lcov"],
+  testPathIgnorePatterns: [
+    `node_modules`,
+    `<rootDir>/.next/`,
+    `<rootDir>.*/public`,
+    `<rootDir>.*/tests/e2e`
+  ],
+  transform: {
+    "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest"
+  },
   globals: {
     __PATH_PREFIX__: ``
   },

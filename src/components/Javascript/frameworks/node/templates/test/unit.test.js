@@ -1,12 +1,8 @@
 /*
   ======================================
-    Jest aliases may be different from
-    webpack aliases, so make sure whenever
-    you update aliases you do that in both places.
     Import the file over here.
   ======================================
 */
-import placeholder from "../placeholder"
 
 /*
   ======================================

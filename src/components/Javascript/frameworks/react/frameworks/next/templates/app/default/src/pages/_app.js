@@ -2,6 +2,7 @@ import React from "react"
 import "@/assets/styles/index.css"
 import theme from "@/settings/theme"
 import { ChakraProvider as Theme } from "@chakra-ui/core"
+import Systems from "@/systems"
 
 export const Application = props => {
   /*
@@ -16,7 +17,9 @@ export const Application = props => {
   const { Component, pageProps } = props
   return (
     <Theme theme={theme} resetCSS>
-      <Component {...pageProps} />
+      <Systems>
+        <Component {...pageProps} />
+      </Systems>
     </Theme>
   )
 }

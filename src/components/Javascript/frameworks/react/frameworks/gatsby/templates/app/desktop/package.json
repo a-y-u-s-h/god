@@ -131,7 +131,13 @@
     "singleQuote": false,
     "trailingComma": "none",
     "tabWidth": 2,
-    "printWidth": 120,
+    "printWidth": 80,
+    "arrowParens": "avoid",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false,
+    "requirePragma": false,
+    "proseWrap": "preserve",
+    "htmlWhitespaceSensitivity": "css",
     "overrides": [
       {
         "files": "*.sass",

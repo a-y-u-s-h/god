@@ -122,9 +122,14 @@ function god.create () {
 
     # <------------------------------>
 
-    if [[ $2 == "xstate.component" || $2 == "x.c" || $2 == "x.component" || $2 == "x.resource" || $2 == "x.state" || $2 == "xstate" || $2 == "x.r" || $2 == "x.s"  ]]; then
+    if [[ $2 == "xstate.component" || $2 == "x.c" || $2 == "x.component" || $2 == "x.resource" || $2 == "x.state" || $2 == "xstate" || $2 == "x.s"  ]]; then
       local script=${root}/src/components/Javascript/frameworks/xstate
       xstate.component ${script} default ${@:3}
+    fi
+
+    if [[ $2 == "xstate.react" || $2 == "x.rc" || $2 == "x.r"  ]]; then
+      local script=${root}/src/components/Javascript/frameworks/xstate
+      xstate.component ${script} react ${@:3}
     fi
 
     # <------------------------------>
@@ -242,12 +247,12 @@ function god.create () {
       node.api.resource ${script} private ${@:3}
     fi
 
-    if [[ $2 == "node.test" || $2 == "node.test.unit" || $2 == "node.unit.test" || $2 == "node.test.u" || $2 == "node.jest.test" || $2 == "jest.test" ]]; then
+    if [[ $2 == "node.test" || $2 == "node.test.unit" || $2 == "node.unit.test" || $2 == "node.test.u" || $2 == "node.jest.test" || $2 == "jest.test" || $2 == "unit.test" ]]; then
       local script=${root}/src/components/Javascript/frameworks/node
       node.jest.test ${script} ${@:3}
     fi
 
-    if [[ $2 == "node.test.e2e" || $2 == "node.test.e" || $2 == "node.e2e.test" || $2 == "node.test.end2end" || $2 == "node.cypress.test" || $2 == "cypress.test" ]]; then
+    if [[ $2 == "node.test.e2e" || $2 == "node.test.e" || $2 == "node.e2e.test" || $2 == "node.test.end2end" || $2 == "node.cypress.test" || $2 == "cypress.test" || $2 == "e2e.test" ]]; then
       local script=${root}/src/components/Javascript/frameworks/node
       node.cypress.test ${script} ${@:3}
     fi

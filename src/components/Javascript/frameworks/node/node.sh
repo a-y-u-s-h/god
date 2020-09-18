@@ -247,27 +247,18 @@ function node.api.resource () {
 function node.jest.test () {
   local root=$1
   local initial=$(pwd)
-  local files=($(ls *js))
-  [ -d __tests__ ] || mkdir -p __tests__
 
-  for i in "${(z)files}"; do
-    local filename=$(basename -- "$i")
-    local extension="${filename##*.}"
-    filename="${filename%.*}"
-
-    local file="$(tr '[:upper:]' '[:lower:]' <<< $filename)"
+  for i in "${@:2}"; do
+    local file="$(tr '[:upper:]' '[:lower:]' <<< $i)"
     local test="$(cat ${root}/templates/test/unit.test.js)"
     test=$(sed "s/placeholder/${file}/g" <<< "$test")
     test=$(sed "s/Placeholder/${file}/g" <<< "$test")
-
-    cd __tests__
-    if [[ ! -f "$file.test.js" ]]; then
-      echo "$test" > "$file.test.js"
-    fi
+    echo "$test" > "$file.test.js"
     cd $initial
   done
   return
 }
+
 
 function node.cypress.test () {
   local root=$1
@@ -278,7 +269,6 @@ function node.cypress.test () {
     local test="$(cat ${root}/templates/test/e2e.test.js)"
     test=$(sed "s/placeholder/${file}/g" <<< "$test")
     test=$(sed "s/Placeholder/${file}/g" <<< "$test")
-    echo "$i"
     echo "$test" > "$file.spec.js"
     cd $initial
   done

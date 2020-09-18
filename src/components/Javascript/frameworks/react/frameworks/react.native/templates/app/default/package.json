@@ -110,13 +110,48 @@
     "regenerator-runtime": "^0.13.5"
   },
   "prettier": {
-    "printWidth": 80,
+    "semi": false,
     "singleQuote": false,
     "trailingComma": "none",
+    "tabWidth": 2,
+    "printWidth": 80,
+    "arrowParens": "avoid",
     "bracketSpacing": true,
-    "semi": false,
-    "useTabs": false,
-    "arrowParens": "avoid"
+    "jsxBracketSameLine": false,
+    "requirePragma": false,
+    "proseWrap": "preserve",
+    "htmlWhitespaceSensitivity": "css",
+    "overrides": [
+      {
+        "files": "*.sass",
+        "options": {
+          "printWidth": 999
+        }
+      },
+      {
+        "files": "*.mdx",
+        "options": {
+          "tabWidth": 2,
+          "printWidth": 80,
+          "proseWrap": "always"
+        }
+      },
+      {
+        "files": "*.md",
+        "options": {
+          "tabWidth": 2,
+          "printWidth": 80,
+          "proseWrap": "always",
+          "htmlWhitespaceSensitivity": "strict"
+        }
+      },
+      {
+        "files": "*.html",
+        "options": {
+          "htmlWhitespaceSensitivity": "strict"
+        }
+      }
+    ]
   },
   "eslintConfig": {
     "root": true,

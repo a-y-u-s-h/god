@@ -1,6 +1,6 @@
 - Introduction
 
-  - [About](/sections/introduction/about.md)
+  - [About](/sections/home.md)
   - [Guide](/sections/introduction/guide.md)
   - [Resources](/sections/introduction/resources.md)
 
@@ -14,4 +14,4 @@
 
 - Contribution
 
-  - [Code of Conduct](/sections/introduction/conduct.md)
+  - [Code of Conduct](/sections/contribution/conduct.md)

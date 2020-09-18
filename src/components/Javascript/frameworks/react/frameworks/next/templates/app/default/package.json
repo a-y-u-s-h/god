@@ -6,23 +6,31 @@
   "license": "MIT",
   "scripts": {
     "develop": "next",
+    "docs": "serve docs",
     "build": "next build",
     "start": "next start",
-    "test": "jest --config ./jest.config.js --passWithNoTests --watchAll",
-    "lint": "prettier --write 'src/**/*.{js,jsx}'",
-    "update": "npx npm-check-updates -u --timeout 300000 && yarn install",
-    "clean": "rimraf .next yarn.lock",
     "storybook": "start-storybook -p 6006",
-    "storybook:build": "build-storybook"
+    "storybook:build": "build-storybook",
+    "lint": "prettier --write 'src/**/*.{js,jsx}'",
+    "clean": "rimraf .next yarn.lock *lock.json .nyc_output coverage *.log",
+    "prepare": "yarn lint && yarn clean",
+    "test:coverage": "jest --config ./jest.config.js --passWithNoTests --coverage && serve coverage/lcov-report",
+    "test:unit": "yarn prepare && jest --config ./jest.config.js --passWithNoTests --watchAll",
+    "test:e2e": "yarn prepare && start-server-and-test develop http://localhost:3000 'cypress open'",
+    "update": "npx npm-check-updates -u --timeout 300000 && yarn install"
   },
+  "precommit": [
+    "prepare"
+  ],
   "dependencies": {
     "@chakra-ui/core": "next",
     "@chakra-ui/icons": "^1.0.0-rc.3",
     "@xstate/react": "^0.8.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "framer-motion": "^2.6.6",
+    "framer-motion": "^2.6.13",
     "jest": "^26.4.2",
+    "joi": "^17.2.1",
     "js-yaml-loader": "^1.2.2",
     "next": "^9.5.3",
     "next-connect": "^0.9.0",
@@ -32,13 +40,47 @@
     "react-hotkeys": "^2.0.0",
     "xstate": "^4.13.0"
   },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@cypress/code-coverage": "^3.8.1",
+    "@storybook/addon-actions": "^6.0.21",
+    "@storybook/addon-essentials": "^6.0.21",
+    "@storybook/addon-links": "^6.0.21",
+    "@storybook/react": "^6.0.21",
+    "@testing-library/cypress": "^7.0.0",
+    "@testing-library/dom": "^7.24.2",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.4",
+    "babel-jest": "^26.3.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-istanbul": "^6.0.0",
+    "cypress": "^5.1.0",
+    "cypress-axe": "^0.8.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest-dom": "^4.0.0",
+    "msw": "^0.21.2",
+    "pm2": "^4.4.1",
+    "pre-commit": "^1.2.2",
+    "react-is": "^16.13.1",
+    "serve": "^11.3.2",
+    "start-server-and-test": "^1.11.3"
+  },
+  "babel": {
+    "presets": [
+      "next/babel"
+    ]
+  },
   "prettier": {
     "semi": false,
     "singleQuote": false,
     "trailingComma": "none",
     "tabWidth": 2,
-    "printWidth": 120,
+    "printWidth": 80,
     "arrowParens": "avoid",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false,
+    "requirePragma": false,
+    "proseWrap": "preserve",
     "overrides": [
       {
         "files": "*.sass",
@@ -70,14 +112,5 @@
         }
       }
     ]
-  },
-  "devDependencies": {
-    "@babel/core": "^7.11.6",
-    "@storybook/addon-actions": "^6.0.21",
-    "@storybook/addon-essentials": "^6.0.21",
-    "@storybook/addon-links": "^6.0.21",
-    "@storybook/react": "^6.0.21",
-    "babel-loader": "^8.1.0",
-    "react-is": "^16.13.1"
   }
 }
