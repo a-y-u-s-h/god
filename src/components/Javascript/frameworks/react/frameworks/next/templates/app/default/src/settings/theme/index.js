@@ -1,5 +1,5 @@
-import { extendTheme } from "@chakra-ui/core"
-import components from "./components"
-import foundations from "./foundations"
+import { tailwind } from "@theme-ui/presets"
 
-export default extendTheme({ ...components, ...foundations })
+export default {
+  ...tailwind
+}

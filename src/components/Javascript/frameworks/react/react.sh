@@ -26,7 +26,7 @@ function react.component () {
   #    component name inside it.
   #
   #    Also props.json to keep things neat.
-  #  ======================================
+  #  ==============================ga========
 
   local root=$1
   local initial=$(pwd)

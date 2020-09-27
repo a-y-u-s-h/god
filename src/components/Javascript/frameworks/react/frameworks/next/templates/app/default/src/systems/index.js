@@ -6,8 +6,8 @@
     you can use them anywhere inside the tree.
   ======================================
 */
-export const Systems = props => {
-  return <>{props?.children}</>
+export const Systems = ({ children }) => {
+  return <>{children}</>
 }
 
 export default Systems

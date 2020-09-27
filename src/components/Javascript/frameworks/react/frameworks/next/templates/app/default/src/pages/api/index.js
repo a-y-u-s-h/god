@@ -17,9 +17,9 @@ const app = api()
   .use(bodyparser.urlencoded({ extended: true }))
 
 const actions = {
-  create: async (request, response) => {},
-  read: async (request, response) => {},
-  update: async (request, response) => {},
+  post: async (request, response) => {},
+  get: async (request, response) => {},
+  put: async (request, response) => {},
   delete: async (request, response) => {}
 }
 
@@ -31,7 +31,7 @@ const actions = {
   ======================================
 */
 export default app
-  .post(actions.create)
-  .get(actions.read)
-  .put(actions.update)
+  .post(actions.post)
+  .get(actions.get)
+  .put(actions.put)
   .delete(actions.delete)
