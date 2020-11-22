@@ -95,6 +95,11 @@ function god.create () {
       react.component ${script} ${@:3}
     fi
 
+    if [[ $2 == "react.story" || $2 == "react.s" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/react
+      react.story ${script} ${@:3}
+    fi
+
     if [[ $2 == "react.page" || $2 == "react.p" ]]; then
       local script=${root}/src/components/Javascript/frameworks/react
       react.page ${script} ${@:3}

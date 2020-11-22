@@ -42,6 +42,31 @@ function react.component () {
 
 # <------------------------------>
 
+function react.story () {
+
+  #  ======================================
+  #    Create a folder with a JS and CSS
+  #    file inside it corresponding to
+  #    component name inside it.
+  #
+  #    Also props.json to keep things neat.
+  #  ==============================ga========
+
+  local root=$1
+  local initial=$(pwd)
+  for i in "${@:2}"; do
+    local file="$(tr '[:lower:]' '[:upper:]' <<< ${i:0:1})${i:1}"
+    local folder="$(tr '[:upper:]' '[:lower:]' <<< $i)"
+    local component="$(cat ${root}/templates/app/component/story.mdx)"
+    component=$(sed "s/Placeholder/${file}/g" <<< "$component")
+    component=$(sed "s/placeholder/${folder}/g" <<< "$component")
+    echo "$component" > $folder.stories.mdx
+  done
+  return
+}
+
+# <------------------------------>
+
 function react.chrome.extension () {
 
   #  ======================================

@@ -13,7 +13,8 @@ module.exports = {
     `<rootDir>.*/tests/e2e`
   ],
   transform: {
-    "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest"
+    "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
+    "\\.(yml|yaml)$": "jest-yaml-transform"
   },
   globals: {
     __PATH_PREFIX__: ``

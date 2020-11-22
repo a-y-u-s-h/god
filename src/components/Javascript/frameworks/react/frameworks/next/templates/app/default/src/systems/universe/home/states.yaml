@@ -1,0 +1,34 @@
+id: home
+type: parallel
+context:
+states:
+  theme:
+    id: theme
+    initial: default
+    states:
+      default:
+        meta:
+          container:
+            sx:
+              backgroundColor: whitesmoke
+
+  layout:
+    id: layout
+    initial: default
+    states:
+      default:
+        meta:
+          container:
+            sx:
+              width: 100%
+              height: 100%
+              display: grid
+              gridGap: 3px
+              padding: 3px
+
+  content:
+    id: content
+    initial: default
+    states:
+      default:
+        meta:

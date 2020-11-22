@@ -1,12 +1,11 @@
-import p5 from "p5"
-import React from "react"
+import React, { Component } from "react"
+import ReactDOM from "react-dom"
 
 const sketch = component => s => {
-  const { dimension } = component
-  const settings = component.props
+  const dimensions = component.state?.dimensions
 
   s.setup = () => {
-    s.createCanvas(dimension.width, dimension.height).parent(component.parent)
+    const canvas = s.createCanvas(dimensions.width, dimensions.height)
     s.angleMode(s.DEGREES)
     s.colorMode(s.RGB)
     s.rectMode(s.CENTER)
@@ -15,67 +14,69 @@ const sketch = component => s => {
   }
 
   s.draw = () => {
-    s.background(settings.background || 0)
+    s.background(component.props?.background || 0)
   }
 
   s.windowResized = () => {
-    s.resizeCanvas(dimension.width, dimension.height)
-    s.setup()
+    s.resizeCanvas(dimensions.width, dimensions.height)
   }
 }
 
-/*
-  ======================================
-    You don't have to look at code below
-    this comment. It simply wraps around
-    the above function and creates a sketch
-    which occupies the dimension of its parent.
-  ======================================
-*/
-
-export default ({ children, ...props }) => {
-  const [drawing, setDrawing] = React.useState(null)
-  const [dimension, setDimension] = React.useState(null)
-  const container = React.useRef(null)
-
-  React.useEffect(() => {
-    setDimension(previous => ({
-      width: container ? container.current.offsetWidth : 0,
-      height: container ? container.current.offsetHeight : 0
-    }))
-  }, [])
-
-  React.useEffect(() => {
-    if (dimension) {
-      const component = { dimension, props, parent: container.current }
-      const isFunction = x => x && {}.toString.call(x) === "[object Function]"
-      while (container.current.firstChild)
-        container.current.removeChild(container.current.firstChild)
-      if (!drawing)
-        setDrawing(
-          isFunction(children)
-            ? new p5(children(component))
-            : new p5(sketch(component))
-        )
+class Sketch extends Component {
+  constructor(props) {
+    super(props)
+    this.props = props
+    this.sketch = this.props.sketch || sketch
+    this.state = {
+      dimensions: {
+        width: 0,
+        height: 0
+      }
     }
-  }, [children, props, dimension, drawing])
+    this.style = {
+      width: "100%",
+      height: "100%",
+      position: "relative",
+      top: 0,
+      left: 0,
+      margin: 0,
+      padding: 0,
+      overflow: "hidden",
+      background: "transparent"
+    }
+  }
 
-  return (
-    <>
-      <div
-        ref={container}
-        style={{
-          width: "100%",
-          height: "100%",
-          position: "relative",
-          top: 0,
-          left: 0,
-          margin: 0,
-          padding: 0,
-          overflow: "hidden",
-          background: "transparent"
-        }}
-      />
-    </>
-  )
+  render() {
+    return <div ref={e => this.init(e)} style={this.style} />
+  }
+
+  init(visualization) {
+    const p5 = require("p5")
+    if (!this.visualization) {
+      this.visualization = visualization
+      const children = this.props.children
+      const isFunction = x => x && {}.toString.call(x) === "[object Function]"
+      if (!this.drawing) {
+        this.setState(
+          state => ({
+            dimensions: {
+              width: ReactDOM.findDOMNode(this.visualization).offsetWidth,
+              height: ReactDOM.findDOMNode(this.visualization).offsetHeight
+            }
+          }),
+          () => {
+            const container = this.visualization
+
+            if (isFunction(children)) {
+              this.drawing = new p5(children(this), container)
+            } else {
+              this.drawing = new p5(this.sketch(this), container)
+            }
+          }
+        )
+      }
+    }
+  }
 }
+
+export default Sketch
