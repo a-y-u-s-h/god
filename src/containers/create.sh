@@ -127,14 +127,19 @@ function god.create () {
 
     # <------------------------------>
 
-    if [[ $2 == "xstate.component" || $2 == "x.c" || $2 == "x.component" || $2 == "x.resource" || $2 == "x.state" || $2 == "xstate" || $2 == "x.s"  ]]; then
+    if [[ $2 == "xstate.system" || $2 == "xstate.component" || $2 == "x.c" || $2 == "x.component" || $2 == "x.resource" || $2 == "x.state" || $2 == "xstate" || $2 == "x.s"  ]]; then
       local script=${root}/src/components/Javascript/frameworks/xstate
-      xstate.component ${script} default ${@:3}
+      xstate.system ${script} default ${@:3}
     fi
 
-    if [[ $2 == "xstate.react" || $2 == "x.rc" || $2 == "x.r"  ]]; then
+    if [[ $2 == "xstate.react" || $2 == "xstate.r" || $2 == "x.rs"  ]]; then
       local script=${root}/src/components/Javascript/frameworks/xstate
-      xstate.component ${script} react ${@:3}
+      xstate.system ${script} react ${@:3}
+    fi
+
+    if [[ $2 == "xstate.react.component" || $2 == "x.rc"  || $2 == "xstate.rc" || $2 == "x.r"  ]]; then
+      local script=${root}/src/components/Javascript/frameworks/xstate
+      xstate.react.component ${script} ${@:3}
     fi
 
     # <------------------------------>
@@ -142,6 +147,11 @@ function god.create () {
     if [[ $2 == "next.app" || $2 == "next.a" ]]; then
       local script=${root}/src/components/Javascript/frameworks/react/frameworks/next
       next.app ${script} default ${@:3}
+    fi
+
+    if [[ $2 == "next.tailwind" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/react/frameworks/next
+      next.app ${script} tailwind ${@:3}
     fi
 
     # <------------------------------>

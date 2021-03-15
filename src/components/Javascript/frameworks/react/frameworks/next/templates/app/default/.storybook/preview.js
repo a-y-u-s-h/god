@@ -1,9 +1,11 @@
+import React from "react"
 import { addDecorator } from "@storybook/react"
 import { ThemeProvider } from "theme-ui"
 import theme from "@/settings/theme/index.js"
 import { Box } from "theme-ui"
 import { addParameters } from "@storybook/client-api"
 import { DocsContainer } from "@storybook/addon-docs/blocks"
+import { inspect } from "@xstate/inspect"
 
 addDecorator(story => (
   <ThemeProvider theme={theme}>
@@ -22,7 +24,8 @@ export const parameters = {
         "Atoms",
         "Molecules",
         "Organisms",
-        "Universe"
+        "Universe",
+        "Studies"
       ]
     }
   },

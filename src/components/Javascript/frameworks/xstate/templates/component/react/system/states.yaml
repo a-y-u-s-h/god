@@ -1,0 +1,17 @@
+id: placeholder
+type: parallel
+context: {}
+states:
+  props:
+    id: props
+    type: parallel
+    states:
+      styles:
+        id: styles
+        meta: {}
+      animations:
+        id: animations
+        type: parallel
+  content:
+    id: content
+    meta: {}

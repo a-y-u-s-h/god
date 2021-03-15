@@ -1,0 +1,502 @@
+---
+filter:
+  - responsive
+  - hover
+  - group-hover
+backdropFilter:
+  - responsive
+  - hover
+  - group-hover
+accessibility:
+  - responsive
+  - focus-within
+  - focus
+alignContent:
+  - responsive
+alignItems:
+  - responsive
+alignSelf:
+  - responsive
+animation:
+  - responsive
+appearance:
+  - responsive
+backgroundAttachment:
+  - responsive
+backgroundClip:
+  - responsive
+backgroundColor:
+  - responsive
+  - dark
+  - group-hover
+  - focus-within
+  - hover
+  - focus
+backgroundImage:
+  - responsive
+backgroundOpacity:
+  - responsive
+  - group-hover
+  - focus-within
+  - hover
+  - focus
+backgroundPosition:
+  - responsive
+backgroundRepeat:
+  - responsive
+backgroundSize:
+  - responsive
+borderCollapse:
+  - responsive
+borderColor:
+  - responsive
+  - dark
+  - group-hover
+  - focus-within
+  - hover
+  - focus
+borderOpacity:
+  - responsive
+  - group-hover
+  - focus-within
+  - hover
+  - focus
+borderRadius:
+  - responsive
+borderStyle:
+  - responsive
+borderWidth:
+  - responsive
+boxShadow:
+  - responsive
+  - group-hover
+  - focus-within
+  - hover
+  - focus
+boxSizing:
+  - hover
+  - group-hover
+  - responsive
+clear:
+  - hover
+  - group-hover
+  - responsive
+container:
+  - hover
+  - group-hover
+  - responsive
+cursor:
+  - hover
+  - group-hover
+  - responsive
+display:
+  - hover
+  - group-hover
+  - responsive
+divideColor:
+  - hover
+  - group-hover
+  - responsive
+  - dark
+divideOpacity:
+  - hover
+  - group-hover
+  - responsive
+divideStyle:
+  - hover
+  - group-hover
+  - responsive
+divideWidth:
+  - hover
+  - group-hover
+  - responsive
+fill:
+  - hover
+  - group-hover
+  - responsive
+flex:
+  - hover
+  - group-hover
+  - responsive
+flexDirection:
+  - hover
+  - group-hover
+  - responsive
+flexGrow:
+  - hover
+  - group-hover
+  - responsive
+flexShrink:
+  - hover
+  - group-hover
+  - responsive
+flexWrap:
+  - hover
+  - group-hover
+  - responsive
+float:
+  - hover
+  - group-hover
+  - responsive
+fontFamily:
+  - hover
+  - group-hover
+  - responsive
+fontSize:
+  - hover
+  - group-hover
+  - responsive
+fontSmoothing:
+  - hover
+  - group-hover
+  - responsive
+fontStyle:
+  - hover
+  - group-hover
+  - responsive
+fontVariantNumeric:
+  - hover
+  - group-hover
+  - responsive
+fontWeight:
+  - hover
+  - group-hover
+  - responsive
+gap:
+  - hover
+  - group-hover
+  - responsive
+gradientColorStops:
+  - responsive
+  - dark
+  - hover
+  - focus
+gridAutoColumns:
+  - hover
+  - group-hover
+  - responsive
+gridAutoFlow:
+  - hover
+  - group-hover
+  - responsive
+gridAutoRows:
+  - hover
+  - group-hover
+  - responsive
+gridColumn:
+  - hover
+  - group-hover
+  - responsive
+gridColumnEnd:
+  - hover
+  - group-hover
+  - responsive
+gridColumnStart:
+  - hover
+  - group-hover
+  - responsive
+gridRow:
+  - hover
+  - group-hover
+  - responsive
+gridRowEnd:
+  - hover
+  - group-hover
+  - responsive
+gridRowStart:
+  - responsive
+gridTemplateColumns:
+  - hover
+  - group-hover
+  - responsive
+gridTemplateRows:
+  - hover
+  - group-hover
+  - responsive
+height:
+  - hover
+  - group-hover
+  - responsive
+inset:
+  - hover
+  - group-hover
+  - responsive
+  - hover
+  - focus
+justifyContent:
+  - hover
+  - group-hover
+  - responsive
+justifyItems:
+  - hover
+  - group-hover
+  - responsive
+justifySelf:
+  - hover
+  - group-hover
+  - responsive
+letterSpacing:
+  - hover
+  - group-hover
+  - responsive
+lineHeight:
+  - hover
+  - group-hover
+  - responsive
+listStylePosition:
+  - hover
+  - group-hover
+  - responsive
+listStyleType:
+  - hover
+  - group-hover
+  - responsive
+margin:
+  - hover
+  - group-hover
+  - responsive
+maxHeight:
+  - responsive
+maxWidth:
+  - hover
+  - group-hover
+  - responsive
+minHeight:
+  - hover
+  - group-hover
+  - responsive
+minWidth:
+  - hover
+  - group-hover
+  - responsive
+objectFit:
+  - hover
+  - group-hover
+  - responsive
+objectPosition:
+  - hover
+  - group-hover
+  - responsive
+opacity:
+  - responsive
+  - group-hover
+  - focus-within
+  - hover
+  - focus
+order:
+  - hover
+  - group-hover
+  - responsive
+outline:
+  - hover
+  - group-hover
+  - responsive
+  - focus-within
+  - focus
+overflow:
+  - hover
+  - group-hover
+  - responsive
+overscrollBehavior:
+  - hover
+  - group-hover
+  - responsive
+padding:
+  - hover
+  - group-hover
+  - responsive
+placeContent:
+  - hover
+  - group-hover
+  - responsive
+placeItems:
+  - hover
+  - group-hover
+  - responsive
+placeSelf:
+  - hover
+  - group-hover
+  - responsive
+placeholderColor:
+  - hover
+  - group-hover
+  - responsive
+  - dark
+  - focus
+placeholderOpacity:
+  - hover
+  - group-hover
+  - responsive
+  - focus
+pointerEvents:
+  - hover
+  - group-hover
+  - responsive
+position:
+  - hover
+  - group-hover
+  - responsive
+resize:
+  - hover
+  - group-hover
+  - responsive
+ringColor:
+  - responsive
+  - dark
+  - focus-within
+  - focus
+  - hover
+  - group-hover
+ringOffsetColor:
+  - responsive
+  - dark
+  - focus-within
+  - focus
+  - hover
+  - group-hover
+ringOffsetWidth:
+  - hover
+  - group-hover
+  - responsive
+  - focus-within
+  - focus
+  - hover
+ringOpacity:
+  - hover
+  - group-hover
+  - responsive
+  - focus-within
+  - focus
+  - hover
+ringWidth:
+  - hover
+  - group-hover
+  - responsive
+  - focus-within
+  - focus
+  - hover
+rotate:
+  - hover
+  - group-hover
+  - responsive
+  - hover
+  - focus
+scale:
+  - hover
+  - group-hover
+  - responsive
+  - hover
+  - focus
+skew:
+  - hover
+  - group-hover
+  - responsive
+  - hover
+  - focus
+space:
+  - hover
+  - group-hover
+  - responsive
+stroke:
+  - hover
+  - group-hover
+  - responsive
+strokeWidth:
+  - hover
+  - group-hover
+  - responsive
+tableLayout:
+  - hover
+  - group-hover
+  - responsive
+textAlign:
+  - hover
+  - group-hover
+  - responsive
+textColor:
+  - responsive
+  - dark
+  - group-hover
+  - focus-within
+  - hover
+  - focus
+textDecoration:
+  - responsive
+  - group-hover
+  - focus-within
+  - hover
+  - focus
+textOpacity:
+  - responsive
+  - group-hover
+  - focus-within
+  - hover
+  - focus
+textOverflow:
+  - hover
+  - group-hover
+  - responsive
+textTransform:
+  - hover
+  - group-hover
+  - responsive
+transform:
+  - hover
+  - group-hover
+  - responsive
+transformOrigin:
+  - hover
+  - group-hover
+  - responsive
+transitionDelay:
+  - hover
+  - group-hover
+  - responsive
+transitionDuration:
+  - hover
+  - group-hover
+  - responsive
+transitionProperty:
+  - hover
+  - group-hover
+  - responsive
+transitionTimingFunction:
+  - hover
+  - group-hover
+  - responsive
+translate:
+  - hover
+  - group-hover
+  - responsive
+  - hover
+  - focus
+userSelect:
+  - hover
+  - group-hover
+  - responsive
+verticalAlign:
+  - hover
+  - group-hover
+  - responsive
+visibility:
+  - hover
+  - group-hover
+  - responsive
+whitespace:
+  - hover
+  - group-hover
+  - responsive
+width:
+  - hover
+  - group-hover
+  - responsive
+wordBreak:
+  - hover
+  - group-hover
+  - responsive
+zIndex:
+  - hover
+  - group-hover
+  - responsive
+  - focus-within
+  - focus
