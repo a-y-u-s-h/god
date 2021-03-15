@@ -52,9 +52,15 @@ function god.update () {
     #  ======================================
 
     if [[ -z "$2" || $2 == "everything" || $2 == "all" ]]; then
-        archlinux.update
-        python.update
-        javascript.update
+        echo "Updating OS..."
+        archlinux.update >/dev/null 2>&1;
+        ubuntu.update >/dev/null 2>&1;
+
+        echo "Updating Python..."
+        python.update;
+
+        echo "Updating JS..."
+        javascript.update;
     fi
 
     for environment in "${@:2}"; do
@@ -65,6 +71,13 @@ function god.update () {
 
       if [[ ${environment} == "arch" || ${environment} == "archlinux" ]]; then
         archlinux.update
+
+      #  ======================================
+      #    Ubuntu
+      #  ======================================
+
+      elif [[ ${environment} == "ubuntu" ]]; then
+        ubuntu.update
 
       #  ======================================
       #    Python 3
