@@ -3,30 +3,19 @@ import { addDecorator } from "@storybook/react"
 import { addParameters } from "@storybook/client-api"
 import { DocsContainer } from "@storybook/addon-docs/blocks"
 import { inspect } from "@xstate/inspect"
+import "../src/settings/theme/tailwind/index.css"
 
-addDecorator(story => (
-  <div style={{ width: "100%", height: "100%" }}>{story()} </div>
-))
+addDecorator(story => <div style={{ width: "100%", height: "100%" }}>{story()} </div>)
 
 export const parameters = {
   layout: "padded",
   actions: { argTypesRegex: "^on[A-Z].*" },
   options: {
     storySort: {
-      order: [
-        "Introduction",
-        "Modifiers",
-        "Atoms",
-        "Molecules",
-        "Organisms",
-        "Universe",
-        "Studies"
-      ]
+      order: ["Introduction", "Modifiers", "Atoms", "Molecules", "Organisms", "Universe", "Studies"]
     }
   },
   docs: {
-    container: ({ children, context }) => (
-      <DocsContainer context={context}>{children}</DocsContainer>
-    )
+    container: ({ children, context }) => <DocsContainer context={context}>{children}</DocsContainer>
   }
 }

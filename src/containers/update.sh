@@ -53,9 +53,7 @@ function god.update () {
 
     if [[ -z "$2" || $2 == "everything" || $2 == "all" ]]; then
         echo "Updating OS..."
-        archlinux.update >/dev/null 2>&1;
-        ubuntu.update >/dev/null 2>&1;
-
+        archlinux.update;
         echo "Updating Python..."
         python.update;
 

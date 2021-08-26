@@ -2,8 +2,8 @@ import React from "react"
 import System from "./system"
 
 export const Placeholder = React.forwardRef(({ children, ...props }, ref) => {
-  const placeholder = System.create()
-  const { styles, content, events } = placeholder
+  const system = System.create()
+  const { events } = system
   return <></>
 })
 

@@ -1,47 +1,48 @@
 {
-  "name": "@taggosaurus/placeholder",
+  "name": "placeholder",
   "version": "1.0.0",
-  "main": "build/placeholder.min.js",
   "author": "Ayush Sharma <code.ayush@gmail.com>",
   "license": "MIT",
-  "repository": {
-    "url": "git://github.com/taggosaurus/placeholder"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
-  "scripts": {
-    "clean": "rimraf build",
-    "prepublish": "yarn test",
-    "prestart": "npm run clean",
-    "execute": "./build/placeholder",
-    "test": "jest --config ./jest.config.js --passWithNoTests",
-    "develop": "yarn build && yarn execute",
-    "prebuild": "npm run clean",
-    "build": "webpack --env.mode production",
-    "lint": "prettier --write 'src/**/*.{js,jsx}'",
-    "update": "npx npm-check-updates -u --timeout 120000 && yarn install"
-  },
+  "main": "build/placeholder.min.js",
   "bin": {
     "placeholder": "./build/placeholder.min.js"
   },
+  "repository": {
+    "url": "git://github.com/a-y-u-s-h/placeholder"
+  },
+  "scripts": {
+    "clean": "rimraf build",
+    "predevelop": "yarn clean",
+    "develop": "rollup --config --watch --silent",
+    "prebuild": "yarn clean",
+    "build": "rollup --config",
+    "prepare": "yarn format",
+    "format": "prettier --write 'src/**/*.{js,jsx}'",
+    "update": "npx npm-check-updates -u --timeout 300000 && yarn install --no-lockfile",
+    "prerelease": "yarn prepare && yarn build",
+    "release": "npm login && npm publish --access=public"
+  },
+  "precommit": [
+    "prepare"
+  ],
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.11.4",
-    "@babel/preset-env": "^7.11.0",
-    "@babel/preset-react": "^7.10.4",
-    "babel-loader": "^8.1.0",
-    "jest": "^26.4.2",
-    "nodemon": "^2.0.4",
-    "nodemon-webpack-plugin": "^4.3.2",
-    "prettier": "^2.1.1",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
-    "webpack-node-externals": "^2.5.2",
-    "webpack-shell-plugin": "^0.5.0",
-    "ws": "^7.3.1",
-    "yaml-loader": "^0.6.0"
+    "@xstate/inspect": "^0.4.1",
+    "@xstate/test": "^0.4.2",
+    "xstate": "^4.23.1",
+    "@rollup/plugin-alias": "^3.1.4",
+    "@rollup/plugin-dsv": "^2.0.2",
+    "@rollup/plugin-image": "^2.1.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "@rollup/plugin-run": "^2.0.2",
+    "@rollup/plugin-wasm": "^5.1.2",
+    "@rollup/plugin-yaml": "^3.1.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.3.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.55.0",
+    "rollup-plugin-terser": "^7.0.2"
   },
   "prettier": {
     "semi": false,

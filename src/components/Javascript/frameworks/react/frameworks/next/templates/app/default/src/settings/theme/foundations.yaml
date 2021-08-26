@@ -4,26 +4,6 @@ fonts:
   monospace: SF Mono,Monaco,Inconsolata,Fira Mono,Droid Sans Mono,Source Code Pro,monospace
 colors:
   background: transparent
-  combinations:
-    retro:
-      background:
-        100: "#434343"
-        200: "#494949"
-        300: "#E8DCD1"
-        400: "#E4D8CE"
-        500: "#F4E9DC"
-        600: "#EFE4D8"
-        700: "#E85E56"
-        800: "#DC5850"
-      text:
-        100: "#F6EBDD"
-        200: "#E85E56"
-        300: "#C3BAB2"
-        400: "#E85E56"
-        500: "#494949"
-        600: "#DC5850"
-        700: "#464848"
-        800: "#F4E8D9"
 
   primary:
     50: "#eaf8fb"

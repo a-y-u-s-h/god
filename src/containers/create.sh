@@ -127,17 +127,22 @@ function god.create () {
 
     # <------------------------------>
 
-    if [[ $2 == "xstate.system" || $2 == "xstate.component" || $2 == "x.c" || $2 == "x.component" || $2 == "x.resource" || $2 == "x.state" || $2 == "xstate" || $2 == "x.s"  ]]; then
+    if [[ $2 == "xstate.system" || $2 == "xstate.component" || $2 == "xstate.c" || $2 == "x.c" || $2 == "x.component" || $2 == "x.resource" || $2 == "x.state" || $2 == "xstate" || $2 == "x.s"  ]]; then
       local script=${root}/src/components/Javascript/frameworks/xstate
       xstate.system ${script} default ${@:3}
     fi
 
-    if [[ $2 == "xstate.react" || $2 == "xstate.r" || $2 == "x.rs"  ]]; then
+    if [[ $2 == "xstate.react" || $2 == "xstate.r" || $2 == "x.rs" || $2 == "x.r" ]]; then
       local script=${root}/src/components/Javascript/frameworks/xstate
-      xstate.system ${script} react ${@:3}
+      xstate.react.system ${script} ${@:3}
     fi
 
-    if [[ $2 == "xstate.react.component" || $2 == "x.rc"  || $2 == "xstate.rc" || $2 == "x.r"  ]]; then
+    if [[ $2 == "xstate.p5" || $2 == "x.p5" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/xstate
+      xstate.p5 ${script} ${@:3}
+    fi
+
+    if [[ $2 == "xstate.react.component" || $2 == "x.rc"  || $2 == "xstate.rc" ]]; then
       local script=${root}/src/components/Javascript/frameworks/xstate
       xstate.react.component ${script} ${@:3}
     fi
@@ -274,9 +279,14 @@ function god.create () {
 
     # <------------------------------>
 
-    if [[ $2 == "p5.app" || $2 == "p5.experiment" ]]; then
+    if [[ $2 == "p5.app" || $2 == "p5.application" ]]; then
       local script=${root}/src/components/Javascript/projects/p5
       p5.app ${script} default ${@:3}
+    fi
+
+    if [[ $2 == "p5.exp" || $2 == "p5.experiment" ]]; then
+      local script=${root}/src/components/Javascript/projects/p5
+      p5.app ${script} experiment ${@:3}
     fi
 
     # <------------------------------>

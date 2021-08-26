@@ -10,10 +10,8 @@ export const service = X.interpret(machine)
 
 export const create = () => {
   const [state, send, service] = useMachine(machine, { devTools: true })
-  const styles = state.meta?.styles
-  const content = state.meta?.content
-  const events = triggers(state, send)
-  return { styles, content, events }
+  const data = triggers(state, send)
+  return { state, ...data }
 }
 
 export const Context = React.createContext()

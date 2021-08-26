@@ -1,0 +1,10 @@
+id: application
+type: parallel
+context: {}
+states:
+  interface:
+    id: interface
+    type: parallel
+    states:
+      document:
+        id: document

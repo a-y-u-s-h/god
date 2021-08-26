@@ -30,8 +30,4 @@ const actions = {
     a regular express application.
   ======================================
 */
-export default app
-  .post(actions.post)
-  .get(actions.get)
-  .put(actions.put)
-  .delete(actions.delete)
+export default app.post(actions.post).get(actions.get).put(actions.put).delete(actions.delete)

@@ -1,27 +1,15 @@
-const YAML = require("./.loaders/yaml.js")
-const extensions = YAML.read("src/settings/theme/elements/extensions.yaml")
-const foundations = YAML.read("src/settings/theme/elements/foundations.yaml")
-const variants = YAML.read("src/settings/theme/elements/state.settings.yaml")
+import React from "react"
+import themeui from "./theme.ui"
+import evergreen from "./evergreen.ui"
+import { ThemeProvider as ThemeUI } from "theme-ui"
+import { ThemeProvider as Evergreen } from "evergreen-ui"
 
-module.exports = {
-  purge: ["/src/pages/**/*.js", "/src/components/**/*.js"],
-  darkMode: "class",
-  theme: {
-    extend: {
-      ...foundations,
-      ...extensions
-    }
-  },
-  variants: {
-    extend: {
-      ...variants
-    }
-  },
-  plugins: [
-    require("@tailwindcss/aspect-ratio"),
-    require("@tailwindcss/typography"),
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/custom-forms"),
-    require("tailwindcss-filters")
-  ]
+export const Theme = ({ children, ...props }) => {
+  return (
+    <ThemeUI theme={themeui}>
+      <Evergreen value={evergreen}>{children}</Evergreen>
+    </ThemeUI>
+  )
 }
+
+export default Theme

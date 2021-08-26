@@ -12,6 +12,7 @@ module.exports = (phase, options) => {
 
   return {
     ...options.defaultConfig,
+    webpack5: true,
     webpack: config => {
       /*
         ======================================
@@ -23,6 +24,7 @@ module.exports = (phase, options) => {
         test: /\.ya?ml$/,
         use: "js-yaml-loader"
       })
+
       return config
     }
   }

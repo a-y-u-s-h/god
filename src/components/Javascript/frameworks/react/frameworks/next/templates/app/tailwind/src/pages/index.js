@@ -1,10 +1,4 @@
 import React from "react"
-import System from "@/systems/universe/home"
+import Application from "@/components/application"
+export default Application
 
-const Home = () => {
-  const home = System.create()
-  const { styles, content } = home
-  return <div {...styles.container}></div>
-}
-
-export default Home

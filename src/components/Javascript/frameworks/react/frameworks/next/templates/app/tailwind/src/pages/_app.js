@@ -1,6 +1,7 @@
 import React from "react"
 import Systems from "@/systems"
-import "@/settings/theme/index.css"
+import "@/settings/theme/tailwind/index.css"
+import Theme from "@/settings/theme"
 
 export const Application = props => {
   /*
@@ -14,9 +15,11 @@ export const Application = props => {
   */
   const { Component, pageProps } = props
   return (
-    <Systems>
-      <Component {...pageProps} />
-    </Systems>
+    <Theme>
+      <Systems>
+        <Component {...pageProps} />
+      </Systems>
+    </Theme>
   )
 }
 

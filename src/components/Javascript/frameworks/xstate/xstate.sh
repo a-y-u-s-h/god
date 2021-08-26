@@ -41,6 +41,73 @@ function xstate.system () {
   return
 }
 
+function xstate.react.system () {
+
+  local root=$1
+  local initial=$(pwd)
+
+  for i in "${@:2}"; do
+    local file="$(tr '[:lower:]' '[:upper:]' <<< ${i:0:1})${i:1}"
+    local folder="$(tr '[:upper:]' '[:lower:]' <<< $i)"
+
+    [ -d ${folder} ] || mkdir -p ${folder}
+    if [[ -d ${folder} ]]; then
+      cd ${folder}
+
+      local states="$(cat ${root}/templates/system/react/states.yaml)"
+      local options="$(cat ${root}/templates/system/react/options.js)"
+      local triggers="$(cat ${root}/templates/system/react/triggers.js)"
+      local index="$(cat ${root}/templates/system/react/index.js)"
+
+      states=$(sed "s/placeholder/${folder}/g" <<< "$states")
+      options=$(sed "s/placeholder/${folder}/g" <<< "$options")
+      index=$(sed "s/placeholder/${folder}/g" <<< "$index")
+      triggers=$(sed "s/placeholder/${folder}/g" <<< "$triggers")
+
+      echo "$states" > states.yaml
+      echo "$triggers" > triggers.js
+      echo "$options" > options.js
+      echo "$index" > index.js
+    fi
+    cd $initial
+  done
+  return
+}
+
+function xstate.p5 () {
+
+  local root=$1
+  local initial=$(pwd)
+
+  for i in "${@:2}"; do
+    local file="$(tr '[:lower:]' '[:upper:]' <<< ${i:0:1})${i:1}"
+    local folder="$(tr '[:upper:]' '[:lower:]' <<< $i)"
+
+    [ -d ${folder} ] || mkdir -p ${folder}
+    if [[ -d ${folder} ]]; then
+      cd ${folder}
+
+      local states="$(cat ${root}/templates/p5/states.yaml)"
+      local options="$(cat ${root}/templates/p5/options.js)"
+      local sketch="$(cat ${root}/templates/p5/sketch.js)"
+      local index="$(cat ${root}/templates/p5/index.js)"
+
+      states=$(sed "s/placeholder/${folder}/g" <<< "$states")
+      options=$(sed "s/placeholder/${folder}/g" <<< "$options")
+      index=$(sed "s/placeholder/${folder}/g" <<< "$index")
+      sketch=$(sed "s/placeholder/${folder}/g" <<< "$sketch")
+
+      echo "$states" > states.yaml
+      echo "$sketch" > sketch.js
+      echo "$options" > options.js
+      echo "$index" > index.js
+    fi
+    cd $initial
+  done
+  return
+}
+
+
 function xstate.react.component () {
   local root=$1
   local initial=$(pwd)

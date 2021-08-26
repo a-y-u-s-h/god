@@ -36,7 +36,7 @@ function node.app () {
       package=$(sed "s/placeholder/$i/g" <<< "$package")
       echo "$package" > package.json
 
-      local webpack="$(cat ${root}/templates/app/webpack.config.js)"
+      local webpack="$(cat ${root}/templates/app/webpack.config.js >/dev/null 2>&1)"
       webpack=$(sed "s/Placeholder/$i/g" <<< "$webpack")
       webpack=$(sed "s/placeholder/$i/g" <<< "$webpack")
       echo "$webpack" > webpack.config.js
@@ -62,8 +62,9 @@ function node.library () {
   local root=$1
   local initial=$(pwd)
   [ -z "$2" ] && set -- "${@:1}" "library" "${@:3}"
-  cp -R "${root}/templates/library/default/" ${@:2}
+
   for i in ${@:2}; do
+    cp -R "${root}/templates/library/default/" $i
     if [[ -d $i ]]; then
       cd $i
 
@@ -72,10 +73,10 @@ function node.library () {
       package=$(sed "s/placeholder/$i/g" <<< "$package")
       echo "$package" > package.json
 
-      local webpack="$(cat ${root}/templates/library/default/webpack.config.js)"
-      webpack=$(sed "s/Placeholder/$i/g" <<< "$webpack")
-      webpack=$(sed "s/placeholder/$i/g" <<< "$webpack")
-      echo "$webpack" > webpack.config.js
+      local rollup="$(cat ${root}/templates/library/default/rollup.config.js)"
+      rollup=$(sed "s/Placeholder/$i/g" <<< "$rollup")
+      rollup=$(sed "s/placeholder/$i/g" <<< "$rollup")
+      echo "$rollup" > rollup.config.js
 
       yarn init -y
       yarn update
