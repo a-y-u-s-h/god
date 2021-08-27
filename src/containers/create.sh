@@ -289,6 +289,11 @@ function god.create () {
       p5.app ${script} experiment ${@:3}
     fi
 
+    if [[ $2 == "p5.noob" || $2 == "p5.noobie" ]]; then
+      local script=${root}/src/components/Javascript/projects/p5
+      p5.app ${script} noob ${@:3}
+    fi
+
     # <------------------------------>
 
     if [[ $2 == "documentation.app" || $2 == "docs" || $2 == "documentation" || $2 == "docs.app" ]]; then
