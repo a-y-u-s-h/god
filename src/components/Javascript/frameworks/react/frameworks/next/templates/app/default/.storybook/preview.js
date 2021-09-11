@@ -1,39 +1,21 @@
 import React from "react"
 import { addDecorator } from "@storybook/react"
-import { ThemeProvider } from "theme-ui"
-import theme from "@/settings/theme/index.js"
-import { Box } from "theme-ui"
 import { addParameters } from "@storybook/client-api"
 import { DocsContainer } from "@storybook/addon-docs/blocks"
 import { inspect } from "@xstate/inspect"
+import "../src/settings/theme/tailwind/index.css"
 
-addDecorator(story => (
-  <ThemeProvider theme={theme}>
-    <Box sx={{ width: "100%", height: "100%" }}>{story()} </Box>
-  </ThemeProvider>
-))
+addDecorator(story => <div style={{ width: "100%", height: "100%" }}>{story()} </div>)
 
 export const parameters = {
   layout: "padded",
   actions: { argTypesRegex: "^on[A-Z].*" },
   options: {
     storySort: {
-      order: [
-        "Introduction",
-        "Modifiers",
-        "Atoms",
-        "Molecules",
-        "Organisms",
-        "Universe",
-        "Studies"
-      ]
+      order: ["Introduction", "Modifiers", "Atoms", "Molecules", "Organisms", "Universe", "Studies"]
     }
   },
   docs: {
-    container: ({ children, context }) => (
-      <ThemeProvider theme={theme}>
-        <DocsContainer context={context}>{children}</DocsContainer>
-      </ThemeProvider>
-    )
+    container: ({ children, context }) => <DocsContainer context={context}>{children}</DocsContainer>
   }
 }

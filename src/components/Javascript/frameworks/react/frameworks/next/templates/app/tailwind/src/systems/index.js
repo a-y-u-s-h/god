@@ -8,10 +8,20 @@
 */
 import React from "react"
 
-import { inspect } from "@xstate/inspect"
-if (typeof window !== "undefined") {
-  inspect({ iframe: false })
-}
+/*
+  ======================================
+    Uncomment following lines to allow
+    Xstate inspector to popup and show
+    the visualizer.
+  ======================================
+*/
+
+/*
+  import { inspect } from "@xstate/inspect"
+  if (typeof window !== "undefined") {
+    inspect({ iframe: false })
+  }
+*/
 
 export const Systems = ({ children }) => {
   return <>{children}</>

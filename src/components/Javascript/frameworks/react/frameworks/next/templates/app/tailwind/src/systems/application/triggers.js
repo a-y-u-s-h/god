@@ -112,7 +112,10 @@ export const triggers = (state, send) => {
     }
   }
 
-  return { events }
+  const styles = {}
+  const content = {}
+
+  return { events, styles, content }
 }
 
 export default triggers

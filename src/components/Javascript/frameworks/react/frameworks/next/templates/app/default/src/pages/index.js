@@ -1,11 +1,10 @@
 import React from "react"
-import System from "@/systems/universe/home"
-import { Box } from "theme-ui"
+import System from "@/systems/application"
 
-const Home = () => {
-  const home = System.create()
-  const { styles, content } = home
-  return <Box {...styles.container}></Box>
-}
+export const Home = React.forwardRef(({ children, ...props }, ref) => {
+  const system = System.create()
+  const { state, events, styles, content } = system
+  return <></>
+})
 
 export default Home

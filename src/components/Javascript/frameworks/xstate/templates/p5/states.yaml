@@ -8,9 +8,9 @@
 #    but it's not an elegant way of doing things.
 #    A good usage as an actor looks like this:
 #
-#    sketch:
+#    placeholder:
 #     invoke:
-#       id: sketch
+#       id: placeholder
 #       src: sketch
 #       autoForward: true
 #       data:
@@ -18,7 +18,7 @@
 #
 #  ======================================
 
-id: sketch
+id: placeholder
 initial: uninitialized
 type: parallel
 context:

@@ -7,30 +7,24 @@
   ======================================
 */
 import React from "react"
-import Atoms from "./atoms"
-import Molecules from "./molecules"
-import Organisms from "./organisms"
-import Universe from "./universe"
 
-import { inspect } from "@xstate/inspect"
+/*
+  ======================================
+    Uncomment following lines to allow
+    Xstate inspector to popup and show
+    the visualizer.
+  ======================================
+*/
 
-if (typeof window !== "undefined") {
-  inspect({ iframe: false })
-}
-
+/*
+  import { inspect } from "@xstate/inspect"
+  if (typeof window !== "undefined") {
+    inspect({ iframe: false })
+  }
+*/
 
 export const Systems = ({ children }) => {
-  return (
-    <>
-      <Universe>
-        <Organisms>
-          <Molecules>
-            <Atoms>{children}</Atoms>
-          </Molecules>
-        </Organisms>
-      </Universe>
-    </>
-  )
+  return <>{children}</>
 }
 
 export default Systems

@@ -1,4 +1,10 @@
 import React from "react"
-import Application from "@/components/application"
-export default Application
+import System from "@/systems/application"
 
+export const Home = React.forwardRef(({ children, ...props }, ref) => {
+  const system = System.create()
+  const { state, events, styles, content } = system
+  return <></>
+})
+
+export default Home

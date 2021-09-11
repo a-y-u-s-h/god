@@ -7,11 +7,7 @@ export const Inspector = React.forwardRef(({ children, ...props }, ref) => {
   const vertical = props?.horizontal ? false : true
   const inverted = props?.inverted ? true : false
   const sequence = props?.inverted ? "inverted" : "default"
-  const layout = props?.vertical
-    ? "vertical"
-    : props.horizontal
-    ? "horizontal"
-    : "horizontal"
+  const layout = props?.vertical ? "vertical" : props.horizontal ? "horizontal" : "horizontal"
   const style = styles[layout][sequence]
 
   React.useLayoutEffect(() => {

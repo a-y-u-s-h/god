@@ -84,6 +84,11 @@ function god.create () {
       react.app ${script} default ${@:3}
     fi
 
+    if [[ $2 == "react.tui" || $2 == "tui.react" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/react
+      react.tui ${script} ${@:3}
+    fi
+
     if [[ $2 == "react.chrome.extension" || $2 == "react.extension" || $2 == "chrome.extension" || $2 == "web.extension" || $2 == "web.ext" || $2 == "chrome.ext" || $2 == "webex" ]]; then
       local script=${root}/src/components/Javascript/frameworks/react
       react.chrome.extension ${script} ${@:3}
@@ -141,6 +146,12 @@ function god.create () {
       local script=${root}/src/components/Javascript/frameworks/xstate
       xstate.p5 ${script} ${@:3}
     fi
+
+    if [[ $2 == "xstate.pixi" || $2 == "x.pixi" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/xstate
+      xstate.pixi ${script} ${@:3}
+    fi
+
 
     if [[ $2 == "xstate.react.component" || $2 == "x.rc"  || $2 == "xstate.rc" ]]; then
       local script=${root}/src/components/Javascript/frameworks/xstate
