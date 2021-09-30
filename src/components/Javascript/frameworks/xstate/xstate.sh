@@ -53,21 +53,12 @@ function xstate.react.system () {
     [ -d ${folder} ] || mkdir -p ${folder}
     if [[ -d ${folder} ]]; then
       cd ${folder}
+      cp -R ${root}/templates/system/react/* .
 
-      local states="$(cat ${root}/templates/system/react/states.yaml)"
-      local options="$(cat ${root}/templates/system/react/options.js)"
-      local triggers="$(cat ${root}/templates/system/react/triggers.js)"
-      local index="$(cat ${root}/templates/system/react/index.js)"
-
+      local states="$(cat ${root}/templates/system/react/definition/states.yaml)"
       states=$(sed "s/placeholder/${folder}/g" <<< "$states")
-      options=$(sed "s/placeholder/${folder}/g" <<< "$options")
-      index=$(sed "s/placeholder/${folder}/g" <<< "$index")
-      triggers=$(sed "s/placeholder/${folder}/g" <<< "$triggers")
-
-      echo "$states" > states.yaml
-      echo "$triggers" > triggers.js
-      echo "$options" > options.js
-      echo "$index" > index.js
+      states=$(sed "s/Placeholder/${file}/g" <<< "$states")
+      echo "$states" > definition/states.yaml
     fi
     cd $initial
   done
@@ -153,33 +144,21 @@ function xstate.react.component () {
     [ -d ${folder} ] || mkdir -p ${folder}
     if [[ -d ${folder} ]]; then
       cd ${folder}
+      cp -R ${root}/templates/component/react/* .
 
       local component="$(cat ${root}/templates/component/react/index.js)"
-      local states="$(cat ${root}/templates/component/react/system/states.yaml)"
-      local options="$(cat ${root}/templates/component/react/system/options.js)"
-      local index="$(cat ${root}/templates/component/react/system/index.js)"
-      local triggers="$(cat ${root}/templates/component/react/system/triggers.js)"
+      local states="$(cat ${root}/templates/component/react/system/definition/states.yaml)"
 
-      states=$(sed "s/placeholder/${folder}/g" <<< "$states")
-      options=$(sed "s/placeholder/${folder}/g" <<< "$options")
-      index=$(sed "s/placeholder/${folder}/g" <<< "$index")
-      triggers=$(sed "s/placeholder/${folder}/g" <<< "$triggers")
       component=$(sed "s/placeholder/${folder}/g" <<< "$component")
-
-      states=$(sed "s/Placeholder/${file}/g" <<< "$states")
-      options=$(sed "s/Placeholder/${file}/g" <<< "$options")
-      index=$(sed "s/Placeholder/${file}/g" <<< "$index")
-      triggers=$(sed "s/Placeholder/${file}/g" <<< "$triggers")
       component=$(sed "s/Placeholder/${file}/g" <<< "$component")
+      states=$(sed "s/placeholder/${folder}/g" <<< "$states")
+      states=$(sed "s/Placeholder/${file}/g" <<< "$states")
 
       echo "$component" > index.js
       [ -d system ] || mkdir -p system
       if [[ -d system ]]; then
         cd system
-        echo "$states" > states.yaml
-        echo "$options" > options.js
-        echo "$index" > index.js
-        echo "$triggers" > triggers.js
+        echo "$states" > definition/states.yaml
         cd ..
       fi
     fi

@@ -137,7 +137,7 @@ function god.create () {
       xstate.system ${script} default ${@:3}
     fi
 
-    if [[ $2 == "xstate.react" || $2 == "xstate.r" || $2 == "x.rs" || $2 == "x.r" ]]; then
+    if [[ $2 == "xstate.react" || $2 == "xstate.actor" || $2 ==  "xstate.a" || $2 == "xstate.rs" || $2 == "x.rs" || $2 == "x.r" ]]; then
       local script=${root}/src/components/Javascript/frameworks/xstate
       xstate.react.system ${script} ${@:3}
     fi
@@ -293,6 +293,11 @@ function god.create () {
     if [[ $2 == "p5.app" || $2 == "p5.application" ]]; then
       local script=${root}/src/components/Javascript/projects/p5
       p5.app ${script} default ${@:3}
+    fi
+
+    if [[ $2 == "p5.xstate" || $2 == "p5.x" ]]; then
+      local script=${root}/src/components/Javascript/projects/p5
+      p5.app ${script} xstate ${@:3}
     fi
 
     if [[ $2 == "p5.exp" || $2 == "p5.experiment" ]]; then

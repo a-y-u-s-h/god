@@ -21,6 +21,18 @@ import * as AI from "react-icons/ai"
 import * as IO5 from "react-icons/io5"
 import * as VSC from "react-icons/vsc"
 
+/*
+  ======================================
+    If you want to import custom SVG
+    icons, you can get SVGs from somewhere,
+    then convert those SVGs to rect components
+    using SVGR and put them in the object below.
+    their name will become the 'name' and their
+    family will be 'SVG'.
+  ======================================
+*/
+export const SVG = {}
+
 export const Icons = {
   FA,
   HI,
@@ -41,7 +53,8 @@ export const Icons = {
   BS,
   AI,
   IO5,
-  VSC
+  VSC,
+  SVG
 }
 
 export const Icon = React.forwardRef(({ children, family, name, ...props }, ref) => {

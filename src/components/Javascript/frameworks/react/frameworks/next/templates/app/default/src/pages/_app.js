@@ -1,7 +1,15 @@
 import React from "react"
 import Systems from "@/systems"
-import "@/settings/theme/tailwind/index.css"
+import "@/settings/theme/tailwind/index.scss"
 import Theme from "@/settings/theme"
+
+const NoSSR = ({ children }) => (
+  <>
+    <div className="w-full h-full overflow-hidden" suppressHydrationWarning>
+      {typeof window === "undefined" ? null : children}
+    </div>
+  </>
+)
 
 export const Application = props => {
   /*
@@ -16,9 +24,11 @@ export const Application = props => {
   const { Component, pageProps } = props
   return (
     <Theme>
-      <Systems>
-        <Component {...pageProps} />
-      </Systems>
+      <NoSSR>
+        <Systems>
+          <Component {...pageProps} />
+        </Systems>
+      </NoSSR>
     </Theme>
   )
 }

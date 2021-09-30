@@ -7,6 +7,7 @@
   ======================================
 */
 import React from "react"
+import Application from "@/systems/application"
 
 /*
   ======================================
@@ -17,14 +18,18 @@ import React from "react"
 */
 
 /*
-  import { inspect } from "@xstate/inspect"
-  if (typeof window !== "undefined") {
-    inspect({ iframe: false })
-  }
+import { inspect } from "@xstate/inspect"
+if (typeof window !== "undefined") {
+  inspect({ iframe: false })
+}
 */
 
 export const Systems = ({ children }) => {
-  return <>{children}</>
+  return (
+    <>
+      <Application.Provider>{children}</Application.Provider>
+    </>
+  )
 }
 
 export default Systems
