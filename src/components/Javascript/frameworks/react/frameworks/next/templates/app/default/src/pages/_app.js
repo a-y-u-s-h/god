@@ -11,7 +11,7 @@ const NoSSR = ({ children }) => (
   </>
 )
 
-export const Application = props => {
+export const Router = props => {
   /*
     ======================================
       This component is the entry point of
@@ -33,4 +33,4 @@ export const Application = props => {
   )
 }
 
-export default Application
+export default Router

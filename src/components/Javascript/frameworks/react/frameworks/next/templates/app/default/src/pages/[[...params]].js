@@ -3,7 +3,7 @@ import System from "@/systems/application"
 import { useRouter } from "next/router"
 import { useHotkeys } from "react-hotkeys-hook"
 
-export const Home = React.forwardRef(({ children, ...props }, ref) => {
+export const Application = React.forwardRef(({ children, ...props }, ref) => {
   const router = useRouter()
   const system = System.use()
   const { params } = router.query
@@ -11,4 +11,4 @@ export const Home = React.forwardRef(({ children, ...props }, ref) => {
   return <></>
 })
 
-export default Home
+export default Application
