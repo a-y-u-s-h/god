@@ -1,0 +1,86 @@
+id: application
+type: parallel
+context:
+  user: null
+  api:
+    settings:
+      id: ""
+      server: ""
+  network:
+    selected: 0
+preserveActionOrder: true
+on:
+  network.select:
+    actions: network.select
+states:
+  user:
+    id: user
+    type: parallel
+    entry: api.initialize
+    states:
+      authentication:
+        id: authentication
+        initial: uninitialized
+        states:
+          uninitialized:
+            invoke:
+              src: get.current.user
+              onDone:
+                - cond: user.connected
+                  target: signed in
+                  actions: assign.user
+                - cond: user.disconnected
+                  target: signed out
+                  actions: assign.user
+              onError:
+                target: signed out
+                actions: assign.user
+          signed out:
+            on:
+              connect.wallet:
+                target: connecting
+          connecting:
+            invoke:
+              src: connect.wallet
+              onDone:
+                - cond: user.connected
+                  target: signed in
+                  actions: assign.user
+                - cond: user.disconnected
+                  target: signed out
+                  actions: assign.user
+              onError:
+                target: error
+          signed in:
+            on:
+              disconnect.wallet:
+                target: disconnecting
+          disconnecting:
+            invoke:
+              src: disconnect.wallet
+              onDone:
+                target: signed out
+                actions: assign.user
+          error:
+            entry: telemetry.log.errors
+            always: signed out
+  interface:
+    type: parallel
+    states:
+      layout:
+        initial: default
+        states:
+          default: {}
+      theme:
+        initial: light
+        states:
+          light:
+            on:
+              theme.next: dark
+              theme.prev: dark
+              theme.choose.dark: dark
+          dark:
+            on:
+              theme.next: light
+              theme.prev: light
+              theme.choose.light: light

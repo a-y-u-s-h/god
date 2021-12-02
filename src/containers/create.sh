@@ -152,6 +152,11 @@ function god.create () {
       xstate.pixi ${script} ${@:3}
     fi
 
+    if [[ $2 == "xstate.three" || $2 == "x.three" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/xstate
+      xstate.three ${script} ${@:3}
+    fi
+
 
     if [[ $2 == "xstate.react.component" || $2 == "x.rc"  || $2 == "xstate.rc" ]]; then
       local script=${root}/src/components/Javascript/frameworks/xstate
@@ -163,6 +168,11 @@ function god.create () {
     if [[ $2 == "next.app" || $2 == "next.a" ]]; then
       local script=${root}/src/components/Javascript/frameworks/react/frameworks/next
       next.app ${script} default ${@:3}
+    fi
+
+    if [[ $2 == "next.dapp" || $2 == "next.a" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/react/frameworks/next
+      next.app ${script} dapp ${@:3}
     fi
 
     if [[ $2 == "next.tailwind" ]]; then

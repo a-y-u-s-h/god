@@ -1,14 +1,18 @@
-const sketch = service => settings => {
-  const { PIXI, application } = settings
-  const { parent, width, height } = settings
+const sketch = service => payload => {
+  const { PIXI, application } = payload
+  const { parent, width, height } = payload
   const { context, events } = service
   const { send, listen } = events
-  listen(e => (context = e?.c))
+  listen(request => (context = request?.context))
 
-  application.renderer.resize(width, height)
-  application.renderer.resolution = window.devicePixelRatio
-
-
+  /*
+    ======================================
+      This is where you begin writing
+      PIXI.js code. You can make use
+      of current context of the statechart.
+      It'll update automatically.
+    ======================================
+  */
   const loop = dt => {}
   application.ticker.add(loop)
 }

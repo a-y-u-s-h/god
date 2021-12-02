@@ -3,7 +3,7 @@ export const sketch = service => s => {
   let { send, listen } = events
   let { container, settings } = context
 
-  listen(e => (context = e?.c))
+  listen(request => (context = request?.context))
 
   const mouse = {
     press: e => {

@@ -1,0 +1,47 @@
+#  ======================================
+#    In order to consume this as an actor
+#    within any other parent, you need to
+#    add it to a state node and pass in initial
+#    context with container specified. Won't
+#    work without container specified.
+#    You can also specify container's ID here
+#    but it's not an elegant way of doing things.
+#    A good usage as an actor looks like this:
+#
+#    placeholder:
+#     invoke:
+#       id: placeholder
+#       src: sketch
+#       autoForward: true
+#       data:
+#         container: "#sketch"
+#
+#  ======================================
+
+id: placeholder
+initial: uninitialized
+type: parallel
+context:
+  container: null
+  settings: {}
+entry: initialize
+states:
+  events:
+    #  ======================================
+    #    'events' state essentially will pass all
+    #    events to the invoked activity, which
+    #    can then listen to those events and update
+    #    context or do anything else.
+    #  ======================================
+    on:
+      "*":
+        actions: events
+  activity:
+    #  ======================================
+    #    'activity' is where the invoked callback
+    #    lives, it creates the sketch and this is
+    #    where the 'sketch.js' file executes.
+    #  ======================================
+    invoke:
+      id: activity
+      src: sketch

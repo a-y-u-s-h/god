@@ -15,7 +15,7 @@ import sketch from "./sketch"
 
 export default {
   actions: {
-    events: X.send((c, e) => ({ c, ...e }), { to: "activity" }),
+    events: X.send((c, e, m) => ({ context: c, event: e, meta: m }), { to: "activity" }),
     initialize: X.assign({
       container: (c, e) => {
         return c?.container || c?.reference || e?.payload?.container || e?.payload?.reference
