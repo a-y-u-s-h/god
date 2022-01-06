@@ -3,8 +3,7 @@ const extensions = YAML.read("src/settings/theme/tailwind/elements/extensions.ya
 const foundations = YAML.read("src/settings/theme/tailwind/elements/foundations.yaml")
 
 module.exports = {
-  mode: "jit",
-  purge: [
+  content: [
     "./public/**/*.html",
     "./src/**/*.{js,jsx,ts,tsx,vue,css,scss,yaml}",
     "./src/**/**/*.{js,jsx,ts,tsx,vue,css,scss,yaml}"

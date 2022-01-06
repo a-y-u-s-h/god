@@ -84,6 +84,11 @@ function god.create () {
       react.app ${script} default ${@:3}
     fi
 
+    if [[ $2 == "react.native.app" || $2 == "react.na" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/react.native
+      react.native.app ${script} default ${@:3}
+    fi
+
     if [[ $2 == "react.tui" || $2 == "tui.react" ]]; then
       local script=${root}/src/components/Javascript/frameworks/react
       react.tui ${script} ${@:3}
@@ -381,7 +386,7 @@ function god.create () {
     #
     #  ================================
 
-    if [[ $2 == "snippet.pack" || $2 == "snippets" ]]; then
+    if [[ $2 == "snippet.pack" || $2 == "snippets" || $2 == "snippet.package" ]]; then
       local script="${root}/src/components/Snippets"
       snippet.pack ${script} ${@:3}
     fi

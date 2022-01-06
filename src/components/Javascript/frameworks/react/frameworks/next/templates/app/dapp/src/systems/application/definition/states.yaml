@@ -1,6 +1,8 @@
 id: application
 type: parallel
+preserveActionOrder: true
 context:
+  database: {}
   user: null
   api:
     settings:
@@ -8,16 +10,68 @@ context:
       server: ""
   network:
     selected: 0
-preserveActionOrder: true
 on:
   network.select:
     actions: network.select
 states:
+  server:
+    type: parallel
+    states:
+      database:
+        type: parallel
   user:
     id: user
     type: parallel
     entry: api.initialize
     states:
+      database:
+        initial: idle
+        states:
+          idle:
+            on:
+              database.get.user.transactions:
+                target: fetch user transactions
+              database.get.user.eth.balance:
+                target: fetch user eth balance
+              database.get.user.erc20.balances:
+                target: fetch user erc20 balances
+              database.get.user.nft.balances:
+                target: fetch user nft balances
+          fetch user transactions:
+            invoke:
+              src: database.get.user.transactions
+              onDone:
+                target: idle
+                actions: assign.user.data
+              onError:
+                target: error
+          fetch user eth balance:
+            invoke:
+              src: database.get.user.eth.balance
+              onDone:
+                target: idle
+                actions: assign.user.data
+              onError:
+                target: error
+          fetch user erc20 balances:
+            invoke:
+              src: database.get.user.erc20.balances
+              onDone:
+                target: idle
+                actions: assign.user.data
+              onError:
+                target: error
+          fetch user nft balances:
+            invoke:
+              src: database.get.user.nft.balances
+              onDone:
+                target: idle
+                actions: assign.user.data
+              onError:
+                target: error
+          error:
+            entry: log.errors
+            always: idle
       authentication:
         id: authentication
         initial: uninitialized
@@ -39,6 +93,20 @@ states:
             on:
               connect.wallet:
                 target: connecting
+              sign.in.regular:
+                target: sign in (regular)
+          sign in (regular):
+            invoke:
+              src: sign.in.regular
+              onDone:
+                - cond: user.connected
+                  target: signed in
+                  actions: assign.user
+                - cond: user.disconnected
+                  target: signed out
+                  actions: assign.user
+              onError:
+                target: error
           connecting:
             invoke:
               src: connect.wallet
@@ -62,7 +130,7 @@ states:
                 target: signed out
                 actions: assign.user
           error:
-            entry: telemetry.log.errors
+            entry: log.errors
             always: signed out
   interface:
     type: parallel
@@ -72,7 +140,7 @@ states:
         states:
           default: {}
       theme:
-        initial: light
+        initial: dark
         states:
           light:
             on:

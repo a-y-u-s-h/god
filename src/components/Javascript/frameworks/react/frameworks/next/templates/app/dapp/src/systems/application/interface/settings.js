@@ -7,8 +7,8 @@ export const settings = (state, send) => {
       state: {
         connected: state.matches("user.authentication.signed in"),
         connecting: state.matches("user.authentication.connecting"),
-        disconnected: state.matches("user.authentication.disconnecting"),
-        disconnecting: state.matches("user.authentication.signed in")
+        disconnected: state.matches("user.authentication.signed out"),
+        disconnecting: state.matches("user.authentication.disconnecting")
       },
       data: {
         address: state?.context?.user?.attributes?.accounts?.[0]
@@ -21,7 +21,7 @@ export const settings = (state, send) => {
     content: {
       navigation: {
         networks: {
-          selected: state?.context?.network?.selected || 0,
+          selected: state?.context?.network?.selected?.key || 0,
           options: [
             {
               id: "ethereum",
@@ -35,7 +35,7 @@ export const settings = (state, send) => {
               },
               props: close => ({
                 onClick: e => {
-                  send({ type: "network.select", payload: 0 })
+                  send({ type: "network.select", payload: { key: 0, name: "ethereum" } })
                   close()
                 }
               })
@@ -52,7 +52,7 @@ export const settings = (state, send) => {
               },
               props: close => ({
                 onClick: e => {
-                  send({ type: "network.select", payload: 1 })
+                  send({ type: "network.select", payload: { key: 1, name: "solana" } })
                   close()
                 }
               })
@@ -69,7 +69,24 @@ export const settings = (state, send) => {
               },
               props: close => ({
                 onClick: e => {
-                  send({ type: "network.select", payload: 2 })
+                  send({ type: "network.select", payload: { key: 2, name: "polygon" } })
+                  close()
+                }
+              })
+            },
+            {
+              id: "avalanche",
+              label: "Avalanche",
+              icon: {
+                alt: "avalanche",
+                width: 18,
+                height: 18,
+                name: "avalanche",
+                family: "SVG"
+              },
+              props: close => ({
+                onClick: e => {
+                  send({ type: "network.select", payload: { key: 4, name: "avalanche" } })
                   close()
                 }
               })
@@ -138,8 +155,7 @@ export const settings = (state, send) => {
             }
           ]
         }
-      },
-      sections: {}
+      }
     }
   }
 }
