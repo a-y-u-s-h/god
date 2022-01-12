@@ -1,0 +1,162 @@
+id: application
+type: parallel
+preserveActionOrder: true
+context:
+  firebase:
+    config:
+      apiKey: ""
+      authDomain: ""
+      projectId: ""
+      storageBucket: ""
+      messagingSenderId: ""
+      appId: ""
+states:
+  user:
+    type: parallel
+    states:
+      settings: {}
+      network: {}
+      connection:
+        on:
+          load.user:
+            - cond: user.exists
+              target: "#authentication.connected"
+              actions: assign.user
+      authentication:
+        id: authentication
+        initial: uninitialized
+        entry: firebase.initialize
+        invoke:
+          src: authentication.observer
+        states:
+          uninitialized:
+            invoke:
+              src: load.user
+              onDone:
+                - cond: user.exists
+                  target:
+                    - connected
+                    - "#authorization.checking"
+                  actions: assign.user
+                - target:
+                    - disconnected
+                    - "#authorization.checking"
+                  actions: assign.user
+              onError:
+                target:
+                  - disconnected
+                  - "#authorization.checking"
+                actions: assign.user
+          disconnected:
+            on:
+              sign.in.anonymous: connecting.signing in anonymously
+              sign.in.social: connecting.signing in socially
+              sign.in: connecting.signing in
+              sign.up: connecting.signing up
+          connecting:
+            states:
+              signing in anonymously:
+                invoke:
+                  src: sign.in.anonymous
+                  onDone:
+                    target:
+                      - "#authentication.connected"
+                      - "#authorization.checking"
+                    actions: assign.user
+                  onError:
+                    target: "#authentication.error"
+                    actions: assign.user
+              signing in socially:
+                invoke:
+                  src: sign.in.social
+                  onDone:
+                    target:
+                      - "#authentication.connected"
+                      - "#authorization.checking"
+                    actions: assign.user
+                  onError:
+                    target: "#authentication.error"
+                    actions: assign.user
+              signing in:
+                invoke:
+                  src: sign.in
+                  onDone:
+                    target:
+                      - "#authentication.connected"
+                      - "#authorization.checking"
+                    actions: assign.user
+                  onError:
+                    target: "#authentication.error"
+                    actions: assign.user
+              signing up:
+                invoke:
+                  src: sign.up
+                  onDone:
+                    target:
+                      - "#authentication.connected"
+                      - "#authorization.checking"
+                    actions: assign.user
+                  onError:
+                    target: "#authentication.error"
+                    actions: assign.user
+          disconnecting:
+            states:
+              signing out:
+                invoke:
+                  src: sign.out
+                  onDone:
+                    target:
+                      - "#authentication.disconnected"
+                      - "#authorization.checking"
+                    actions: assign.user
+                  onError:
+                    target: "#authentication.error"
+                    actions: assign.user
+          connected:
+            on:
+              sign.out: disconnecting.signing out
+          error:
+            entry: telemetry.log.errors
+            always:
+              target:
+                - disconnected
+                - "#authorization.checking"
+              actions: assign.user
+      authorization:
+        id: authorization
+        initial: levels
+        states:
+          checking:
+            invoke:
+              src: get.user.authorization
+              onDone:
+                - cond: user.is.individual
+                  target: "#authorization.levels.individual"
+                - cond: user.is.professional
+                  target: "#authorization.levels.professional"
+                - cond: user.is.organization
+                  target: "#authorization.levels.organization"
+                - cond: user.is.developer
+                  target: "#authorization.levels.developer"
+                - cond: user.is.administrator
+                  target: "#authorization.levels.administrator"
+                - cond: user.is.anonymous
+                  target: "#authorization.levels.anonymous"
+              onError:
+                target: "#authorization.levels.anonymous"
+          levels:
+            initial: anonymous
+            states:
+              anonymous: {}
+              individual: {}
+              professional: {}
+              organization: {}
+              developer: {}
+              administrator: {}
+  database:
+    id: database
+    type: parallel
+
+  interface:
+    type: parallel
+    states: {}

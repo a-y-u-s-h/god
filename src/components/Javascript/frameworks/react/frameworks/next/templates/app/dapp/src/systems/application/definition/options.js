@@ -12,11 +12,13 @@ export const options = {
             in the context for this to work.
           ======================================
         */
-        const settings = c?.api?.settings
-        const Moralis = require("moralis")
-        const options = { serverUrl: settings.server, appId: settings.id }
-        Moralis.start(options)
-        return { ...c?.api, Moralis }
+        try {
+          const settings = c?.api?.settings
+          const Moralis = require("moralis")
+          const options = { serverUrl: settings.server, appId: settings.id }
+          Moralis.start(options)
+          return { ...c?.api, Moralis }
+        } catch (e) {}
       }
     }),
     "network.select": X.assign({

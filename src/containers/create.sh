@@ -175,14 +175,14 @@ function god.create () {
       next.app ${script} default ${@:3}
     fi
 
-    if [[ $2 == "next.dapp" || $2 == "next.a" ]]; then
+    if [[ $2 == "next.dapp" || $2 == "next.d" ]]; then
       local script=${root}/src/components/Javascript/frameworks/react/frameworks/next
       next.app ${script} dapp ${@:3}
     fi
 
-    if [[ $2 == "next.tailwind" ]]; then
+    if [[ $2 == "next.firebase" || $2 == "next.fire" || $2 == "next.f" || $2 == "next.fb" ]]; then
       local script=${root}/src/components/Javascript/frameworks/react/frameworks/next
-      next.app ${script} tailwind ${@:3}
+      next.app ${script} firebase ${@:3}
     fi
 
     # <------------------------------>
