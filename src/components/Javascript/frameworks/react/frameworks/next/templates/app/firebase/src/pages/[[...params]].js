@@ -4,7 +4,7 @@ import { useRouter } from "next/router"
 import { useHotkeys } from "react-hotkeys-hook"
 import { Transition } from "@headlessui/react"
 
-export const Application = React.forwardRef(({ children, ...props }, ref) => {
+export const Home = React.forwardRef(({ children, ...props }, ref) => {
   const router = useRouter()
   const system = System.use()
   const { params } = router.query
@@ -75,4 +75,4 @@ export const Application = React.forwardRef(({ children, ...props }, ref) => {
   )
 })
 
-export default Application
+export default Home
