@@ -14,7 +14,13 @@ export const settings = (state, send) => {
         address: state?.context?.user?.attributes?.accounts?.[0]
       },
       events: {
-        sigin: e => send({ type: "sign in" })
+        connect: {
+          regular: e => send({ type: "sign.in", payload: e }),
+          socially: e => send({ type: "sign.in.social", payload: e }),
+          anonymously: e => send({ type: "sign.in.anonymous", payload: e }),
+          register: e => send({ type: "sign.up", payload: e })
+        },
+        disconnect: e => send({ type: "sign.out", payload: e })
       }
     }
   }

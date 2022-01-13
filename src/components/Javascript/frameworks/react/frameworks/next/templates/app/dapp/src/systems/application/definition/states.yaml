@@ -81,57 +81,61 @@ states:
               src: get.current.user
               onDone:
                 - cond: user.connected
-                  target: signed in
+                  target: connected
                   actions: assign.user
                 - cond: user.disconnected
-                  target: signed out
+                  target: disconnected
                   actions: assign.user
               onError:
-                target: signed out
+                target: disconnected
                 actions: assign.user
-          signed out:
+          disconnected:
             on:
               connect.wallet:
-                target: connecting
+                target: connecting.wallet
               sign.in.regular:
-                target: sign in (regular)
-          sign in (regular):
-            invoke:
-              src: sign.in.regular
-              onDone:
-                - cond: user.connected
-                  target: signed in
-                  actions: assign.user
-                - cond: user.disconnected
-                  target: signed out
-                  actions: assign.user
-              onError:
-                target: error
+                target: connecting.email & password
           connecting:
-            invoke:
-              src: connect.wallet
-              onDone:
-                - cond: user.connected
-                  target: signed in
-                  actions: assign.user
-                - cond: user.disconnected
-                  target: signed out
-                  actions: assign.user
-              onError:
-                target: error
-          signed in:
+            states:
+              wallet:
+                invoke:
+                  src: connect.wallet
+                  onDone:
+                    - cond: user.connected
+                      target: "#authentication.connected"
+                      actions: assign.user
+                    - cond: user.disconnected
+                      target: "#authentication.disconnected"
+                      actions: assign.user
+                  onError:
+                    target: "#authentication.error"
+              email & password:
+                invoke:
+                  src: sign.in.regular
+                  onDone:
+                    - cond: user.connected
+                      target: "#authentication.connected"
+                      actions: assign.user
+                    - cond: user.disconnected
+                      target: "#authentication.disconnected"
+                      actions: assign.user
+                  onError:
+                    target: "#authentication.error"
+          connected:
             on:
               disconnect.wallet:
-                target: disconnecting
+                target: disconnecting.wallet
           disconnecting:
-            invoke:
-              src: disconnect.wallet
-              onDone:
-                target: signed out
-                actions: assign.user
+            states:
+              wallet:
+                invoke:
+                  src: disconnect.wallet
+                  onDone:
+                    target: "#authentication.disconnected"
+                    actions: assign.user
           error:
             entry: log.errors
-            always: signed out
+            always: disconnected
   interface:
     type: parallel
     states:
@@ -140,15 +144,45 @@ states:
         states:
           default: {}
       theme:
-        initial: dark
+        initial: electric
         states:
-          light:
+          electric:
             on:
               theme.next: dark
-              theme.prev: dark
-              theme.choose.dark: dark
+              theme.prev: ghost
+              theme.choose.fire: fire
+              theme.choose.ghost: ghost
+              theme.choose.water: water
+              theme.choose.electric: electric
           dark:
             on:
-              theme.next: light
-              theme.prev: light
-              theme.choose.light: light
+              theme.next: fire
+              theme.prev: electric
+              theme.choose.fire: fire
+              theme.choose.ghost: ghost
+              theme.choose.water: water
+              theme.choose.electric: electric
+          fire:
+            on:
+              theme.next: water
+              theme.prev: dark
+              theme.choose.fire: fire
+              theme.choose.water: water
+              theme.choose.ghost: ghost
+              theme.choose.electric: electric
+          water:
+            on:
+              theme.next: ghost
+              theme.prev: fire
+              theme.choose.fire: fire
+              theme.choose.ghost: ghost
+              theme.choose.water: water
+              theme.choose.electric: electric
+          ghost:
+            on:
+              theme.next: electric
+              theme.prev: water
+              theme.choose.fire: fire
+              theme.choose.ghost: ghost
+              theme.choose.water: water
+              theme.choose.electric: electric
