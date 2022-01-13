@@ -135,7 +135,7 @@
     "printWidth": 120,
     "arrowParens": "avoid",
     "bracketSpacing": true,
-    "jsxBracketSameLine": false,
+    "bracketSameLine": false,
     "requirePragma": false,
     "proseWrap": "preserve",
     "overrides": [
