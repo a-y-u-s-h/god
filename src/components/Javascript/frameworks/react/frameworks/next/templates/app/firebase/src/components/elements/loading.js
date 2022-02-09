@@ -2,7 +2,7 @@ import React from "react"
 import Rive from "rive-react"
 import System from "@/systems/application"
 
-export const Loader = ({ src }) => {
+export const Loading = ({ src, ...props }) => {
   const styles = {
     container: {
       className: `
@@ -11,7 +11,7 @@ export const Loader = ({ src }) => {
         bg-linear-900 grainy
       `
     },
-    animation: { src: src || "animations/loading.riv" }
+    animation: { src: src || "animations/loading.riv", ...props }
   }
   return (
     <div {...styles?.container}>
@@ -20,4 +20,4 @@ export const Loader = ({ src }) => {
   )
 }
 
-export default Loader
+export default Loading

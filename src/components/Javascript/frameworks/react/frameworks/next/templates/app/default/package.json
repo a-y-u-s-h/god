@@ -60,6 +60,7 @@
     "tailwindcss-filters": "^3.0.0",
     "theme-ui": "^0.13.1",
     "tone": "^14.7.77",
+    "rive-react": "^0.0.30",
     "xstate": "^4.27.0",
     "yaml": "^1.10.2"
   },

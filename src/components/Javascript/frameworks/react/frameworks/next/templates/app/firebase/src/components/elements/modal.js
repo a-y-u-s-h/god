@@ -17,7 +17,7 @@ import { Dialog, Disclosure, Transition } from "@headlessui/react"
   ======================================
 */
 
-export const Modal = React.forwardRef(({ children, content, ...props }, ref) => {
+export const Modal = React.forwardRef(({ children, interactive, content, ...props }, ref) => {
   const styles = {
     overlay: {
       transition: {
@@ -36,15 +36,16 @@ export const Modal = React.forwardRef(({ children, content, ...props }, ref) => 
       }
     },
     content: {
-      transition: {
+      transition: close => ({
         enter: "transition duration-300 ease-out",
         enterFrom: "transform scale-95 opacity-0",
         enterTo: "transform scale-100 opacity-100",
         leave: "transition duration-100 ease-out",
         leaveFrom: "transform scale-100 opacity-100",
         leaveTo: "transform scale-95 opacity-0",
+        onClick: interactive ? null : close,
         ...props?.styles?.content?.transition
-      },
+      }),
       element: {
         className: "w-full h-full overflow-hidden fixed top-0 grid place-items-center",
         ...props?.styles?.content?.element
@@ -67,7 +68,7 @@ export const Modal = React.forwardRef(({ children, content, ...props }, ref) => 
                     <Transition.Child as={Fragment} {...styles?.overlay?.transition}>
                       <Dialog.Overlay {...styles?.overlay?.element} />
                     </Transition.Child>
-                    <Transition.Child as={Fragment} {...styles?.content?.transition}>
+                    <Transition.Child as={Fragment} {...styles?.content?.transition(close)}>
                       <div {...styles?.content?.element}>{content ? content({ open, close }) : null}</div>
                     </Transition.Child>
                   </Dialog>
