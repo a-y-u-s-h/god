@@ -16,7 +16,7 @@ export const styles = (state, send, settings) => {
           enterFrom: "z-0 opacity-0",
           enterTo: "z-10 opacity-100",
           leave: "transition duration-0",
-          leaveFrom: "z-10 opacity-300",
+          leaveFrom: "z-10 opacity-100",
           leaveTo: "z-0 opacity-0",
           className: "w-full h-full overflow-auto"
         },
@@ -33,7 +33,7 @@ export const styles = (state, send, settings) => {
           enterFrom: "z-0 opacity-0",
           enterTo: "z-10 opacity-100",
           leave: "transition duration-0",
-          leaveFrom: "z-10 opacity-300",
+          leaveFrom: "z-10 opacity-100",
           leaveTo: "z-0 opacity-0",
           className: "w-full h-full overflow-auto"
         },
@@ -50,7 +50,7 @@ export const styles = (state, send, settings) => {
           enterFrom: "z-0 opacity-0",
           enterTo: "z-10 opacity-100",
           leave: "transition duration-0",
-          leaveFrom: "z-10 opacity-300",
+          leaveFrom: "z-10 opacity-100",
           leaveTo: "z-0 opacity-0",
           className: "w-full h-full overflow-auto"
         },
@@ -67,7 +67,7 @@ export const styles = (state, send, settings) => {
           enterFrom: "z-0 opacity-0",
           enterTo: "z-10 opacity-100",
           leave: "transition duration-0",
-          leaveFrom: "z-10 opacity-300",
+          leaveFrom: "z-10 opacity-100",
           leaveTo: "z-0 opacity-0",
           className: "w-full h-full overflow-auto"
         },

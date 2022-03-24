@@ -4,11 +4,75 @@ import { useRouter } from "next/router"
 import { useHotkeys } from "react-hotkeys-hook"
 import { Transition } from "@headlessui/react"
 
+import Marketing from "@/components/universe/marketing"
+import Application from "@/components/universe/application"
+
 export const Home = React.forwardRef(({ children, ...props }, ref) => {
   const router = useRouter()
   const system = System.use()
   const { params } = router.query
   const { state, events, styles, settings } = system
+  const { theme, layout, user } = settings
+  /*
+    ======================================
+      Keybindings:
+
+      1. user.connect            =   Ctrl + Shift + Enter
+      2. user.disconnect         =   Ctrl + Shift + Backspace
+      3. layout.next             =   Ctrl + Shift + Up
+      4. layout.prev             =   Ctrl + Shift + Down
+      5. theme.next              =   Ctrl + Shift + Right
+      6. theme.prev              =   Ctrl + Shift + Left
+    ======================================
+  */
+  useHotkeys("ctrl+shift+enter", e => {
+    const element = document.activeElement
+    e.preventDefault()
+    element?.blur()
+    user.events.connect()
+    element?.focus()
+  })
+
+  useHotkeys("ctrl+shift+backspace", e => {
+    const element = document.activeElement
+    e.preventDefault()
+    element?.blur()
+    user.events.disconnect()
+    element?.focus()
+  })
+
+  useHotkeys("ctrl+shift+down", e => {
+    const element = document.activeElement
+    e.preventDefault()
+    element?.blur()
+    layout.events.prev()
+    element?.focus()
+  })
+
+  useHotkeys("ctrl+shift+up", e => {
+    const element = document.activeElement
+    e.preventDefault()
+    element?.blur()
+    layout.events.next()
+    element?.focus()
+  })
+
+  useHotkeys("ctrl+shift+left", e => {
+    const element = document.activeElement
+    e.preventDefault()
+    element?.blur()
+    theme.events.prev()
+    element?.focus()
+  })
+
+  useHotkeys("ctrl+shift+right", e => {
+    const element = document.activeElement
+    e.preventDefault()
+    element?.blur()
+    theme.events.next()
+    element?.focus()
+  })
+
   return (
     <>
       <Transition {...styles?.container}>
@@ -23,6 +87,7 @@ export const Home = React.forwardRef(({ children, ...props }, ref) => {
                 our landing page here.
               ====================================
             */}
+            <Marketing />
           </div>
         </Transition>
         <Transition {...styles?.authentication?.connecting?.container}>
@@ -40,6 +105,7 @@ export const Home = React.forwardRef(({ children, ...props }, ref) => {
               a different flow.
             ====================================
           */}
+            <Marketing />
           </div>
         </Transition>
         <Transition {...styles?.authentication?.connected?.container}>
@@ -53,6 +119,7 @@ export const Home = React.forwardRef(({ children, ...props }, ref) => {
               that renderes the crux of our application.
             ====================================
           */}
+            <Application />
           </div>
         </Transition>
         <Transition {...styles?.authentication?.disconnecting?.container}>
@@ -68,6 +135,7 @@ export const Home = React.forwardRef(({ children, ...props }, ref) => {
                 It's our choice what we want to keep here.
               ====================================
             */}
+            <Application />
           </div>
         </Transition>
       </Transition>

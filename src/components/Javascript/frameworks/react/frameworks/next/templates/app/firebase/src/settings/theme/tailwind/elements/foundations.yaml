@@ -27,9 +27,10 @@ screens:
     max: 1440px
   desktop-lg:
     min: 1441px
-    max: 2560px
+    max: 1920px
   desktop-4k:
-    min: 1441px
+    min: 1921px
+    max: 2560px
   desktop-8k:
     min: 2561px
 filter:
@@ -70,6 +71,38 @@ fontFamily:
 colors:
   background: transparent
   current: currentColor
+
+  theme:
+    dark:
+      50: "#FFFFFF"
+      100: "#F7F8F8"
+      200: "#5E6AD2"
+      250: "#4F46E5"
+      300: "#F2C94C"
+      400: "#F74040"
+      500: "#8A8F98"
+      600: "#81808E"
+      700: "#303236"
+      800: "#27282B"
+      900: "#1F2023"
+      1000: "#040406"
+    light:
+      50: "#FEFEFE"
+      100: "#F1FAEE"
+      200: "#A8DADC"
+      300: "#457B9D"
+      400: "#5E6AD2"
+      450: "#4F46E5"
+      500: "#1D3557"
+      600: "#E63946"
+      700: "#F74040"
+      800: "#F2C94C"
+      900: "#FDE047"
+      1000: "#FFA400"
+      1100: "#A16207"
+      1200: "#28965A"
+      1300: "#488B49"
+      1400: "#1B1B1E"
 
   pokemon:
     electric:
@@ -112,6 +145,19 @@ colors:
       700: "#9D6DDC"
       800: "#7A29D6"
       900: "#3F2F8B"
+
+  pokedex:
+    50: "#D1ECFD"
+    100: "#46B6F9"
+    200: "#37B349"
+    300: "#FEA707"
+    400: "#F3BFBA"
+    500: "#E56B5D"
+    600: "#DE3D2B"
+    700: "#832A24"
+    800: "#686868"
+    900: "#424242"
+    1000: "#323233"
 
   retro:
     50: "#FFFFFF"
@@ -160,6 +206,7 @@ colors:
     700: "#303236"
     800: "#27282B"
     900: "#1F2023"
+    1000: "#040406"
 
   discord:
     50: "#FFFFFF"

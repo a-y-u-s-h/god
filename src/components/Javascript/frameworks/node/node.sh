@@ -31,18 +31,41 @@ function node.app () {
     if [[ -d $i ]]; then
       cd $i
 
-      local package="$(cat ${root}/templates/app/package.json)"
-      package=$(sed "s/Placeholder/$i/g" <<< "$package")
-      package=$(sed "s/placeholder/$i/g" <<< "$package")
-      echo "$package" > package.json
+      #  ======================================
+      #    Copy package.json, then update the
+      #    packages. Copy updated package.json
+      #    back into template folder and then
+      #    replace all the project specific information
+      #    into the package.json that's inside the
+      #    project directory.
+      #  ======================================
 
-      local webpack="$(cat ${root}/templates/app/webpack.config.js >/dev/null 2>&1)"
-      webpack=$(sed "s/Placeholder/$i/g" <<< "$webpack")
-      webpack=$(sed "s/placeholder/$i/g" <<< "$webpack")
-      echo "$webpack" > webpack.config.js
+      local package="$(cat ${root}/templates/app/package.json)"
+      echo "$package" > package.json
 
       yarn init -y
       yarn update
+
+      local project="$(cat ./package.json)"
+      echo "$project" > "${root}/templates/app/package.json"
+      project=$(sed "s/Placeholder/$i/g" <<< "$project")
+      project=$(sed "s/placeholder/$i/g" <<< "$project")
+      echo "$project" > package.json
+
+      #  ======================================
+      #    Copy and update project specific
+      #    information in the generated project.
+      #  ======================================
+
+      local application="$(cat ${root}/templates/app/src/settings/application.yaml)"
+      application=$(sed "s/Placeholder/$i/g" <<< "$application")
+      application=$(sed "s/placeholder/$i/g" <<< "$application")
+      echo "$application" > ./src/settings/application.yaml
+
+      local rollup="$(cat ${root}/templates/app/rollup.config.js)"
+      rollup=$(sed "s/Placeholder/$i/g" <<< "$rollup")
+      rollup=$(sed "s/placeholder/$i/g" <<< "$rollup")
+      echo "$rollup" > rollup.config.js
     fi
     cd $initial
   done
@@ -68,10 +91,31 @@ function node.library () {
     if [[ -d $i ]]; then
       cd $i
 
+      #  ======================================
+      #    Copy package.json, then update the
+      #    packages. Copy updated package.json
+      #    back into template folder and then
+      #    replace all the project specific information
+      #    into the package.json that's inside the
+      #    project directory.
+      #  ======================================
+
       local package="$(cat ${root}/templates/library/default/package.json)"
-      package=$(sed "s/Placeholder/$i/g" <<< "$package")
-      package=$(sed "s/placeholder/$i/g" <<< "$package")
       echo "$package" > package.json
+
+      yarn init -y
+      yarn update
+
+      local project="$(cat ./package.json)"
+      echo "$project" > "${root}/templates/library/default/package.json"
+      project=$(sed "s/Placeholder/$i/g" <<< "$project")
+      project=$(sed "s/placeholder/$i/g" <<< "$project")
+      echo "$project" > package.json
+
+      #  ======================================
+      #    Copy and update project specific
+      #    information in the generated project.
+      #  ======================================
 
       local rollup="$(cat ${root}/templates/library/default/rollup.config.js)"
       rollup=$(sed "s/Placeholder/$i/g" <<< "$rollup")

@@ -17,12 +17,10 @@ import Application from "@/systems/application"
   ======================================
 */
 
-/*
 import { inspect } from "@xstate/inspect"
 if (typeof window !== "undefined") {
   inspect({ iframe: false })
 }
-*/
 
 export const Systems = ({ children }) => {
   return (

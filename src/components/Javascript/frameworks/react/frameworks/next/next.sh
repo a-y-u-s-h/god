@@ -31,12 +31,31 @@ function next.app () {
       cd ${folder}
       cp -r ${root}/templates/app/${type}/. .
 
-      local package=`cat ${root}/templates/app/${type}/package.json`
-      package=$(sed "s/Placeholder/${i}/g" <<< "$package")
-      package=$(sed "s/placeholder/${i}/g" <<< "$package")
+      #  ======================================
+      #    Copy package.json, then update the
+      #    packages. Copy updated package.json
+      #    back into template folder and then
+      #    replace all the project specific information
+      #    into the package.json that's inside the
+      #    project directory.
+      #  ======================================
+
+      local package="$(cat ${root}/templates/app/${type}/package.json)"
       echo "$package" > package.json
 
+      yarn init -y
       yarn update
+
+      local project="$(cat ./package.json)"
+      echo "$project" > "${root}/templates/app/${type}/package.json"
+      project=$(sed "s/Placeholder/$i/g" <<< "$project")
+      project=$(sed "s/placeholder/$i/g" <<< "$project")
+      echo "$project" > package.json
+
+      #  ======================================
+      #    Copy and update project specific
+      #    information in the generated project.
+      #  ======================================
       git init
       git add . && git commit -m "Initial Commit."
       cd $initial

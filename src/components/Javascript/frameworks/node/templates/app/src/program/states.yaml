@@ -1,0 +1,9 @@
+id: program
+initial: uninitialized
+context: {}
+states:
+  uninitialized:
+    always:
+      target: initialized
+  initialized:
+    meta:

@@ -2,6 +2,7 @@ import React from "react"
 import Systems from "@/systems"
 import "@/settings/theme/tailwind/index.css"
 import Theme from "@/settings/theme"
+import Head from "next/head"
 
 const NoSSR = ({ children }) => (
   <>
@@ -24,6 +25,10 @@ export const Router = props => {
   const { Component, pageProps } = props
   return (
     <Theme>
+      <Head>
+        <link rel="shortcut icon" href="/favicon.svg" />
+        <title>Application</title>
+      </Head>
       <NoSSR>
         <Systems>
           <Component {...pageProps} />

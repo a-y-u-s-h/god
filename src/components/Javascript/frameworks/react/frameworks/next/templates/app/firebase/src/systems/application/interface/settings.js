@@ -1,7 +1,35 @@
 export const settings = (state, send) => {
   return {
-    theme: state?.value?.interface?.theme,
-    layout: state?.value?.interface?.layout,
+    theme: {
+      value: state?.value?.interface?.theme,
+      state: {
+        dark: state.matches("interface.theme.dark"),
+        light: state.matches("interface.theme.light")
+      },
+      events: {
+        next: e => send({ type: "theme.next" }),
+        prev: e => send({ type: "theme.prev" }),
+        choose: {
+          dark: e => send({ type: "theme.choose.dark" }),
+          light: e => send({ type: "theme.choose.light" })
+        }
+      }
+    },
+    layout: {
+      value: state?.value?.interface?.layout,
+      state: {
+        standard: state.matches("interface.layout.standard"),
+        scientific: state.matches("interface.layout.scientific")
+      },
+      events: {
+        next: e => send({ type: "layout.next" }),
+        prev: e => send({ type: "layout.prev" }),
+        choose: {
+          standard: e => send({ type: "layout.choose.standard" }),
+          scientific: e => send({ type: "layout.choose.scientific" })
+        }
+      }
+    },
     user: {
       object: state?.context?.user,
       state: {
@@ -10,16 +38,9 @@ export const settings = (state, send) => {
         disconnected: state.matches("user.authentication.disconnected"),
         disconnecting: state.matches("user.authentication.disconnecting")
       },
-      data: {
-        address: state?.context?.user?.attributes?.accounts?.[0]
-      },
+      data: {},
       events: {
-        connect: {
-          regular: e => send({ type: "sign.in", payload: e }),
-          socially: e => send({ type: "sign.in.social", payload: e }),
-          anonymously: e => send({ type: "sign.in.anonymous", payload: e }),
-          register: e => send({ type: "sign.up", payload: e })
-        },
+        connect: e => send({ type: "sign.in.social", payload: e }),
         disconnect: e => send({ type: "sign.out", payload: e })
       }
     }

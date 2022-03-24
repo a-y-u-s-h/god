@@ -1,35 +1,49 @@
 import path from "path"
-import node from "@rollup/plugin-node-resolve"
+import run from "rollup-plugin-run"
 import json from "@rollup/plugin-json"
 import yaml from "@rollup/plugin-yaml"
-import wasm from "@rollup/plugin-wasm"
-import image from "@rollup/plugin-image"
-import dsv from "@rollup/plugin-dsv"
-import run from "@rollup/plugin-run"
 import alias from "@rollup/plugin-alias"
+import node from "@rollup/plugin-node-resolve"
+import commonjs from "@rollup/plugin-commonjs"
+import polyfills from "rollup-plugin-node-polyfills"
+import { babel } from "@rollup/plugin-babel"
 import { terser } from "rollup-plugin-terser"
+import project from "./package.json"
+
+const development = process.env.ROLLUP_WATCH === "true"
 
 export default {
+  context: undefined,
   input: "src/index.js",
   output: [
     {
-      name: "placeholder.min.js",
+      file: "build/placeholder.js",
+      format: "esm",
+      exports: "auto",
+      plugins: []
+    },
+    {
       file: "build/placeholder.min.js",
-      format: "umd",
+      format: "esm",
       exports: "auto",
       plugins: [terser()]
     }
   ],
+  external: Object.keys(project.dependencies),
   plugins: [
-    run(),
+    development && run(),
+    polyfills(),
     node(),
+    commonjs(),
+    babel({ babelHelpers: "bundled" }),
     json(),
     yaml(),
-    wasm(),
-    image(),
-    dsv(),
     alias({
       entries: [
+        {
+          find: "~",
+          replacement: path.resolve(__dirname)
+        },
         {
           find: "@",
           replacement: path.resolve(__dirname, "src/")
