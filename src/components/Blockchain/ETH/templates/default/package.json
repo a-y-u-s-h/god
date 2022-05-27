@@ -1,0 +1,56 @@
+{
+  "name": "placeholder",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rimraf cache artifacts",
+    "compile": "hardhat compile",
+    "format": "prettier --write 'contracts/**/*.sol'",
+    "test": "yarn clean && yarn format && yarn compile && hardhat test && yarn clean",
+    "predevelop": "yarn test",
+    "develop": "npx hardhat run scripts/develop.js",
+    "update": "npx npm-check-updates -u --timeout 300000 && yarn install"
+  },
+  "volta": {
+    "node": "16.15.0"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.6",
+    "@nomiclabs/hardhat-waffle": "^2.0.3",
+    "chai": "^4.3.6",
+    "ethereum-waffle": "^3.4.4",
+    "ethers": "^5.6.6",
+    "hardhat": "^2.9.5",
+    "prettier": "^2.6.2",
+    "prettier-plugin-solidity": "^1.0.0-beta.19"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.6.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": false,
+    "trailingComma": "none",
+    "tabWidth": 2,
+    "printWidth": 1000,
+    "arrowParens": "avoid",
+    "bracketSpacing": true,
+    "bracketSameLine": false,
+    "requirePragma": false,
+    "proseWrap": "preserve",
+    "overrides": [
+      {
+        "files": "*.sol",
+        "options": {
+          "printWidth": 1000,
+          "tabWidth": 2,
+          "useTabs": false,
+          "singleQuote": false,
+          "bracketSpacing": true,
+          "explicitTypes": "always"
+        }
+      }
+    ]
+  }
+}

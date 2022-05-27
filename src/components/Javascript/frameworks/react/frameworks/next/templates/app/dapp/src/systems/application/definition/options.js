@@ -2,7 +2,8 @@ import * as X from "xstate"
 
 export const options = {
   actions: {
-    "log.errors": console.log,
+    "log.errors": console.error,
+    "log.info": console.log,
     "api.initialize": X.assign({
       api: (c, e) => {
         /*
@@ -12,44 +13,81 @@ export const options = {
             in the context for this to work.
           ======================================
         */
-        try {
-          const settings = c?.api?.settings
-          const Moralis = require("moralis")
-          const options = { serverUrl: settings.server, appId: settings.id }
-          Moralis.start(options)
-          return { ...c?.api, Moralis }
-        } catch (e) {}
+        const Moralis = require("moralis")
+        const options = { ...c?.settings?.moralis }
+        Moralis.start(options)
+        Moralis.initPlugins()
+        return { ...c?.api, Moralis }
       }
     }),
-    "network.select": X.assign({
-      network: (c, e) => {
-        /*
-          ======================================
-            Change selected network.
-          ======================================
-        */
-        const selected = e?.payload
-        return { selected }
-      }
+    /*
+      ======================================
+        This is where we specify simple
+        assignment actions (eg. user, network, etc.)
+      ======================================
+    */
+    "network.change": X.assign({
+      network: (c, e) => e?.payload || e?.data
     }),
     "assign.user": X.assign({
       user: (c, e) => e?.data
-    }),
-    "assign.user.data": X.assign({
-      database: (c, e) => {
-        /*
-          ======================================
-            Updates user object in the context.
-          ======================================
-        */
-        const payload = e?.data
-        const user = { ...c?.database?.user, ...payload }
-        return { ...c?.database, user }
-      }
     })
   },
   activities: {},
   services: {
+    "user.observer": (c, e) => (send, listen) => {
+      /*
+        ======================================
+          We'll make sure that we take the
+          correct transitions when user connects,
+          disconnects, changes accounts or changes
+          their network over here by tracking their
+          behavior and notifying the UI of these events.
+        ======================================
+      */
+      const Moralis = c?.api?.Moralis
+      const unsubscribe = {
+        chain: Moralis.onChainChanged(e => send({ type: "network.changed", payload: e })),
+        account: Moralis.onAccountChanged(e => send({ type: "account.changed", payload: e })),
+        connection: Moralis.onWeb3Enabled(e => send({ type: "account.connected", payload: e })),
+        disconnection: Moralis.onWeb3Deactivated(e => send({ type: "account.disconnected", payload: e }))
+      }
+      return () => Object.keys(unsubscribe).forEach(key => unsubscribe[key]())
+    },
+    "synchronize.data": (c, e) => (send, listen) => {
+      /*
+        ======================================
+          We want to run the query when the user
+          gets connected, and then periodically ever
+          after, till the user is connected.
+        ======================================
+      */
+      const Moralis = c?.api?.Moralis
+      const queries = {
+        empty: () => {},
+        user: () => {}
+      }
+      queries.empty()
+      const interval = setInterval(queries.empty, 60000)
+      return () => clearInterval(interval)
+    },
+    "synchronize.network": async (c, e) => {
+      /*
+        ======================================
+          We want to track the changes in network
+          at all times. It's not a costly operation
+          because the app just has to check the status
+          of Metamask which is already on the client side.
+          So we can afford to do this on every event.
+          But this can be slow when the app uses mouse movements
+          or something else - so this can be optimized.
+        ======================================
+      */
+      const Moralis = c?.api?.Moralis
+      const id = await Moralis.getChainId()
+      return id ? id.toString(16) : null
+    },
+
     "get.current.user": async (c, e) => {
       /*
         ======================================
@@ -57,6 +95,8 @@ export const options = {
         ======================================
       */
       const Moralis = c?.api?.Moralis
+      const network = c?.network
+      await Moralis.enableWeb3()
       const user = Moralis.User.current()
       return user ? user : null
     },
@@ -70,55 +110,11 @@ export const options = {
       */
       const provider = e?.payload?.provider
       const Moralis = c?.api?.Moralis
-      const message = "Welcome :D"
+      const network = c?.network
+      const message = `Welcome 😋`
       const options = { provider, signingMessage: message }
-      return Moralis.User.current() ? Moralis.User.current() : await Moralis.Web3.authenticate(options)
-    },
-    "sign.in.regular": async (c, e) => {
-      /*
-        ======================================
-          If you want to sign in user using
-          their email or phone number and a password,
-          you should use this function. Modify this according
-          to the application that you use.
-        ======================================
-      */
-      const { username, password, email, phone } = e?.payload
-      const Moralis = c?.api?.Moralis
-      const user = new Moralis.User()
-      email ? user.set("email", email) : null
-      phone ? user.set("phone", phone) : null
-      username ? user.set("username", username) : null
-      password ? user.set("password", password) : null
-      try {
-        await user.signUp()
-        return user
-      } catch (e) {
-        return await Moralis.User.logIn(username, password)
-      }
-    },
-    "set.username.password": async (c, e) => {
-      /*
-        ======================================
-          This function should really be modified
-          based on the interface that you want to
-          provide. For validations you should be
-          using cloud functions.
-        ======================================
-      */
-      const { username, password, email, phone } = e?.payload
-      const Moralis = c?.api?.Moralis
-      const user = Moralis.User.current()
-      email ? user.set("email", email) : null
-      phone ? user.set("phone", phone) : null
-      username ? user.set("username", username) : null
-      password ? user.set("password", password) : null
-      try {
-        await user.save()
-        return user
-      } catch (e) {
-        return user
-      }
+      const user = Moralis.User.current() ? Moralis.User.current() : await Moralis.Web3.authenticate(options)
+      return user
     },
     "disconnect.wallet": async (c, e) => {
       /*
@@ -127,80 +123,9 @@ export const options = {
         ======================================
       */
       const Moralis = c?.api?.Moralis
+      const network = c?.network
       const user = await Moralis.User.logOut()
       return null
-    },
-    "database.get.user.transactions": async (c, e) => {
-      /*
-        ======================================
-          Get all user transactions, to get
-          chain-wise transactions, you need to
-          make the implementaion a bit more flexible.
-        ======================================
-      */
-      const Moralis = c?.api?.Moralis
-      const transactions = await Moralis.Web3API.account.getTransactions()
-      return { transactions }
-    },
-    "database.get.user.eth.balance": async (c, e) => {
-      /*
-        ======================================
-          Get ETH balance for the user. You
-          can modify the call, by selecting the
-          chain the native currency of that chain
-          changes, but you'll have to modify the
-          implementation a little bit to allow that.
-        ======================================
-      */
-      const Moralis = c?.api?.Moralis
-      const ETH = await Moralis.Web3API.account.getNativeBalance()
-      const balance = { ...c?.database?.user?.balance, ETH }
-      return { balance }
-    },
-    "database.get.user.erc20.balances": async (c, e) => {
-      /*
-        ======================================
-          Get ERC20 balance for the user.
-        ======================================
-      */
-      const Moralis = c?.api?.Moralis
-      const ERC20 = await Moralis.Web3API.account.getTokenBalances()
-      const balance = { ...c?.database?.user?.balance, ERC20 }
-      return { balance }
-    },
-    "database.get.user.nft.balances": async (c, e) => {
-      /*
-        ======================================
-          Get NFT data for the user.
-        ======================================
-      */
-      const Moralis = c?.api?.Moralis
-      const NFT = await Moralis.Web3API.account.getNFTs()
-      const balance = { ...c?.database?.user?.balance, NFT }
-      return { balance }
-    },
-    "database.collection.create.record.private": async (c, e) => {
-      /*
-        ======================================
-          This call needs { collection, query }
-          where `query` is the object with keys
-          and values that you want to insert in
-          the collection. Collection can be accessed
-          by anyone, but the record that's inserted
-          can only be read or written by the author.
-        ======================================
-      */
-      const Moralis = c?.api?.Moralis
-      const Collection = Moralis.Object.extend(e?.payload?.collection)
-      const collection = new Collection()
-      const author = Moralis.User.current()
-      const query = { ...e?.payload?.query, author }
-
-      for (let [key, value] of Object.entries(query)) {
-        collection.set(key, value)
-      }
-      collection.setACL(new Moralis.ACL(author))
-      return await collection.save()
     }
   },
   guards: {

@@ -3,24 +3,24 @@
 function god.run () {
 
   #  ======================================
-  #  
-  #    What if you know 25+ languages but 
+  #
+  #    What if you know 25+ languages but
   #    cannot remember what command to use
   #    when you want to simply run a particular
-  #    file? Frustrating right? This is exactly 
+  #    file? Frustrating right? This is exactly
   #    the problem that this function tries to solve.
-  #    
+  #
   #    All you need to do is:
-  #    
+  #
   #    god run {filename}.{ext} (longer)
   #    god -r {filename}.{ext}  (shorter)
   #    god -- {filename}.{ext}  (shortest)
-  #    
+  #
   #    This function, depending on extension
   #    will run the command that's needed by
-  #    the file. All it expects is that it's 
+  #    the file. All it expects is that it's
   #    installed.
-  #    
+  #
   #  ======================================
 
   local root=$1                                                                # Take in position of god.sh
@@ -28,7 +28,7 @@ function god.run () {
   shift 1                                                                      # shift parameters to left so that arguments become same.
 
   # <------------------------------>
-  
+
   if [[ $1 == "run" || $1 == "-r" || $1 == "--" ]]; then
     for file in "${@:2}"; do
 
@@ -36,17 +36,17 @@ function god.run () {
       #    Extract extension and depending on
       #    it construct further logic.
       #  ======================================
-      
+
       local filename=$(basename -- "${file}")
       local ext="${filename##*.}"
       filename="${filename%.*}"
-      
-      
+
+
       bash.run  ${ext} ${file}
       batch.run ${ext} ${file}
       C#.run    ${ext} ${file}
       cpp.run   ${ext} ${file}
-      
+
 
       #  ======================================
       #    Clojure
@@ -80,14 +80,14 @@ function god.run () {
       #  ======================================
       #    Elm
       #  ======================================
-      
-      elif [[ ${ext} == "elm" || (${file} == "." && `ls -1 *.elm 2>/dev/null | wc -l` != 0) ]]; then
+
+      elif [[ ${ext} == "elm" ]]; then
         elm.run ${file}
 
       #  ======================================
       #    Fortran (2003, 1995, 1990)
       #  ======================================
-      
+
       elif [[ ${ext} == "f03" || ${ext} == "f95" || ${ext} == "f90" ]]; then
         fortran.run ${file}
 
@@ -101,58 +101,58 @@ function god.run () {
       #  ======================================
       #    Haskell
       #  ======================================
-      
+
       elif [[ ${ext} == "hs" ]]; then
         haskell.run ${file}
 
       #  ======================================
       #    Javascript
       #  ======================================
-      
+
       elif [[ ${ext} == "js" ]]; then
         node.run ${file}
 
       #  ======================================
       #    Julia
       #  ======================================
-      
+
       elif [[ ${ext} == "jl" ]]; then
         julia.run ${file}
 
       #  ======================================
       #    Lisp
       #  ======================================
-      
+
       elif [[ ${ext} == "clisp" ]]; then
-        lisp.run ${file}  
+        lisp.run ${file}
 
       #  ======================================
       #    Lua
       #  ======================================
-      
+
       elif [[ ${ext} == "lua" ]]; then
-        lua.run ${file}  
+        lua.run ${file}
 
       #  ======================================
       #    Nim
       #  ======================================
-      
+
       elif [[ ${ext} == "nim" ]]; then
-        nim.run ${file}  
+        nim.run ${file}
 
       #  ======================================
       #    Perl6
       #  ======================================
-      
+
       elif [[ ${ext} == "pm6" ]]; then
-        perl6.run ${file}  
+        perl6.run ${file}
 
       #  ======================================
       #    Python
       #  ======================================
 
       elif [[  ${ext} == "py"  ]]; then
-        python.run ${file}        
+        python.run ${file}
 
       #  ======================================
       #    R
@@ -164,14 +164,14 @@ function god.run () {
       #  ======================================
       #    Ruby
       #  ======================================
-      
+
       elif [[ ${ext} == "rb" ]]; then
         ruby.run ${file}
 
       #  ======================================
       #    Rust
       #  ======================================
-      
+
       elif [[ ${ext} == "rs" || (${file} == "." && -f "Cargo.toml") ]]; then
         rust.run ${file}
 

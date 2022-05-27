@@ -2,100 +2,97 @@ id: application
 type: parallel
 preserveActionOrder: true
 context:
-  database: {}
-  user: null
-  api:
-    settings:
-      id: ""
-      server: ""
-  network:
-    selected: 0
-on:
-  network.select:
-    actions: network.select
+  api: {}
+  settings:
+    moralis:
+      serverUrl: ""
+      appId: ""
 states:
-  server:
-    type: parallel
+  network:
+    # ======================================
+    #  This state tracks network changes,
+    #  and updates selected network in context.
+    # ======================================
+    id: network
+    initial: synchronize
     states:
-      database:
-        type: parallel
+      idle:
+        on:
+          "*":
+            target: "#network.synchronize"
+      synchronize:
+        invoke:
+          src: synchronize.network
+          onDone:
+            target: idle
+            actions: network.change
+          onError:
+            target: idle
+            actions: log.errors
   user:
     id: user
     type: parallel
     entry: api.initialize
     states:
-      database:
-        initial: idle
-        states:
-          idle:
-            on:
-              database.get.user.transactions:
-                target: fetch user transactions
-              database.get.user.eth.balance:
-                target: fetch user eth balance
-              database.get.user.erc20.balances:
-                target: fetch user erc20 balances
-              database.get.user.nft.balances:
-                target: fetch user nft balances
-          fetch user transactions:
-            invoke:
-              src: database.get.user.transactions
-              onDone:
-                target: idle
-                actions: assign.user.data
-              onError:
-                target: error
-          fetch user eth balance:
-            invoke:
-              src: database.get.user.eth.balance
-              onDone:
-                target: idle
-                actions: assign.user.data
-              onError:
-                target: error
-          fetch user erc20 balances:
-            invoke:
-              src: database.get.user.erc20.balances
-              onDone:
-                target: idle
-                actions: assign.user.data
-              onError:
-                target: error
-          fetch user nft balances:
-            invoke:
-              src: database.get.user.nft.balances
-              onDone:
-                target: idle
-                actions: assign.user.data
-              onError:
-                target: error
-          error:
-            entry: log.errors
-            always: idle
+      observer:
+        # ======================================
+        #  User Observer is an invoked service
+        #  that basically sends our machine some
+        #  extra events when something related to
+        #  user occurs (user changes accounts, user
+        #  changes networks, etc).
+        # ======================================
+        invoke:
+          src: user.observer
       authentication:
         id: authentication
-        initial: uninitialized
+        initial: disconnected
         states:
-          uninitialized:
-            invoke:
-              src: get.current.user
-              onDone:
-                - cond: user.connected
-                  target: connected
-                  actions: assign.user
-                - cond: user.disconnected
-                  target: disconnected
-                  actions: assign.user
-              onError:
-                target: disconnected
-                actions: assign.user
           disconnected:
-            on:
-              connect.wallet:
-                target: connecting.wallet
-              sign.in.regular:
-                target: connecting.email & password
+            # ======================================
+            #  When user enters disconnected state,
+            #  we check whether user object exists,
+            #  if it does we move to connected state
+            #  otherwise we wait for events that can
+            #  log user in somewhow.
+            # ======================================
+            initial: uninitialized
+            states:
+              uninitialized:
+                # ======================================
+                #  When user is uninitialized, we need
+                #  to check if they're connected already
+                #  or not. If they already are, then
+                #  we need to take them to connected state
+                #  otherwise they go to disconnected state.
+                # ======================================
+                invoke:
+                  src: get.current.user
+                  onDone:
+                    - cond: user.connected
+                      target: "#authentication.connected"
+                      actions: assign.user
+                    - cond: user.disconnected
+                      target: "#authentication.disconnected.idle"
+                      actions: assign.user
+                  onError:
+                    target: "#authentication.disconnecting"
+                    actions: assign.user
+              idle:
+                on:
+                  connect.wallet:
+                    target: "#authentication.connecting"
+                  account.connected:
+                    target: "#authentication.connected"
           connecting:
+            # ======================================
+            #  If you want to add additional methods
+            #  using which the user can connect, or
+            #  have some checks (like network should
+            #  be a particular chain or something like that)
+            #  you need to modify this connecting state.
+            # ======================================
+            initial: wallet
             states:
               wallet:
                 invoke:
@@ -105,84 +102,99 @@ states:
                       target: "#authentication.connected"
                       actions: assign.user
                     - cond: user.disconnected
-                      target: "#authentication.disconnected"
-                      actions: assign.user
-                  onError:
-                    target: "#authentication.error"
-              email & password:
-                invoke:
-                  src: sign.in.regular
-                  onDone:
-                    - cond: user.connected
-                      target: "#authentication.connected"
-                      actions: assign.user
-                    - cond: user.disconnected
-                      target: "#authentication.disconnected"
+                      target: "#authentication.disconnected.idle"
                       actions: assign.user
                   onError:
                     target: "#authentication.error"
           connected:
+            # ======================================
+            #  When the user is connected already,
+            #  all we do is invoke a service that synchronizes
+            #  user data periodically so that the UI
+            #  remains updated. And listen to events that
+            #  can log user out.
+            # ======================================
+            invoke:
+              id: synchronize data
+              src: synchronize.data
+              onDone:
+                actions: log.info
+              onError:
+                actions: log.errors
             on:
               disconnect.wallet:
-                target: disconnecting.wallet
+                target: disconnecting
+              account.disconnected:
+                target: disconnecting
+              account.changed:
+                target: disconnecting
+              network.changed:
+                actions: network.change
           disconnecting:
+            initial: wallet
             states:
               wallet:
                 invoke:
                   src: disconnect.wallet
                   onDone:
-                    target: "#authentication.disconnected"
+                    target: animation
                     actions: assign.user
+                  onError:
+                    target: "#authentication.error"
+                    actions: assign.user
+              animation:
+                after:
+                  1000:
+                    target: "#authentication.disconnected.idle"
           error:
             entry: log.errors
             always: disconnected
+
   interface:
     type: parallel
     states:
       layout:
-        initial: default
+        # ======================================
+        #  This application has different layout
+        #  modes - meaning, we can show different
+        #  levels of interface complexity depending
+        #  on what layout mode user chooses to work
+        #  with.
+        # ======================================
+        initial: standard
         states:
-          default: {}
+          scientific:
+            on:
+              layout.next: standard
+              layout.prev: standard
+              layout.choose.standard: standard
+              layout.choose.scientific: scientific
+          standard:
+            on:
+              layout.next: scientific
+              layout.prev: scientific
+              layout.choose.standard: standard
+              layout.choose.scientific: scientific
+
       theme:
-        initial: electric
+        # ======================================
+        #  In this application we also have
+        #  different themes - meaning user can
+        #  choose what kind of color scheme they
+        #  want for this application based on their
+        #  preferences.
+        # ======================================
+        initial: dark
         states:
-          electric:
+          light:
             on:
               theme.next: dark
-              theme.prev: ghost
-              theme.choose.fire: fire
-              theme.choose.ghost: ghost
-              theme.choose.water: water
-              theme.choose.electric: electric
+              theme.prev: dark
+              theme.choose.dark: dark
+              theme.choose.light: light
           dark:
             on:
-              theme.next: fire
-              theme.prev: electric
-              theme.choose.fire: fire
-              theme.choose.ghost: ghost
-              theme.choose.water: water
-              theme.choose.electric: electric
-          fire:
-            on:
-              theme.next: water
-              theme.prev: dark
-              theme.choose.fire: fire
-              theme.choose.water: water
-              theme.choose.ghost: ghost
-              theme.choose.electric: electric
-          water:
-            on:
-              theme.next: ghost
-              theme.prev: fire
-              theme.choose.fire: fire
-              theme.choose.ghost: ghost
-              theme.choose.water: water
-              theme.choose.electric: electric
-          ghost:
-            on:
-              theme.next: electric
-              theme.prev: water
-              theme.choose.fire: fire
-              theme.choose.ghost: ghost
-              theme.choose.water: water
-              theme.choose.electric: electric
+              theme.next: light
+              theme.prev: light
+              theme.choose.dark: dark
+              theme.choose.light: light

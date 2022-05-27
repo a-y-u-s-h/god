@@ -1,5 +1,3 @@
-import * as X from "xstate"
-
 export const options = {
   actions: {},
   activities: {},

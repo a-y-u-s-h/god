@@ -3,11 +3,7 @@ const extensions = YAML.read("src/settings/theme/tailwind/elements/extensions.ya
 const foundations = YAML.read("src/settings/theme/tailwind/elements/foundations.yaml")
 
 module.exports = {
-  content: [
-    "./public/**/*.html",
-    "./src/**/*.{js,jsx,ts,tsx,vue,css,scss,yaml}",
-    "./src/**/**/*.{js,jsx,ts,tsx,vue,css,scss,yaml}"
-  ],
+  content: ["./public/**/*.html", "./.storybook/**/*.{mdx,js,jsx,ts,tsx,vue,css,scss,yaml}", "./src/**/*.{mdx,js,jsx,ts,tsx,vue,css,scss,yaml}", "./src/**/**/*.{mdx,js,jsx,ts,tsx,vue,css,scss,yaml}"],
   darkMode: "class",
   theme: {
     extend: {
@@ -15,13 +11,5 @@ module.exports = {
       ...extensions
     }
   },
-  plugins: [
-    require("@tailwindcss/aspect-ratio"),
-    require("postcss-import"),
-    require("tailwindcss/nesting"),
-    require("@tailwindcss/typography"),
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/custom-forms"),
-    require("tailwindcss-filters")
-  ]
+  plugins: [require("@tailwindcss/aspect-ratio"), require("postcss-import"), require("tailwindcss/nesting"), require("@tailwindcss/typography"), require("@tailwindcss/forms"), require("@tailwindcss/custom-forms")]
 }

@@ -72,6 +72,14 @@ colors:
   background: transparent
   current: currentColor
 
+  scroll:
+    light:
+      regular: "#4D4D4D"
+      hover: "#3D3D3D"
+    dark:
+      regular: "#3D3D3D"
+      hover: "#4D4D4D"
+
   theme:
     dark:
       50: "#FFFFFF"

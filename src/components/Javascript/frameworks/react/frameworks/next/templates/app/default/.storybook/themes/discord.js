@@ -133,5 +133,5 @@ export default create({
   inputBg: "white",
   inputBorder: "silver",
   inputTextColor: "#23272A",
-  inputBorderRadius: 4,
+  inputBorderRadius: 4
 })

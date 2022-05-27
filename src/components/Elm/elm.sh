@@ -1,5 +1,7 @@
 function elm.run () {
-  elm reactor
+  if [[ (${file} == "." && `ls -1 *.elm 2>/dev/null | wc -l` != 0) ]]; then
+    elm reactor >/dev/null 2>&1
+  fi
   return
 }
 
@@ -8,6 +10,6 @@ function elm.compile () {
     local filename=$(basename -- "${file}")
     filename="${filename%.*}"
     elm make ${filename}.elm --output ${filename}.js
-  done  
+  done
   return
 }

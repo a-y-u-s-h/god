@@ -1,0 +1,37 @@
+/*
+  ======================================
+    Rename this from `.tsconfig.json`
+    to `tsconfig.json` if you want to use
+    typescript in this project. And then
+    convert your whole codebase into typescript
+    code.
+  ======================================
+*/
+
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "noImplicitAny": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx", "pages/**/*.ts", "pages/**/*.tsx"],
+  "exclude": ["node_modules", "build"]
+}

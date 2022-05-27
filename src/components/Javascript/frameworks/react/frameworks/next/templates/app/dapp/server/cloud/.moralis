@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+#  ======================================
+#    This command is provided by Moralis.
+#    You'll have to look into cloud functions
+#    --> 'setting up your IDE' section while
+#    looking into server settings on Moralis to
+#    get the command below, in case you somehow
+#    refresh the keys or something.
+#  ======================================
+
+root=$(dirname $(realpath "$0"))
+
+function cloud.sync () {
+  #  ======================================
+  #    Enter appropriate information required
+  #    by the next command (by looking at your
+  #    moralis dashboard) so that we can
+  #    watch the server, with a single npm script.
+  #  ======================================
+
+  moralis-admin-cli watch-cloud-folder                \
+    --moralisApiKey ""                                \
+    --moralisApiSecret ""                             \
+    --moralisSubdomain ""                             \
+   --autoSave 1                                       \
+   --moralisCloudfolder "${root}"
+  return
+}
+
+function cloud.deploy () {
+  #  ======================================
+  #    Enter appropriate information required
+  #    by the next command (by looking at your
+  #    moralis dashboard) so that we can
+  #    deploy the server, with a single npm script.
+  #  ======================================
+
+  moralis-admin-cli deploy                            \
+    --moralisApiKey ""                                \
+    --moralisApiSecret ""                             \
+    --moralisSubdomain ""                             \
+   --folderPath "$(pwd)/build/"                      \
+
+  return
+}
+
+#  ======================================
+#    This means that we want to run the
+#    function that's passed as an argument
+#    to the list. It's important to know
+#    because the functions themselves can
+#    recieve their name as first argument.
+#  ======================================
+
+"$@"

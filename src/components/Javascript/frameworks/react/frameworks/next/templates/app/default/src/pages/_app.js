@@ -1,18 +1,30 @@
 import React from "react"
-import Systems from "@/systems"
-import "@/settings/theme/tailwind/index.css"
-import Theme from "@/settings/theme"
 import Head from "next/head"
+import Systems from "@/systems"
+import Theme from "@/settings/theme"
+import "@/settings/theme/tailwind/index.css"
 
-const NoSSR = ({ children }) => (
-  <>
-    <div className="w-full h-full overflow-hidden" suppressHydrationWarning>
-      {typeof window === "undefined" ? null : children}
-    </div>
-  </>
-)
+const NoSSR = ({ children, ...props }) => {
+  /*
+    ======================================
+      When this component mounts on the DOM,
+      the SSR disables (window object is now
+      defined) so it's safe to hydrate rest
+      of the components (children) now.
+    ======================================
+  */
+  const [SSR, setSSR] = React.useState(true)
+  React.useEffect(() => setSSR(false), [])
+  return (
+    <>
+      <div className="w-full h-full overflow-hidden" suppressHydrationWarning>
+        {SSR ? null : children}
+      </div>
+    </>
+  )
+}
 
-export const Router = props => {
+export const Router = ({ ...props }) => {
   /*
     ======================================
       This component is the entry point of
@@ -24,17 +36,19 @@ export const Router = props => {
   */
   const { Component, pageProps } = props
   return (
-    <Theme>
+    <>
       <Head>
         <link rel="shortcut icon" href="/favicon.svg" />
         <title>Application</title>
       </Head>
       <NoSSR>
         <Systems>
-          <Component {...pageProps} />
+          <Theme>
+            <Component {...pageProps} />
+          </Theme>
         </Systems>
       </NoSSR>
-    </Theme>
+    </>
   )
 }
 

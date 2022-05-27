@@ -5,5 +5,7 @@
   "fixturesFolder": "tests/e2e/fixtures",
   "integrationFolder": "tests/e2e/integration",
   "screenshotsFolder": "tests/e2e/screenshots",
-  "videosFolder": "tests/e2e/videos"
+  "videosFolder": "tests/e2e/videos",
+  "viewportWidth": 1920,
+  "viewportHeight": 1080
 }
