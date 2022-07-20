@@ -70,8 +70,16 @@ export const settings = (state, send) => {
         disconnecting: state.matches("user.authentication.disconnecting")
       },
       events: {
-        connect: e => send({ type: "sign.in.social", payload: e }),
-        disconnect: e => send({ type: "sign.out", payload: e })
+        connect: {
+          social: {
+            apple: e => send({ type: "sign.in.social", payload: { method: "apple" } }),
+            google: e => send({ type: "sign.in.social", payload: { method: "google" } }),
+            github: e => send({ type: "sign.in.social", payload: { method: "github" } }),
+            twitter: e => send({ type: "sign.in.social", payload: { method: "twitter" } }),
+            facebook: e => send({ type: "sign.in.social", payload: { method: "facebook" } })
+          }
+        },
+        disconnect: e => send({ type: "sign.out" })
       }
     }
   }

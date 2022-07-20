@@ -117,6 +117,7 @@
     "prettier-plugin-organize-imports": "^2.3.4",
     "react-icons": "^4.3.1",
     "react-is": "^18.1.0",
+    "rimraf": "^3.0.2",
     "sass": "^1.51.0",
     "start-server-and-test": "^1.14.0",
     "storybook-addon-next": "^1.6.2",

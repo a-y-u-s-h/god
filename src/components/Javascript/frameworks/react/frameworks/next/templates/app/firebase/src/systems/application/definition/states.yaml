@@ -50,13 +50,13 @@ states:
                 actions: assign.user
           disconnected:
             on:
-              sign.in.anonymous: connecting.signing in anonymously
-              sign.in.social: connecting.signing in socially
-              sign.in: connecting.signing in
-              sign.up: connecting.signing up
+              sign.in.anonymous: connecting.anonymously
+              sign.in.social: connecting.socially
+              sign.in: connecting.email & password
+              sign.up: connecting.registration
           connecting:
             states:
-              signing in anonymously:
+              anonymously:
                 invoke:
                   src: sign.in.anonymous
                   onDone:
@@ -67,7 +67,7 @@ states:
                   onError:
                     target: "#authentication.error"
                     actions: assign.user
-              signing in socially:
+              socially:
                 invoke:
                   src: sign.in.social
                   onDone:
@@ -78,9 +78,9 @@ states:
                   onError:
                     target: "#authentication.error"
                     actions: assign.user
-              signing in:
+              email & password:
                 invoke:
-                  src: sign.in
+                  src: sign.in.email.password
                   onDone:
                     target:
                       - "#authentication.connected"
@@ -89,7 +89,7 @@ states:
                   onError:
                     target: "#authentication.error"
                     actions: assign.user
-              signing up:
+              registration:
                 invoke:
                   src: sign.up
                   onDone:
