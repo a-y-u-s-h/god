@@ -25,7 +25,6 @@
 
 import React from "react"
 import Theme from "assets/styles/theme.js"
-import { StatusBar } from "react-native"
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 

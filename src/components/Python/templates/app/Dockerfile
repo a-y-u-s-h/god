@@ -1,4 +1,4 @@
-FROM archlinux/base
+FROM archlinux
 
 WORKDIR /app
 ADD . /app
@@ -44,7 +44,7 @@ USER root
 #  | $$                                              |  $$$$$$/
 #  |__/                                               \______/
 #
-#  Install particular dependecies with yay or pacman or anything else with sudo: 
+#  Install particular dependecies with yay or pacman or anything else with sudo:
 
 RUN pacman -Sy --noconfirm python; exit 0
 RUN pacman -Sy --noconfirm python-pip; exit 0

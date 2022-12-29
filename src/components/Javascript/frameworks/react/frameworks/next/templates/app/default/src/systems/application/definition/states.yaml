@@ -1,7 +1,7 @@
 id: application
 type: parallel
 context: {}
-preserveActionOrder: true
+predictableActionArguments: true
 states:
   interface:
     type: parallel

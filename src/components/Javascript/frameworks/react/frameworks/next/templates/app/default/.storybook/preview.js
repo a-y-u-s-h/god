@@ -1,6 +1,5 @@
 import "!style-loader!css-loader!postcss-loader!tailwindcss/tailwind.css"
 import { DocsContainer } from "@storybook/addon-docs"
-import React from "react"
 import "tailwindcss/tailwind.css"
 import Theme from "../src/settings/theme"
 import System from "../src/systems"

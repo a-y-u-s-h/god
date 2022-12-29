@@ -19,7 +19,7 @@ import React from "react"
 /*
   import { inspect } from "@xstate/inspect"
   if (typeof window !== "undefined") {
-    inspect({ iframe: false })
+    inspect({ iframe: false, url: "https://statecharts.io/inspect" })
   }
 */
 

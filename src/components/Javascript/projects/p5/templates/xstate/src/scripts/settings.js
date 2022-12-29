@@ -7,12 +7,7 @@ var settings = {
       height: 0
     }
   },
-  application: {
-    tool: {
-      selection: "rectangle",
-      options: ["rectangle", "ellipse", "circle", "line"]
-    }
-  }
+  application: {}
 }
 
 var controls = [

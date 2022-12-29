@@ -1,6 +1,6 @@
 id: application
 type: parallel
-preserveActionOrder: true
+predictableActionArguments: true
 context:
   api: {}
   settings:

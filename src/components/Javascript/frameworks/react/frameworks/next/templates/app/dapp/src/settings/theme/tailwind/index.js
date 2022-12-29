@@ -11,5 +11,5 @@ module.exports = {
       ...extensions
     }
   },
-  plugins: [require("@tailwindcss/aspect-ratio"), require("postcss-import"), require("tailwindcss/nesting"), require("@tailwindcss/typography"), require("@tailwindcss/forms"), require("@tailwindcss/custom-forms")]
+  plugins: [require("@tailwindcss/aspect-ratio"), require("@tailwindcss/container-queries"), require("postcss-import"), require("tailwindcss/nesting"), require("@tailwindcss/typography"), require("@tailwindcss/forms"), require("@tailwindcss/custom-forms")]
 }

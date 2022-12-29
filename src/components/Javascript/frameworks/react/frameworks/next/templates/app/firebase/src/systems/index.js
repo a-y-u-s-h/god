@@ -20,7 +20,7 @@ import Application from "@/systems/application"
 
 /*
   if (typeof window !== "undefined") {
-    inspect({ iframe: false })
+    inspect({ iframe: false, url: "https://statecharts.io/inspect" })
   }
 */
 export const Systems = ({ children }) => <Application.Provider>{children}</Application.Provider>

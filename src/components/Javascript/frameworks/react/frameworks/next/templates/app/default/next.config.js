@@ -1,6 +1,6 @@
 const constants = require("next/constants")
 
-module.exports = (phase, options) => {
+module.exports = {
   /*
     ======================================
       Here you can return different config
@@ -9,47 +9,42 @@ module.exports = (phase, options) => {
       add plugins to include additional features.
     ======================================
   */
+  webpack: (config, options) => {
+    /*
+      ======================================
+        This piece of config adds YAML loader
+        to the webpack config of next.js.
+      ======================================
+    */
+    config.module.rules.push({
+      test: /\.ya?ml$/,
+      use: "js-yaml-loader"
+    })
 
-  return {
-    ...options.defaultConfig,
-    webpack5: true,
-    webpack: (config, options) => {
-      /*
-        ======================================
-          This piece of config adds YAML loader
-          to the webpack config of next.js.
-        ======================================
-      */
-      config.module.rules.push({
-        test: /\.ya?ml$/,
-        use: "js-yaml-loader"
-      })
-
-      /*
-        ======================================
-          This is done so that we can add
-          audio files in our Next.js project.
-        ======================================
-      */
-      config.module.rules.push({
-        test: /\.(ogg|mp3|wav|mpe?g)$/i,
-        exclude: config.exclude,
-        use: [
-          {
-            loader: require.resolve("url-loader"),
-            options: {
-              limit: config.inlineImageLimit,
-              fallback: require.resolve("file-loader"),
-              publicPath: `${config.assetPrefix}/_next/static/images/`,
-              outputPath: `${options?.isServer ? "../" : ""}static/images/`,
-              name: "[name]-[hash].[ext]",
-              esModule: config.esModule || false
-            }
+    /*
+      ======================================
+        This is done so that we can add
+        audio files in our Next.js project.
+      ======================================
+    */
+    config.module.rules.push({
+      test: /\.(ogg|mp3|wav|mpe?g)$/i,
+      exclude: config.exclude,
+      use: [
+        {
+          loader: require.resolve("url-loader"),
+          options: {
+            limit: config.inlineImageLimit,
+            fallback: require.resolve("file-loader"),
+            publicPath: `${config.assetPrefix}/_next/static/images/`,
+            outputPath: `${options?.isServer ? "../" : ""}static/images/`,
+            name: "[name]-[hash].[ext]",
+            esModule: config.esModule || false
           }
-        ]
-      })
+        }
+      ]
+    })
 
-      return config
-    }
+    return config
   }
 }
