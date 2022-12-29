@@ -10,7 +10,7 @@
   "dependencies": {
     "@tailwindcss/ui": "^0.1.2",
     "gridsome": "^0.7.12",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "p5": "^0.10.2",
     "sass-loader": "^8.0.2",
     "tailwindcss": "^1.2.0"
