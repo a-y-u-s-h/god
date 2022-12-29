@@ -73,7 +73,7 @@
     "gatsby-transformer-yaml": "^2.4.0",
     "html-to-react": "^1.4.2",
     "intersection-observer": "^0.10.0",
-    "marked": "^1.0.0",
+    "marked": "^4.0.10",
     "node-gyp": "^6.1.0",
     "node-sass": "^4.14.0",
     "p5": "^1.0.0",
