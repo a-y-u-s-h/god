@@ -1,5 +1,5 @@
 id: placeholder
 type: parallel
 context: {}
-preserveActionOrder: true
+predictableActionArguments: true
 states: {}
