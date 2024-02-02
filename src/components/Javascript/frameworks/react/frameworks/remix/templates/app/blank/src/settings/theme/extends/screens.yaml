@@ -1,0 +1,52 @@
+#  ======================================
+#
+#    ░█▀▀░█▀▀░█▀▄░█▀▀░█▀▀░█▀█░█▀▀
+#    ░▀▀█░█░░░█▀▄░█▀▀░█▀▀░█░█░▀▀█
+#    ░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀
+#
+#    If you want to get finer control
+#    over styling for various kinds of
+#    screen sizes, you can extend your
+#    configuration to use the following
+#    keys. These devices overlap with
+#    those available in Google Chrome
+#    (default breakpoints) so you won't
+#    have to think twice with these.
+#
+#  ======================================
+
+screens:
+  mobile:
+    max: 767px
+  mobile-sm:
+    max: 320px
+  mobile-md:
+    min: 321px
+    max: 375px
+  mobile-lg:
+    min: 376px
+    max: 425px
+  mobile-xl:
+    min: 426px
+    max: 767px
+  tablet:
+    min: 768px
+    max: 991px
+  tabloid:
+    max: 991px
+  desktop:
+    min: 992px
+  desktop-sm:
+    min: 992px
+    max: 1024px
+  desktop-md:
+    min: 1025px
+    max: 1440px
+  desktop-lg:
+    min: 1441px
+    max: 1920px
+  desktop-4k:
+    min: 1921px
+    max: 2560px
+  desktop-8k:
+    min: 2561px

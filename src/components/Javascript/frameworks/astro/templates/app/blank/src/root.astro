@@ -1,0 +1,41 @@
+---
+/*
+  ======================================
+
+    ░█▀▄░█▀█░█▀█░▀█▀
+    ░█▀▄░█░█░█░█░░█░
+    ░▀░▀░▀▀▀░▀▀▀░░▀░
+
+    This file represents the 'page' layout
+    of the entire application. It contains
+    the root node of the document tree, and
+    hence it is named as 'root', but you
+    are free to import it as <Page /> or
+    <Screen /> or <Layout /> (whatver makes
+    sense to you). It basically behaves as
+    a layout for the page (and it also injects
+    global CSS into its slots/children by
+    importing that by itself).
+
+  ======================================
+*/
+import "@/settings/theme/index.css"
+import { ViewTransitions } from "astro:transitions"
+const { title, description } = Astro.props
+---
+
+<!doctype html>
+<html transition:animate="none" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

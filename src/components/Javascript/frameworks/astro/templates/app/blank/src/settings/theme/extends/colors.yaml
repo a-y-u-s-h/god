@@ -1,0 +1,107 @@
+#  ======================================
+#
+#   ░█▀▀░█▀█░█░░░█▀█░█▀▄░█▀▀
+#   ░█░░░█░█░█░░░█░█░█▀▄░▀▀█
+#   ░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀
+#
+#   Tailwind includes an expertly-crafted
+#   default color palette out-of-the-box
+#   that is a great starting point if you
+#   don’t have your own specific branding
+#   in mind. But if you do have specific
+#   branding colors prepared, or want to
+#   use your own conventions, you extend
+#   the default color palette here.
+#
+#   https://tailwindcss.com/docs/colors
+#
+#  ======================================
+
+colors:
+  theme:
+    #  ======================================
+    #
+    #   ░▀█▀░█░█░█▀▀░█▄█░█▀▀
+    #   ░░█░░█▀█░█▀▀░█░█░█▀▀
+    #   ░░▀░░▀░▀░▀▀▀░▀░▀░▀▀▀
+    #
+    #   For our website, we're deliberately choosing
+    #   (for now at least), only to have a single
+    #   theme of 6 colors - the blacks and whites
+    #   or the grays are selected carefully, the
+    #   remaining 5 are shades of pink, blue, indigo
+    #   and yellow. Use these everywhere.
+    #
+    #  ======================================
+
+    pink:
+      DEFAULT: "#ff4d80"
+      "100": "#420013"
+      "200": "#850026"
+      "300": "#c70038"
+      "400": "#ff0a50"
+      "500": "#ff4d80"
+      "600": "#ff7099"
+      "700": "#ff94b2"
+      "800": "#ffb8cc"
+      "900": "#ffdbe5"
+
+    blue:
+      DEFAULT: "#1b98e0"
+      "100": "#051e2c"
+      "200": "#0b3c59"
+      "300": "#105b85"
+      "400": "#1679b2"
+      "500": "#1b98e0"
+      "600": "#46ade8"
+      "700": "#74c1ee"
+      "800": "#a2d6f4"
+      "900": "#d1eaf9"
+
+    indigo:
+      DEFAULT: "#5f0a87"
+      "100": "#13021b"
+      "200": "#260435"
+      "300": "#380650"
+      "400": "#4b086a"
+      "500": "#5f0a87"
+      "600": "#8e0fc9"
+      "700": "#b432f0"
+      "800": "#cd76f5"
+      "900": "#e6bbfa"
+
+    yellow:
+      DEFAULT: "#edb230"
+      "100": "#352505"
+      "200": "#694b09"
+      "300": "#9e700e"
+      "400": "#d29512"
+      "500": "#edb230"
+      "600": "#f1c15a"
+      "700": "#f4d083"
+      "800": "#f8e0ac"
+      "900": "#fbefd6"
+
+    black:
+      DEFAULT: "#10100e"
+      "100": "#030303"
+      "200": "#070706"
+      "300": "#0a0a09"
+      "400": "#0d0d0b"
+      "500": "#10100e"
+      "600": "#44443b"
+      "700": "#777767"
+      "800": "#a6a698"
+      "900": "#d2d2cc"
+
+    white:
+      DEFAULT: "#ffffff"
+      "100": "#333333"
+      "200": "#666666"
+      "300": "#999999"
+      "400": "#cccccc"
+      "500": "#ffffff"
+      "600": "#ffffff"
+      "700": "#ffffff"
+      "800": "#ffffff"
+      "900": "#ffffff"

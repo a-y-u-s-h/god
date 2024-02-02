@@ -1,0 +1,435 @@
+#  ======================================
+#
+#   ░█▀▀░█▀▄░▀█▀░█▀▄░█▀▀
+#   ░█░█░█▀▄░░█░░█░█░▀▀█
+#   ░▀▀▀░▀░▀░▀▀▀░▀▀░░▀▀▀
+#
+#   Tailwind CSS offers default grid
+#   utilities as a starting point, but it
+#   excels in flexibility, enabling you to
+#   extend and optimize grids for practicality.
+#   These properties and utilities, collectively,
+#   provide granular control over the column
+#   structure and placement of items in CSS
+#   Grid layouts. They are instrumental in
+#   creating responsive and organized grid-based
+#   designs for web development projects.
+#
+#  ======================================
+
+#  ======================================
+#
+#    ░█▀▄░█▀█░█░█░█▀▀
+#    ░█▀▄░█░█░█▄█░▀▀█
+#    ░▀░▀░▀▀▀░▀░▀░▀▀▀
+#
+#    Customize and control the vertical layout
+#    (divisions across y-axis) of your grid with
+#    'rows' utilities. Tailwind provides four
+#    utilities to modify rows (+ arbitrary values).
+#
+#  ======================================
+
+gridTemplateRows:
+  #  ======================================
+  #
+  #   The gridTemplateRows property is used
+  #   in CSS Grid to define the sizing of rows
+  #   within a grid container. It allows you
+  #   to specify the size of each row individually
+  #   or using a repeat notation. gridTemplateRows
+  #   is typically set in the parent grid container
+  #   and defines the overall structure of the
+  #   grid's rows. You can use it to create rows
+  #   of equal or varying heights, helping to
+  #   organize content in a grid layout.
+  #
+  #   https://tailwindcss.com/docs/grid-template-rows
+  #
+  #  ======================================
+
+  1: repeat(1, minmax(0, 1fr))
+  2: repeat(2, minmax(0, 1fr))
+  3: repeat(3, minmax(0, 1fr))
+  4: repeat(4, minmax(0, 1fr))
+  5: repeat(5, minmax(0, 1fr))
+  6: repeat(6, minmax(0, 1fr))
+  7: repeat(7, minmax(0, 1fr))
+  8: repeat(8, minmax(0, 1fr))
+  9: repeat(9, minmax(0, 1fr))
+  10: repeat(10, minmax(0, 1fr))
+  11: repeat(11, minmax(0, 1fr))
+  12: repeat(12, minmax(0, 1fr))
+  13: repeat(13, minmax(0, 1fr))
+  14: repeat(14, minmax(0, 1fr))
+  15: repeat(15, minmax(0, 1fr))
+  16: repeat(16, minmax(0, 1fr))
+  17: repeat(17, minmax(0, 1fr))
+  18: repeat(18, minmax(0, 1fr))
+  19: repeat(19, minmax(0, 1fr))
+  20: repeat(20, minmax(0, 1fr))
+  21: repeat(21, minmax(0, 1fr))
+  22: repeat(22, minmax(0, 1fr))
+  23: repeat(23, minmax(0, 1fr))
+  24: repeat(24, minmax(0, 1fr))
+  25: repeat(25, minmax(0, 1fr))
+  26: repeat(26, minmax(0, 1fr))
+  27: repeat(27, minmax(0, 1fr))
+  28: repeat(28, minmax(0, 1fr))
+  29: repeat(29, minmax(0, 1fr))
+  30: repeat(30, minmax(0, 1fr))
+
+gridRow:
+  #  ======================================
+  #
+  #    In Tailwind CSS, the grid-rows utility
+  #    class is used to set the number of rows
+  #    a grid container should have. You can
+  #    use values like grid-rows-1, grid-rows-2,
+  #    etc., to define the number of rows.
+  #
+  #    https://tailwindcss.com/docs/grid-row
+  #
+  #  ======================================
+
+  span-1: span 1 / span 1
+  span-2: span 2 / span 2
+  span-3: span 3 / span 3
+  span-4: span 4 / span 4
+  span-5: span 5 / span 5
+  span-6: span 6 / span 6
+  span-7: span 7 / span 7
+  span-8: span 8 / span 8
+  span-9: span 9 / span 9
+  span-10: span 10 / span 10
+  span-11: span 11 / span 11
+  span-12: span 12 / span 12
+  span-13: span 13 / span 13
+  span-14: span 14 / span 14
+  span-15: span 15 / span 15
+  span-16: span 16 / span 16
+  span-17: span 17 / span 17
+  span-18: span 18 / span 18
+  span-19: span 19 / span 19
+  span-20: span 20 / span 20
+  span-21: span 21 / span 21
+  span-22: span 22 / span 22
+  span-23: span 23 / span 23
+  span-24: span 24 / span 24
+  span-25: span 25 / span 25
+  span-26: span 26 / span 26
+  span-27: span 27 / span 27
+  span-28: span 28 / span 28
+  span-29: span 29 / span 29
+  span-30: span 30 / span 30
+
+gridRowStart:
+  #  ======================================
+  #
+  #   he gridRowStart property is used to
+  #   specify the starting row line for an
+  #   item within a grid container. It determines
+  #   the row at which the grid item should
+  #   begin its placement. You can set it to
+  #   a numeric value to define the starting
+  #   row line for an item or use keywords
+  #   like auto for automatic placement.
+  #
+  #    https://tailwindcss.com/docs/grid-row
+  #
+  #  ======================================
+
+  "1": "1"
+  "2": "2"
+  "3": "3"
+  "4": "4"
+  "5": "5"
+  "6": "6"
+  "7": "7"
+  "8": "8"
+  "9": "9"
+  "10": "10"
+  "11": "11"
+  "12": "12"
+  "13": "13"
+  "14": "14"
+  "15": "15"
+  "16": "16"
+  "17": "17"
+  "18": "18"
+  "19": "19"
+  "20": "20"
+  "21": "21"
+  "22": "22"
+  "23": "23"
+  "24": "24"
+  "25": "25"
+  "26": "26"
+  "27": "27"
+  "28": "28"
+  "29": "29"
+  "30": "30"
+
+gridRowEnd:
+  #  ======================================
+  #
+  #   The gridRowEnd property is used to specify
+  #   the ending row line for an item within
+  #   a grid container. It determines the row
+  #   at which the grid item should end its
+  #   placement. Similar to gridRowStart,
+  #   gridRowEnd is used to control the
+  #   placement of grid items, but it defines
+  #   the ending row line. By setting both
+  #   gridRowStart and gridRowEnd, you can
+  #   precisely control the position and
+  #   size of items within the grid rows.
+  #
+  #    https://tailwindcss.com/docs/grid-row
+  #
+  #  ======================================
+
+  "1": "1"
+  "2": "2"
+  "3": "3"
+  "4": "4"
+  "5": "5"
+  "6": "6"
+  "7": "7"
+  "8": "8"
+  "9": "9"
+  "10": "10"
+  "11": "11"
+  "12": "12"
+  "13": "13"
+  "14": "14"
+  "15": "15"
+  "16": "16"
+  "17": "17"
+  "18": "18"
+  "19": "19"
+  "20": "20"
+  "21": "21"
+  "22": "22"
+  "23": "23"
+  "24": "24"
+  "25": "25"
+  "26": "26"
+  "27": "27"
+  "28": "28"
+  "29": "29"
+  "30": "30"
+
+#  ======================================
+#
+#    ░█▀▀░█▀█░█░░░█░█░█▄█░█▀█░█▀▀
+#    ░█░░░█░█░█░░░█░█░█░█░█░█░▀▀█
+#    ░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░▀▀▀
+#
+#    Customize and control the horizontal layout
+#    (divisions across x-axis) of your grid with
+#    'columns' utilities. Tailwind provides four
+#    utilities to modify columns (+ arbitrary values).
+##
+#  ======================================
+
+gridTemplateColumns:
+  #  ======================================
+  #
+  #   The gridTemplateColumns property in CSS
+  #   Grid allows you to define the sizing of
+  #   columns within a grid container. It lets
+  #   you specify the size of each column
+  #   individually or using a repeat notation.
+  #   gridTemplateColumns is applied to the
+  #   parent grid container and is used to
+  #   establish the overall structure of the
+  #   grid's columns. You can utilize it to
+  #   create columns of equal or varying widths,
+  #   facilitating the organization of content
+  #   within the grid.
+  #
+  #   https://tailwindcss.com/docs/grid-template-columns
+  #
+  #  ======================================
+
+  1: repeat(1, minmax(0, 1fr))
+  2: repeat(2, minmax(0, 1fr))
+  3: repeat(3, minmax(0, 1fr))
+  4: repeat(4, minmax(0, 1fr))
+  5: repeat(5, minmax(0, 1fr))
+  6: repeat(6, minmax(0, 1fr))
+  7: repeat(7, minmax(0, 1fr))
+  8: repeat(8, minmax(0, 1fr))
+  9: repeat(9, minmax(0, 1fr))
+  10: repeat(10, minmax(0, 1fr))
+  11: repeat(11, minmax(0, 1fr))
+  12: repeat(12, minmax(0, 1fr))
+  13: repeat(13, minmax(0, 1fr))
+  14: repeat(14, minmax(0, 1fr))
+  15: repeat(15, minmax(0, 1fr))
+  16: repeat(16, minmax(0, 1fr))
+  17: repeat(17, minmax(0, 1fr))
+  18: repeat(18, minmax(0, 1fr))
+  19: repeat(19, minmax(0, 1fr))
+  20: repeat(20, minmax(0, 1fr))
+  21: repeat(21, minmax(0, 1fr))
+  22: repeat(22, minmax(0, 1fr))
+  23: repeat(23, minmax(0, 1fr))
+  24: repeat(24, minmax(0, 1fr))
+  25: repeat(25, minmax(0, 1fr))
+  26: repeat(26, minmax(0, 1fr))
+  27: repeat(27, minmax(0, 1fr))
+  28: repeat(28, minmax(0, 1fr))
+  29: repeat(29, minmax(0, 1fr))
+  30: repeat(30, minmax(0, 1fr))
+
+gridColumn:
+  #  ======================================
+  #
+  #   In Tailwind CSS, the grid-cols utility
+  #   class is employed to set the number of
+  #   columns a grid container should have.
+  #   Values like grid-cols-1, grid-cols-2,
+  #   etc., can be used to determine the number
+  #   of columns. Tailwind's grid-cols utility
+  #   simplifies the process of specifying the
+  #   number of columns in a grid layout. It is
+  #   especially useful for quickly configuring
+  #   the grid structure without requiring custom CSS.
+  #
+  #   https://tailwindcss.com/docs/grid-column
+  #
+  #  ======================================
+
+  span-1: span 1 / span 1
+  span-2: span 2 / span 2
+  span-3: span 3 / span 3
+  span-4: span 4 / span 4
+  span-5: span 5 / span 5
+  span-6: span 6 / span 6
+  span-7: span 7 / span 7
+  span-8: span 8 / span 8
+  span-9: span 9 / span 9
+  span-10: span 10 / span 10
+  span-11: span 11 / span 11
+  span-12: span 12 / span 12
+  span-13: span 13 / span 13
+  span-14: span 14 / span 14
+  span-15: span 15 / span 15
+  span-16: span 16 / span 16
+  span-17: span 17 / span 17
+  span-18: span 18 / span 18
+  span-19: span 19 / span 19
+  span-20: span 20 / span 20
+  span-21: span 21 / span 21
+  span-22: span 22 / span 22
+  span-23: span 23 / span 23
+  span-24: span 24 / span 24
+  span-25: span 25 / span 25
+  span-26: span 26 / span 26
+  span-27: span 27 / span 27
+  span-28: span 28 / span 28
+  span-29: span 29 / span 29
+  span-30: span 30 / span 30
+
+gridColumnStart:
+  #  ======================================
+  #
+  #   The gridColumnStart property is utilized
+  #   to specify the starting column line for
+  #   an item within a grid container. It
+  #   determines the column at which the grid
+  #   item should begin its placement.
+  #   gridColumnStart plays a vital role in
+  #   positioning grid items within specific
+  #   columns of the grid. You can set it to
+  #   a numeric value to define the starting
+  #   column line for an item or use keywords
+  #   like auto for automatic placement.
+  #
+  #   https://tailwindcss.com/docs/grid-column
+  #
+  #  ======================================
+
+  "1": "1"
+  "2": "2"
+  "3": "3"
+  "4": "4"
+  "5": "5"
+  "6": "6"
+  "7": "7"
+  "8": "8"
+  "9": "9"
+  "10": "10"
+  "11": "11"
+  "12": "12"
+  "13": "13"
+  "14": "14"
+  "15": "15"
+  "16": "16"
+  "17": "17"
+  "18": "18"
+  "19": "19"
+  "20": "20"
+  "21": "21"
+  "22": "22"
+  "23": "23"
+  "24": "24"
+  "25": "25"
+  "26": "26"
+  "27": "27"
+  "28": "28"
+  "29": "29"
+  "30": "30"
+
+gridColumnEnd:
+  #  ======================================
+  #
+  #   The gridColumnEnd property is used to
+  #   specify the ending column line for an
+  #   item within a grid container. It
+  #   determines the column at which the
+  #   grid item should end its placement.
+  #   Similar to gridColumnStart, gridColumnEnd
+  #   is employed to control the placement of
+  #   grid items, but it defines the ending
+  #   column line. By setting both gridColumnStart
+  #   and gridColumnEnd, you can precisely
+  #   determine the position and size of items
+  #   within the grid columns.
+  #
+  #   https://tailwindcss.com/docs/grid-column
+  #
+  #  ======================================
+
+  "1": "1"
+  "2": "2"
+  "3": "3"
+  "4": "4"
+  "5": "5"
+  "6": "6"
+  "7": "7"
+  "8": "8"
+  "9": "9"
+  "10": "10"
+  "11": "11"
+  "12": "12"
+  "13": "13"
+  "14": "14"
+  "15": "15"
+  "16": "16"
+  "17": "17"
+  "18": "18"
+  "19": "19"
+  "20": "20"
+  "21": "21"
+  "22": "22"
+  "23": "23"
+  "24": "24"
+  "25": "25"
+  "26": "26"
+  "27": "27"
+  "28": "28"
+  "29": "29"
+  "30": "30"

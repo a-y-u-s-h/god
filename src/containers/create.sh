@@ -187,6 +187,55 @@ function god.create () {
 
     # <------------------------------>
 
+    if [[ $2 == "remix.app" || $2 == "remix.a" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/react/frameworks/remix
+      remix.app ${script} default ${@:3}
+    fi
+
+    if [[ $2 == "remix.blank" || $2 == "remix.b" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/react/frameworks/remix
+      remix.app ${script} blank ${@:3}
+    fi
+
+    if [[ $2 == "remix.client" || $2 == "remix.c" || $2 == "remix.web" || $2 == "remix.f" || $2 == "remix.frontend" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/react/frameworks/remix
+      remix.app ${script} client ${@:3}
+    fi
+
+    if [[ $2 == "remix.vite" || $2 == "remix.v" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/react/frameworks/remix
+      remix.app ${script} vite ${@:3}
+    fi
+
+    # <------------------------------>
+
+    if [[ $2 == "astro.app" || $2 == "astro.a" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/astro
+      astro.app ${script} default ${@:3}
+    fi
+
+    if [[ $2 == "astro.default" || $2 == "astro.d" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/astro
+      astro.app ${script} default ${@:3}
+    fi
+
+    if [[ $2 == "astro.blank" || $2 == "astro.b" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/astro
+      astro.app ${script} blank ${@:3}
+    fi
+
+    if [[ $2 == "astro.api" || $2 == "astro.backend" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/astro
+      astro.app ${script} api ${@:3}
+    fi
+
+    if [[ $2 == "astro.component.react" || $2 == "astro.c" || $2 == "astro.r" || $2 == "astro.rx" || $2 == "astro.rc" ]]; then
+      local script=${root}/src/components/Javascript/frameworks/astro
+      astro.component ${script} react ${@:3}
+    fi
+
+    # <------------------------------>
+
     if [[ $2 == "gatsby.app" || $2 == "gatsby.a" ]]; then
       local script=${root}/src/components/Javascript/frameworks/react/frameworks/gatsby
       gatsby.app ${script} default ${@:3}

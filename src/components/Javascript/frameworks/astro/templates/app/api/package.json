@@ -1,0 +1,73 @@
+{
+  "name": "placeholder",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro --config project.config.js dev",
+    "start": "astro --config project.config.js dev",
+    "build": "astro --config project.config.js build",
+    "preview": "astro --config project.config.js preview",
+    "format": "prettier . --write",
+    "clean": "rimraf ./src/env.d.ts .astro"
+  },
+  "dependencies": {
+    "astro": "^3.3.0",
+    "xstate": "latest"
+  },
+  "devDependencies": {
+    "@astrojs/mdx": "^1.1.2",
+    "@astrojs/node": "^6.0.3",
+    "@rollup/plugin-yaml": "^4.1.2",
+    "prettier": "^3.0.3",
+    "prettier-plugin-astro": "^0.12.0",
+    "rimraf": "^5.0.5"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": false,
+    "trailingComma": "none",
+    "tabWidth": 2,
+    "printWidth": 80,
+    "arrowParens": "avoid",
+    "bracketSpacing": true,
+    "bracketSameLine": false,
+    "requirePragma": false,
+    "proseWrap": "preserve",
+    "plugins": [
+      "prettier-plugin-astro"
+    ],
+    "overrides": [
+      {
+        "files": "*.astro",
+        "options": {
+          "tabWidth": 2,
+          "printWidth": 200,
+          "parser": "astro"
+        }
+      },
+      {
+        "files": "*.mdx",
+        "options": {
+          "tabWidth": 2,
+          "printWidth": 200,
+          "proseWrap": "always"
+        }
+      },
+      {
+        "files": "*.md",
+        "options": {
+          "tabWidth": 2,
+          "printWidth": 200,
+          "proseWrap": "always",
+          "htmlWhitespaceSensitivity": "strict"
+        }
+      },
+      {
+        "files": "*.html",
+        "options": {
+          "htmlWhitespaceSensitivity": "strict"
+        }
+      }
+    ]
+  }
+}

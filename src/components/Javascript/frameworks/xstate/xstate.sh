@@ -53,12 +53,12 @@ function xstate.react.system () {
     [ -d ${folder} ] || mkdir -p ${folder}
     if [[ -d ${folder} ]]; then
       cd ${folder}
-      cp -R ${root}/templates/system/react/* .
+      cp -R ${root}/templates/system/react/* . >/dev/null 2>&1
 
-      local states="$(cat ${root}/templates/system/react/definition/states.yaml)"
+      local states="$(cat ${root}/templates/system/react/states.yaml)"
       states=$(sed "s/placeholder/${folder}/g" <<< "$states")
       states=$(sed "s/Placeholder/${file}/g" <<< "$states")
-      echo "$states" > definition/states.yaml
+      echo "$states" > states.yaml
     fi
     cd $initial
   done
@@ -177,25 +177,20 @@ function xstate.react.component () {
     [ -d ${folder} ] || mkdir -p ${folder}
     if [[ -d ${folder} ]]; then
       cd ${folder}
-      cp -R ${root}/templates/component/react/* .
+      cp -R ${root}/templates/component/react/* . >/dev/null 2>&1
 
-      local component="$(cat ${root}/templates/component/react/index.js)"
-      local states="$(cat ${root}/templates/component/react/system/definition/states.yaml)"
+      local component="$(cat ${root}/templates/component/react/index.jsx)"
+      local states="$(cat ${root}/templates/component/react/src/system/states.yaml)"
 
       component=$(sed "s/placeholder/${folder}/g" <<< "$component")
       component=$(sed "s/Placeholder/${file}/g" <<< "$component")
       states=$(sed "s/placeholder/${folder}/g" <<< "$states")
       states=$(sed "s/Placeholder/${file}/g" <<< "$states")
 
-      echo "$component" > index.js
-      [ -d system ] || mkdir -p system
-      if [[ -d system ]]; then
-        cd system
-        echo "$states" > definition/states.yaml
-        cd ..
-      fi
+      echo "$component" > index.jsx
+      echo "$states" > src/system/states.yaml
     fi
-    cd $initial
+    cd $initial >/dev/null 2>&1
   done
   return
 }
