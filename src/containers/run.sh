@@ -46,6 +46,7 @@ function god.run () {
       batch.run ${ext} ${file}
       C#.run    ${ext} ${file}
       cpp.run   ${ext} ${file}
+      odin.run  ${ext} ${file}
 
 
       #  ======================================
