@@ -16,9 +16,8 @@
   ======================================
 */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "./theme";
 
 /*
   ======================================
@@ -34,32 +33,9 @@
 
 html,
 body {
-  @apply m-0 p-0
-  w-full h-full
-  overflow-hidden;
-}
-
-/*
-  ======================================
-
-    ░█▀▀░█▀█░█▀█░▀█▀░█▀▀
-    ░█▀▀░█░█░█░█░░█░░▀▀█
-    ░▀░░░▀▀▀░▀░▀░░▀░░▀▀▀
-
-  ======================================
-*/
-
-@font-face {
-  font-family: Bebas Neue Regular;
-  src: url(/fonts/bebas.neue.regular.ttf);
-}
-
-@font-face {
-  font-family: Expose;
-  src: url(/fonts/expose.variable.ttf);
-}
-
-@font-face {
-  font-family: Munito;
-  src: url(/fonts/munito.variable.ttf);
+  margin: 0;
+  padding: 0;
+  width: 100dvw;
+  height: 100dvh;
+  overflow: hidden;
 }

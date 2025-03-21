@@ -20,7 +20,7 @@
   ======================================
 */
 import "@/settings/theme/index.css"
-import { ViewTransitions } from "astro:transitions"
+import { ClientRouter } from "astro:transitions"
 const { title, description } = Astro.props
 ---
 
@@ -33,7 +33,7 @@ const { title, description } = Astro.props
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/png" href="/images/favicon.png" />
     <title>{title}</title>
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body>
     <slot />

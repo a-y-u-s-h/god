@@ -1,6 +1,7 @@
 {
   "extends": "astro/tsconfigs/base",
-  "include": ["env.d.ts", "src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx", "src/**/*.astro"],
+  "include": [".astro/types.d.ts", "env.d.ts", "src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx", "src/**/*.astro", "**/*"],
+  "exclude": ["build"],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "isolatedModules": true,

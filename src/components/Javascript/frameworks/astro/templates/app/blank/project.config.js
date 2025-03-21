@@ -9,13 +9,13 @@
 */
 
 import mdx from "@astrojs/mdx"
-import Astro from "astro/config"
+import * as Astro from "astro/config"
 import node from "@astrojs/node"
 import react from "@astrojs/react"
 import yaml from "@rollup/plugin-yaml"
 import sitemap from "@astrojs/sitemap"
 import prefetch from "@astrojs/prefetch"
-import tailwind from "@astrojs/tailwind"
+import tailwind from "@tailwindcss/vite"
 import vercel from "@astrojs/vercel/serverless"
 
 /*
@@ -28,11 +28,16 @@ import vercel from "@astrojs/vercel/serverless"
   ======================================
 */
 const options = {
-  adapter: node({ mode: "standalone" }),
+  adapter: {
+    node: node({ mode: "standalone" }),
+    vercel: vercel({
+      imageService: true,
+      webAnalytics: { enabled: false },
+      speedInsights: { enabled: false }
+    })
+  },
   integrations: {
-    tailwind: {
-      configFile: "./src/settings/theme/tailwind.config.js"
-    }
+    tailwind: {}
   }
 }
 
@@ -51,18 +56,22 @@ const options = {
 
   ======================================
 */
-export default {
-  site: "https://placeholder",
-  output: "static",
+export default Astro.defineConfig({
+  site: "https://placeholder.com",
+  output: "server",
   outDir: "build",
   cacheDir: "build/cache",
   publicDir: "./assets",
+  devToolbar: { enabled: false },
+  checkUpdates: { enabled: false },
   build: {
-    client: "build/client",
-    server: "build/server"
+    client: "client",
+    server: "server"
   },
-  integrations: [mdx(), react(), sitemap(), prefetch(), tailwind(options.integrations.tailwind)],
+  adapter: options.adapter.vercel,
+  integrations: [mdx(), react(), sitemap(), prefetch()],
   vite: {
-    plugins: [yaml()]
+    server: { watch: { usePolling: true } },
+    plugins: [yaml(), tailwind(options.integrations.tailwind)]
   }
-}
+})
