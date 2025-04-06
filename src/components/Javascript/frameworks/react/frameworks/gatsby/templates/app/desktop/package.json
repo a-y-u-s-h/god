@@ -39,7 +39,7 @@
     "@phosphor/widgets": "^1.9.3",
     "@rehooks/online-status": "^1.1.2",
     "@svgr/webpack": "^5.4.0",
-    "ajv": "^6.12.2",
+    "ajv": "^6.12.3",
     "animejs": "^3.2.0",
     "autoprefixer": "^9.7.6",
     "axios": "^0.21.1",
